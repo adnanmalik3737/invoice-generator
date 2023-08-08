@@ -1,0 +1,1 @@
+export { SolidCommunication } from "./SolidCommunication";

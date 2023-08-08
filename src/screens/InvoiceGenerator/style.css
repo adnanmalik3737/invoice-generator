@@ -1,0 +1,553 @@
+.invoice-generator {
+  background-color: #f2f3f5;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.invoice-generator .div {
+  background-color: #f2f3f5;
+  border: 1px none;
+  height: 1121px;
+  position: relative;
+  width: 1920px;
+}
+
+.invoice-generator .group {
+  height: 65px;
+  left: 87px;
+  position: absolute;
+  top: 39px;
+  width: 174px;
+}
+
+.invoice-generator .img {
+  height: 30px;
+  left: 61px;
+  position: absolute;
+  top: 0;
+  width: 51px;
+}
+
+.invoice-generator .heading-finance {
+  color: #000000;
+  font-family: "Ubuntu", Helvetica;
+  font-size: 18px;
+  font-weight: 700;
+  height: 21px;
+  left: 0;
+  letter-spacing: 0;
+  line-height: 20.9px;
+  position: absolute;
+  text-align: center;
+  top: 44px;
+  white-space: nowrap;
+}
+
+.invoice-generator .overlap {
+  background-color: #ffffff;
+  box-shadow: 0px 4px 20px #0000001a;
+  height: 886px;
+  left: 87px;
+  position: absolute;
+  top: 138px;
+  width: 1746px;
+}
+
+.invoice-generator .overlap-group {
+  background-color: #009bd6;
+  height: 886px;
+  left: 873px;
+  position: absolute;
+  top: 0;
+  width: 873px;
+}
+
+.invoice-generator .div-wrapper {
+  background-color: #ffffff;
+  border-radius: 5px;
+  height: 50px;
+  left: 187px;
+  position: absolute;
+  top: 519px;
+  width: 500px;
+}
+
+.invoice-generator .text-wrapper {
+  color: #009bd6;
+  font-family: "Ubuntu", Helvetica;
+  font-size: 16px;
+  font-weight: 500;
+  height: 30px;
+  left: 229px;
+  letter-spacing: 0;
+  line-height: 30px;
+  position: absolute;
+  top: 9px;
+  white-space: nowrap;
+}
+
+.invoice-generator .group-2 {
+  height: 148px;
+  left: 187px;
+  position: absolute;
+  top: 589px;
+  width: 502px;
+}
+
+.invoice-generator .group-wrapper {
+  background-color: #ffffff;
+  border-radius: 5px;
+  height: 50px;
+  left: 0;
+  position: absolute;
+  top: 98px;
+  width: 150px;
+}
+
+.invoice-generator .group-3 {
+  height: 30px;
+  left: 31px;
+  position: relative;
+  top: 10px;
+  width: 91px;
+}
+
+.invoice-generator .design-component-instance-node {
+  height: 24px !important;
+  top: 3px !important;
+  width: 24px !important;
+}
+
+.invoice-generator .text-wrapper-2 {
+  color: #eb4335;
+  font-family: "Ubuntu", Helvetica;
+  font-size: 16px;
+  font-weight: 500;
+  height: 30px;
+  left: 35px;
+  letter-spacing: 0;
+  line-height: 30px;
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+}
+
+.invoice-generator .line {
+  height: 43px;
+  left: 250px;
+  object-fit: cover;
+  position: absolute;
+  top: 35px;
+  width: 1px;
+}
+
+.invoice-generator .text-wrapper-3 {
+  color: #ffffff;
+  font-family: "Ubuntu", Helvetica;
+  font-size: 18px;
+  font-weight: 400;
+  height: 30px;
+  left: 241px;
+  letter-spacing: 0;
+  line-height: 30px;
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+}
+
+.invoice-generator .group-4 {
+  background-color: #ffffff;
+  border-radius: 5px;
+  height: 50px;
+  left: 175px;
+  position: absolute;
+  top: 98px;
+  width: 150px;
+}
+
+.invoice-generator .group-5 {
+  height: 30px;
+  left: 22px;
+  position: relative;
+  top: 10px;
+  width: 108px;
+}
+
+.invoice-generator .text-wrapper-4 {
+  color: #046ce4;
+  font-family: "Ubuntu", Helvetica;
+  font-size: 16px;
+  font-weight: 500;
+  height: 30px;
+  left: 35px;
+  letter-spacing: 0;
+  line-height: 30px;
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+}
+
+.invoice-generator .group-6 {
+  background-color: #ffffff;
+  border-radius: 5px;
+  height: 50px;
+  left: 350px;
+  position: absolute;
+  top: 98px;
+  width: 150px;
+}
+
+.invoice-generator .group-7 {
+  height: 30px;
+  left: 20px;
+  position: relative;
+  top: 10px;
+  width: 112px;
+}
+
+.invoice-generator .text-wrapper-5 {
+  color: #8f3cab;
+  font-family: "Ubuntu", Helvetica;
+  font-size: 16px;
+  font-weight: 500;
+  height: 30px;
+  left: 35px;
+  letter-spacing: 0;
+  line-height: 30px;
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+}
+
+.invoice-generator .text-wrapper-6 {
+  color: #ffffff;
+  font-family: "Ubuntu", Helvetica;
+  font-size: 50px;
+  font-weight: 700;
+  height: 30px;
+  left: 321px;
+  letter-spacing: 0;
+  line-height: 30px;
+  position: absolute;
+  top: 148px;
+  white-space: nowrap;
+}
+
+.invoice-generator .text-wrapper-7 {
+  color: #ffffff;
+  font-family: "Ubuntu", Helvetica;
+  font-size: 22px;
+  font-weight: 400;
+  height: 30px;
+  left: 326px;
+  letter-spacing: 0;
+  line-height: 30px;
+  position: absolute;
+  top: 193px;
+  white-space: nowrap;
+}
+
+.invoice-generator .overlap-2 {
+  border: 1px solid;
+  border-color: #ffffff;
+  border-radius: 5px;
+  height: 50px;
+  left: 187px;
+  position: absolute;
+  top: 299px;
+  width: 500px;
+}
+
+.invoice-generator .line-2 {
+  height: 40px;
+  left: 70px;
+  position: absolute;
+  top: 4px;
+  width: 1px;
+}
+
+.invoice-generator .loma-bold-email {
+  height: 24px;
+  left: 22px;
+  position: absolute;
+  top: 12px;
+  width: 24px;
+}
+
+.invoice-generator .email {
+  background-image: url(../../../src/img/subtract-1.svg);
+  background-size: 100% 100%;
+  height: 14px;
+  left: 3px;
+  position: absolute;
+  top: 5px;
+  width: 18px;
+}
+
+.invoice-generator .vector {
+  height: 1px;
+  left: 363px;
+  position: absolute;
+  top: -2075px;
+  width: 1px;
+}
+
+.invoice-generator .text-wrapper-8 {
+  color: #ffffff;
+  font-family: "Ubuntu", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  height: 30px;
+  left: 90px;
+  letter-spacing: 0;
+  line-height: 30px;
+  position: absolute;
+  top: 8px;
+  white-space: nowrap;
+}
+
+.invoice-generator .overlap-3 {
+  border: 1px solid;
+  border-color: #ffffff;
+  border-radius: 5px;
+  height: 50px;
+  left: 187px;
+  position: absolute;
+  top: 369px;
+  width: 500px;
+}
+
+.invoice-generator .iconly-bold-lock-instance {
+  left: 22px !important;
+  position: absolute !important;
+  top: 12px !important;
+}
+
+.invoice-generator .iconly-bold-lock-2 {
+  background-image: url(../../../src/img/lock-2.svg) !important;
+}
+
+.invoice-generator .h-1 {
+  color: #009bd6;
+  font-family: "Ubuntu", Helvetica;
+  font-size: 50px;
+  font-weight: 700;
+  height: 30px;
+  left: 288px;
+  letter-spacing: 0;
+  line-height: 30px;
+  position: absolute;
+  top: 78px;
+  white-space: nowrap;
+}
+
+.invoice-generator .p {
+  color: #333333;
+  font-family: "Ubuntu", Helvetica;
+  font-size: 22px;
+  font-weight: 400;
+  height: 30px;
+  left: 322px;
+  letter-spacing: 0;
+  line-height: 30px;
+  position: absolute;
+  top: 123px;
+  white-space: nowrap;
+}
+
+.invoice-generator .overlap-4 {
+  background-color: #f2f3f5;
+  border-radius: 5px;
+  height: 50px;
+  left: 187px;
+  position: absolute;
+  top: 229px;
+  width: 500px;
+}
+
+.invoice-generator .line-3 {
+  height: 40px;
+  left: 71px;
+  position: absolute;
+  top: 5px;
+  width: 1px;
+}
+
+.invoice-generator .design-component-instance-node-2 {
+  left: 23px !important;
+  top: 13px !important;
+}
+
+.invoice-generator .text-wrapper-9 {
+  color: #bbbbbb;
+  font-family: "Ubuntu", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  height: 30px;
+  left: 91px;
+  letter-spacing: 0;
+  line-height: 30px;
+  position: absolute;
+  top: 9px;
+  white-space: nowrap;
+}
+
+.invoice-generator .overlap-5 {
+  background-color: #f2f3f5;
+  border-radius: 5px;
+  height: 50px;
+  left: 187px;
+  position: absolute;
+  top: 299px;
+  width: 500px;
+}
+
+.invoice-generator .loma-bold-email-2 {
+  height: 24px;
+  left: 23px;
+  position: absolute;
+  top: 13px;
+  width: 24px;
+}
+
+.invoice-generator .email-2 {
+  background-image: url(../../../src/img/subtract-2.svg);
+  background-size: 100% 100%;
+  height: 14px;
+  left: 3px;
+  position: absolute;
+  top: 5px;
+  width: 18px;
+}
+
+.invoice-generator .vector-2 {
+  height: 1px;
+  left: 1236px;
+  position: absolute;
+  top: -2075px;
+  width: 1px;
+}
+
+.invoice-generator .overlap-6 {
+  background-color: #f2f3f5;
+  border-radius: 5px;
+  height: 50px;
+  left: 187px;
+  position: absolute;
+  top: 369px;
+  width: 500px;
+}
+
+.invoice-generator .overlap-7 {
+  background-color: #f2f3f5;
+  border-radius: 5px;
+  height: 50px;
+  left: 187px;
+  position: absolute;
+  top: 439px;
+  width: 500px;
+}
+
+.invoice-generator .iconly-bold-lock-3 {
+  left: 23px !important;
+  position: absolute !important;
+  top: 13px !important;
+}
+
+.invoice-generator .iconly-bold-lock-4 {
+  background-image: url(../../../src/img/lock-1.svg) !important;
+}
+
+.invoice-generator .overlap-8 {
+  background-color: #009bd6;
+  border-radius: 5px;
+  height: 50px;
+  left: 187px;
+  position: absolute;
+  top: 589px;
+  width: 500px;
+}
+
+.invoice-generator .text-wrapper-10 {
+  color: #ffffff;
+  font-family: "Ubuntu", Helvetica;
+  font-size: 16px;
+  font-weight: 500;
+  height: 30px;
+  left: 192px;
+  letter-spacing: 0;
+  line-height: 30px;
+  position: absolute;
+  top: 9px;
+  white-space: nowrap;
+}
+
+.invoice-generator .group-8 {
+  height: 148px;
+  left: 187px;
+  position: absolute;
+  top: 659px;
+  width: 502px;
+}
+
+.invoice-generator .overlap-9 {
+  background-color: #eb43351a;
+  border-radius: 5px;
+  height: 50px;
+  left: 0;
+  position: absolute;
+  top: 98px;
+  width: 150px;
+}
+
+.invoice-generator .text-wrapper-11 {
+  color: #333333;
+  font-family: "Ubuntu", Helvetica;
+  font-size: 18px;
+  font-weight: 400;
+  height: 30px;
+  left: 241px;
+  letter-spacing: 0;
+  line-height: 30px;
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+}
+
+.invoice-generator .group-9 {
+  background-color: #15a4fb1a;
+  border-radius: 5px;
+  height: 50px;
+  left: 175px;
+  position: absolute;
+  top: 98px;
+  width: 150px;
+}
+
+.invoice-generator .group-10 {
+  background-color: #ab369d1a;
+  border-radius: 5px;
+  height: 50px;
+  left: 350px;
+  position: absolute;
+  top: 98px;
+  width: 150px;
+}
+
+.invoice-generator .text-wrapper-12 {
+  color: #009bd6;
+  font-family: "Ubuntu", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  height: 30px;
+  left: 1795px;
+  letter-spacing: 0;
+  line-height: 30px;
+  position: absolute;
+  text-align: right;
+  text-decoration: underline;
+  top: 73px;
+  white-space: nowrap;
+}

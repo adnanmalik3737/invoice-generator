@@ -1,0 +1,1327 @@
+.mainForm {
+  background-color: #ffffff;
+  border: 1px none;
+  height: 1367px;
+  position: relative;
+  width: 750px;
+}
+
+.mainForm .div-d-flex {
+  height: 107px;
+  left: 35px;
+  position: absolute;
+  top: 40px;
+  width: 662px;
+}
+
+.mainForm .label {
+  align-items: center;
+  background-color: #fbfcff;
+  border: 1.5px dashed;
+  border-color: #009bd6;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  left: 0;
+  max-width: 1920px;
+  padding: 21px 43.75px 16px 43.59px;
+  position: absolute;
+  top: 0;
+  width: 132px;
+}
+
+.mainForm .SVG {
+  flex: 0 0 auto;
+  position: relative;
+  width: 24px;
+}
+
+.mainForm .text-wrapper {
+  color: #009bd6;
+  font-family: "Ubuntu-Bold", Helvetica;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 20px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.mainForm .group {
+  height: 54px;
+  left: 152px;
+  position: absolute;
+  top: 16px;
+  width: 161px;
+}
+
+.mainForm .div {
+  color: #333333;
+  font-family: "Ubuntu-Medium", Helvetica;
+  font-size: 14px;
+  font-weight: 500;
+  height: 20px;
+  left: 0;
+  letter-spacing: 0;
+  line-height: 20px;
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+}
+
+.mainForm .element-x-pixels-wrapper {
+  align-items: flex-start;
+  display: flex;
+  left: 0;
+  padding: 5px 49.8px 0px 0px;
+  position: absolute;
+  top: 20px;
+  width: 159px;
+}
+
+.mainForm .element-x-pixels {
+  color: #676767;
+  font-family: "Ubuntu-Medium", Helvetica;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 14.3px;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+}
+
+.mainForm .h {
+  color: #333333;
+  font-family: "Ubuntu-Light", Helvetica;
+  font-size: 45px;
+  font-weight: 300;
+  height: 65px;
+  left: 489px;
+  letter-spacing: 0;
+  line-height: 64.3px;
+  position: absolute;
+  text-align: right;
+  top: 5px;
+  white-space: nowrap;
+}
+
+.mainForm .item-table-body {
+  align-items: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  left: 35px;
+  position: absolute;
+  top: 153px;
+}
+
+.mainForm .row {
+  height: 33px;
+  position: relative;
+  width: 278.03px;
+}
+
+.mainForm .data-input {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border-radius: 4px;
+  display: flex;
+  left: 2px;
+  padding: 4.5px 13px 5.5px 4px;
+  position: absolute;
+  top: 4px;
+  width: 107px;
+}
+
+.mainForm .div-wrapper {
+  align-items: flex-start;
+  display: flex;
+  padding: 0px 36.2px 0px 0px;
+  position: relative;
+  width: 90.2px;
+}
+
+.mainForm .text-wrapper-2 {
+  color: #333333;
+  font-family: "Ubuntu-Bold", Helvetica;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.mainForm .div-placeholder-wrapper {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border-radius: 4px;
+  display: flex;
+  left: 113px;
+  padding: 4.5px 13px 5.5px 4px;
+  position: absolute;
+  top: 3px;
+  width: 163px;
+}
+
+.mainForm .div-placeholder {
+  align-items: flex-start;
+  display: flex;
+  padding: 0px 106.83px 0px 0px;
+  position: relative;
+  width: 145.83px;
+}
+
+.mainForm .text-wrapper-3 {
+  color: #9ca3af;
+  font-family: "Ubuntu-Light", Helvetica;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.mainForm .div-2 {
+  align-items: flex-start;
+  display: flex;
+  padding: 0px 13.2px 0px 0px;
+  position: relative;
+  width: 90.2px;
+}
+
+.mainForm .data-input-2 {
+  align-items: flex-end;
+  border-radius: 4px;
+  display: flex;
+  gap: 3px;
+  left: 113px;
+  padding: 3.5px 13px 4.5px 3px;
+  position: absolute;
+  top: 3px;
+  width: 163px;
+}
+
+.mainForm .calendar-svg {
+  position: relative;
+  width: 17px;
+}
+
+.mainForm .div-placeholder-2 {
+  align-items: flex-start;
+  display: flex;
+  padding: 0px 50.83px 0px 0px;
+  position: relative;
+  width: 126.83px;
+}
+
+.mainForm .text-wrapper-4 {
+  color: #9ca3af;
+  font-family: "Ubuntu-Light", Helvetica;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.mainForm .div-3 {
+  align-items: flex-start;
+  display: flex;
+  padding: 0px 32.2px 0px 0px;
+  position: relative;
+  width: 90.2px;
+}
+
+.mainForm .text-wrapper-5 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  height: 28px;
+  left: 35px;
+  letter-spacing: 0;
+  line-height: 28px;
+  position: absolute;
+  top: 287px;
+  white-space: nowrap;
+}
+
+.mainForm .text-wrapper-6 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  height: 20px;
+  left: 35px;
+  letter-spacing: 0;
+  line-height: 20px;
+  position: absolute;
+  top: 332px;
+  white-space: nowrap;
+}
+
+.mainForm .input {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #9ca3af;
+  border-radius: 4px;
+  display: flex;
+  left: 110px;
+  padding: 9px 17px 10px;
+  position: absolute;
+  top: 327px;
+  width: 220px;
+}
+
+.mainForm .inputLabel {
+  color: #9ca3af;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  /* margin-top: -1px; */
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.mainForm .text-wrapper-8 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  height: 20px;
+  left: 35px;
+  letter-spacing: 0;
+  line-height: 20px;
+  position: absolute;
+  top: 377px;
+  white-space: nowrap;
+}
+
+.mainForm .input-2 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #9ca3af;
+  border-radius: 4px;
+  display: flex;
+  left: 110px;
+  padding: 9px 17px 10px;
+  position: absolute;
+  top: 372px;
+  width: 220px;
+}
+
+.mainForm .text-wrapper-9 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  height: 20px;
+  left: 35px;
+  letter-spacing: 0;
+  line-height: 20px;
+  position: absolute;
+  top: 423px;
+  white-space: nowrap;
+}
+
+.mainForm .input-3 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #9ca3af;
+  border-radius: 4px;
+  display: flex;
+  left: 110px;
+  padding: 9px 17px 10px;
+  position: absolute;
+  top: 418px;
+  width: 219px;
+}
+
+.mainForm .text-wrapper-10 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  height: 20px;
+  left: 35px;
+  letter-spacing: 0;
+  line-height: 20px;
+  position: absolute;
+  top: 468px;
+  white-space: nowrap;
+}
+
+.mainForm .input-4 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #9ca3af;
+  border-radius: 4px;
+  display: flex;
+  left: 110px;
+  padding: 9px 17px 10px;
+  position: absolute;
+  top: 463px;
+  width: 220px;
+}
+
+.mainForm .text-wrapper-11 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  height: 20px;
+  left: 35px;
+  letter-spacing: 0;
+  line-height: 20px;
+  position: absolute;
+  top: 513px;
+  white-space: nowrap;
+}
+
+.mainForm .text-wrapper-12 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  height: 20px;
+  left: 35px;
+  letter-spacing: 0;
+  line-height: 20px;
+  position: absolute;
+  top: 558px;
+  white-space: nowrap;
+}
+
+.mainForm .text-wrapper-13 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  height: 20px;
+  left: 35px;
+  letter-spacing: 0;
+  line-height: 20px;
+  position: absolute;
+  top: 603px;
+  white-space: nowrap;
+}
+
+.mainForm .text-wrapper-14 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  height: 20px;
+  left: 35px;
+  letter-spacing: 0;
+  line-height: 20px;
+  position: absolute;
+  top: 648px;
+  white-space: nowrap;
+}
+
+.mainForm .text-wrapper-15 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  height: 20px;
+  left: 35px;
+  letter-spacing: 0;
+  line-height: 20px;
+  position: absolute;
+  top: 692px;
+  white-space: nowrap;
+}
+
+.mainForm .text-wrapper-16 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  height: 20px;
+  left: 35px;
+  letter-spacing: 0;
+  line-height: 20px;
+  position: absolute;
+  top: 735px;
+  white-space: nowrap;
+}
+
+.mainForm .inputField {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #9ca3af;
+  border-radius: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0px 0px;
+  height: 33px;
+  left: 110px;
+  padding: 5px 17px;
+  top: 508px;
+  position: absolute;
+  width: 220px;
+}
+
+.mainForm .input-6 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #9ca3af;
+  border-radius: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0px 0px;
+  height: 33px;
+  left: 110px;
+  padding: 5px 17px;
+  position: absolute;
+  top: 553px;
+  width: 220px;
+}
+
+.mainForm .polygon {
+  height: 6px;
+  left: 199px;
+  position: absolute;
+  top: 13px;
+  width: 7px;
+}
+
+.mainForm .input-7 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #9ca3af;
+  border-radius: 4px;
+  display: flex;
+  left: 110px;
+  padding: 9px 17px 10px;
+  position: absolute;
+  top: 598px;
+  width: 220px;
+}
+
+.mainForm .img {
+  height: 6px;
+  left: 199px;
+  position: absolute;
+  top: 14px;
+  width: 7px;
+}
+
+.mainForm .input-8 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #9ca3af;
+  border-radius: 4px;
+  display: flex;
+  left: 110px;
+  padding: 9px 17px 10px;
+  position: absolute;
+  top: 642px;
+  width: 220px;
+}
+
+.mainForm .input-9 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #9ca3af;
+  border-radius: 4px;
+  display: flex;
+  left: 110px;
+  padding: 9px 17px 10px;
+  position: absolute;
+  top: 687px;
+  width: 220px;
+}
+
+.mainForm .input-10 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #9ca3af;
+  border-radius: 4px;
+  display: flex;
+  left: 110px;
+  padding: 9px 17px 10px;
+  position: absolute;
+  top: 730px;
+  width: 220px;
+}
+
+.mainForm .text-wrapper-17 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  height: 28px;
+  left: 400px;
+  letter-spacing: 0;
+  line-height: 28px;
+  position: absolute;
+  top: 287px;
+  white-space: nowrap;
+}
+
+.mainForm .text-wrapper-18 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  height: 20px;
+  left: 400px;
+  letter-spacing: 0;
+  line-height: 20px;
+  position: absolute;
+  top: 332px;
+  white-space: nowrap;
+}
+
+.mainForm .input-11 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #9ca3af;
+  border-radius: 4px;
+  display: flex;
+  left: 475px;
+  padding: 9px 17px 10px;
+  position: absolute;
+  top: 325px;
+  width: 220px;
+}
+
+.mainForm .div-placeholder-3 {
+  align-items: flex-start;
+  display: flex;
+  margin-right: -47px;
+  padding: 2px 167px 1px 0px;
+  position: relative;
+  width: 233px;
+}
+
+.mainForm .text-wrapper-19 {
+  color: #9ca3af;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-right: -1px;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.mainForm .text-wrapper-20 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  height: 20px;
+  left: 400px;
+  letter-spacing: 0;
+  line-height: 20px;
+  position: absolute;
+  top: 377px;
+  white-space: nowrap;
+}
+
+.mainForm .input-12 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #9ca3af;
+  border-radius: 4px;
+  display: flex;
+  left: 475px;
+  padding: 9px 17px 10px;
+  position: absolute;
+  top: 370px;
+  width: 220px;
+}
+
+.mainForm .div-placeholder-4 {
+  align-items: flex-start;
+  display: flex;
+  margin-right: -47px;
+  padding: 2px 138px 1px 0px;
+  position: relative;
+  width: 233px;
+}
+
+.mainForm .text-wrapper-21 {
+  color: #9ca3af;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-right: -3px;
+  margin-top: -1px;
+  position: relative;
+  width: 98px;
+}
+
+.mainForm .text-wrapper-22 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  height: 20px;
+  left: 400px;
+  letter-spacing: 0;
+  line-height: 20px;
+  position: absolute;
+  top: 423px;
+  white-space: nowrap;
+}
+
+.mainForm .input-13 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #9ca3af;
+  border-radius: 4px;
+  display: flex;
+  left: 475px;
+  padding: 9px 17px 10px;
+  position: absolute;
+  top: 416px;
+  width: 220px;
+}
+
+.mainForm .div-placeholder-5 {
+  align-items: flex-start;
+  display: flex;
+  margin-right: -47px;
+  padding: 2px 202px 1px 0px;
+  position: relative;
+  width: 233px;
+}
+
+.mainForm .text-wrapper-23 {
+  color: #9ca3af;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-right: -84px;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.mainForm .text-wrapper-24 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  height: 20px;
+  left: 400px;
+  letter-spacing: 0;
+  line-height: 20px;
+  position: absolute;
+  top: 468px;
+  white-space: nowrap;
+}
+
+.mainForm .input-14 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #9ca3af;
+  border-radius: 4px;
+  display: flex;
+  left: 475px;
+  padding: 9px 17px 10px;
+  position: absolute;
+  top: 461px;
+  width: 220px;
+}
+
+.mainForm .div-placeholder-6 {
+  align-items: flex-start;
+  display: flex;
+  margin-right: -47px;
+  padding: 2px 160px 1px 0px;
+  position: relative;
+  width: 233px;
+}
+
+.mainForm .text-wrapper-25 {
+  color: #9ca3af;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-right: -2px;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.mainForm .text-wrapper-26 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 11px;
+  font-weight: 400;
+  height: 20px;
+  left: 400px;
+  letter-spacing: 0;
+  line-height: 20px;
+  position: absolute;
+  top: 513px;
+  white-space: nowrap;
+}
+
+.mainForm .input-15 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #9ca3af;
+  border-radius: 4px;
+  display: flex;
+  left: 475px;
+  padding: 9px 17px 10px;
+  position: absolute;
+  top: 506px;
+  width: 220px;
+}
+
+.mainForm .text-wrapper-27 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  height: 20px;
+  left: 400px;
+  letter-spacing: 0;
+  line-height: 20px;
+  position: absolute;
+  top: 558px;
+  white-space: nowrap;
+}
+
+.mainForm .text-wrapper-28 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  height: 20px;
+  left: 400px;
+  letter-spacing: 0;
+  line-height: 20px;
+  position: absolute;
+  top: 603px;
+  white-space: nowrap;
+}
+
+.mainForm .text-wrapper-29 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  height: 20px;
+  left: 400px;
+  letter-spacing: 0;
+  line-height: 20px;
+  position: absolute;
+  top: 648px;
+  white-space: nowrap;
+}
+
+.mainForm .text-wrapper-30 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  height: 20px;
+  left: 400px;
+  letter-spacing: 0;
+  line-height: 20px;
+  position: absolute;
+  top: 692px;
+  white-space: nowrap;
+}
+
+.mainForm .input-16 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #9ca3af;
+  border-radius: 4px;
+  display: flex;
+  left: 475px;
+  padding: 9px 17px 10px;
+  position: absolute;
+  top: 551px;
+  width: 220px;
+}
+
+.mainForm .text-wrapper-31 {
+  color: #9ca3af;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-right: -8px;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.mainForm .input-17 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #9ca3af;
+  border-radius: 4px;
+  display: flex;
+  left: 475px;
+  padding: 9px 17px 10px;
+  position: absolute;
+  top: 596px;
+  width: 220px;
+}
+
+.mainForm .input-18 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #9ca3af;
+  border-radius: 4px;
+  display: flex;
+  left: 475px;
+  padding: 9px 17px 10px;
+  position: absolute;
+  top: 641px;
+  width: 220px;
+}
+
+.mainForm .input-19 {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #9ca3af;
+  border-radius: 4px;
+  display: flex;
+  left: 475px;
+  padding: 9px 17px 10px;
+  position: absolute;
+  top: 685px;
+  width: 220px;
+}
+
+.mainForm .text-wrapper-32 {
+  color: #9ca3af;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-right: -25px;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.mainForm .separator {
+  border-color: #eeeeee;
+  border-top-style: solid;
+  border-top-width: 1px;
+  height: 1px;
+  left: 36px;
+  position: absolute;
+  top: 267px;
+  width: 659px;
+}
+
+.mainForm .separator-2 {
+  border-color: #eeeeee;
+  border-top-style: solid;
+  border-top-width: 1px;
+  height: 1px;
+  left: 36px;
+  position: absolute;
+  top: 783px;
+  width: 659px;
+}
+
+.mainForm .separator-3 {
+  border-color: #eeeeee;
+  border-top-style: solid;
+  border-top-width: 1px;
+  height: 1px;
+  left: 36px;
+  position: absolute;
+  top: 876px;
+  width: 659px;
+}
+
+.mainForm .row-data-button {
+  height: 34px;
+  left: 36px;
+  position: absolute;
+  top: 821px;
+  width: 34px;
+}
+
+.mainForm .invoice-summary {
+  color: #4f575e;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  left: 496px;
+  letter-spacing: 0;
+  line-height: 15px;
+  position: absolute;
+  top: 901px;
+}
+
+.mainForm .combobox-wrapper {
+  align-items: flex-start;
+  display: inline-flex;
+  left: 570px;
+  position: absolute;
+  top: 897px;
+}
+
+.mainForm .combobox {
+  height: 40px;
+  position: relative;
+  width: 125px;
+}
+
+.mainForm .overlap-group {
+  border-radius: 4px;
+  height: 39px;
+  position: relative;
+}
+
+.mainForm .div-choices-inner {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #009bd6;
+  border-radius: 4px;
+  display: flex;
+  left: 0;
+  padding: 3px 17.92px 4px 17px;
+  position: absolute;
+  top: 0;
+  width: 125px;
+}
+
+.mainForm .text-wrapper-33 {
+  color: #333333;
+  font-family: "Lato-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 32px;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.mainForm .icon {
+  height: 24px;
+  left: 94px;
+  position: absolute;
+  top: 8px;
+  width: 15px;
+}
+
+.mainForm .overlap {
+  height: 31px;
+  left: 502px;
+  position: absolute;
+  top: 984px;
+  width: 46px;
+}
+
+.mainForm .div-invoice-summary {
+  align-items: flex-start;
+  display: inline-flex;
+  justify-content: flex-end;
+  left: 0;
+  padding: 0px 0.05px 1px 3px;
+  position: absolute;
+  top: 0;
+}
+
+.mainForm .text-wrapper-34 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 16px;
+  margin-top: -1px;
+  position: relative;
+  text-align: right;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.mainForm .text-wrapper-35 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  height: 16px;
+  left: 27px;
+  letter-spacing: 0;
+  line-height: 16px;
+  position: absolute;
+  text-align: right;
+  top: 15px;
+  white-space: nowrap;
+}
+
+.mainForm .text-wrapper-36 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 14.4px;
+  font-weight: 400;
+  height: 16px;
+  left: 657px;
+  letter-spacing: 0;
+  line-height: 16px;
+  position: absolute;
+  text-align: right;
+  top: 983px;
+  white-space: nowrap;
+}
+
+.mainForm .text-wrapper-37 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 14.4px;
+  font-weight: 400;
+  height: 16px;
+  left: 657px;
+  letter-spacing: 0;
+  line-height: 16px;
+  position: absolute;
+  text-align: right;
+  top: 999px;
+  white-space: nowrap;
+}
+
+.mainForm .text-wrapper-38 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  height: 16px;
+  left: 480px;
+  letter-spacing: 0;
+  line-height: 16px;
+  position: absolute;
+  text-align: right;
+  top: 1015px;
+  white-space: nowrap;
+}
+
+.mainForm .text-wrapper-39 {
+  color: #333333;
+  font-family: "Ubuntu-Bold", Helvetica;
+  font-size: 12px;
+  font-weight: 700;
+  height: 16px;
+  left: 518px;
+  letter-spacing: 0;
+  line-height: 16px;
+  position: absolute;
+  text-align: right;
+  top: 1031px;
+  white-space: nowrap;
+}
+
+.mainForm .text-wrapper-40 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 13.4px;
+  font-weight: 400;
+  height: 16px;
+  left: 660px;
+  letter-spacing: 0;
+  line-height: 16px;
+  position: absolute;
+  text-align: right;
+  top: 1015px;
+  white-space: nowrap;
+}
+
+.mainForm .text-wrapper-41 {
+  color: #333333;
+  font-family: "Ubuntu-Bold", Helvetica;
+  font-size: 13.4px;
+  font-weight: 700;
+  height: 16px;
+  left: 660px;
+  letter-spacing: 0;
+  line-height: 16px;
+  position: absolute;
+  text-align: right;
+  top: 1031px;
+  white-space: nowrap;
+}
+
+.mainForm .label-notes {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  height: 20px;
+  left: 34px;
+  letter-spacing: 0;
+  line-height: 20px;
+  position: absolute;
+  top: 1067px;
+  white-space: nowrap;
+}
+
+.mainForm .textarea {
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #9ca3af;
+  border-radius: 4px;
+  height: 121px;
+  left: 34px;
+  position: absolute;
+  top: 1098px;
+  width: 660px;
+}
+
+.mainForm .text-wrapper-42 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  height: 17px;
+  left: 592px;
+  letter-spacing: 0;
+  line-height: 16.8px;
+  position: absolute;
+  top: 1247px;
+  white-space: nowrap;
+}
+
+.mainForm .button {
+  height: 34px;
+  left: 659px;
+  position: absolute;
+  top: 1240px;
+  width: 34px;
+}
+
+.mainForm .label-wrapper {
+  height: 87px;
+  left: 34px;
+  position: absolute;
+  top: 1240px;
+  width: 132px;
+}
+
+.mainForm .label-2 {
+  align-items: center;
+  background-color: #fbfcff;
+  border: 1.5px dashed;
+  border-color: #009bd6;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 21px 43.75px 16px 43.59px;
+  position: relative;
+  width: 132px;
+}
+
+.mainForm .text-wrapper-43 {
+  color: #009bd6;
+  font-family: "Ubuntu-Bold", Helvetica;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 20px;
+  margin-left: -10.5px;
+  margin-right: -10.5px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.mainForm .group-2 {
+  height: 54px;
+  left: 186px;
+  position: absolute;
+  top: 1256px;
+  width: 113px;
+}
+
+.mainForm .p {
+  color: #676767;
+  font-family: "Ubuntu-Medium", Helvetica;
+  font-size: 9px;
+  font-weight: 500;
+  height: 29px;
+  left: 0;
+  letter-spacing: 0;
+  line-height: 14.3px;
+  position: absolute;
+  top: 25px;
+}
+
+.mainForm .link-show-additional {
+  color: #2e77bb;
+  font-family: "Segoe UI-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  height: 16px;
+  left: 539px;
+  letter-spacing: 0;
+  line-height: 16px;
+  position: absolute;
+  text-align: right;
+  text-decoration: underline;
+  top: 947px;
+  white-space: nowrap;
+}

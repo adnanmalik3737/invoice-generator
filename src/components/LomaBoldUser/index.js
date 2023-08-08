@@ -1,0 +1,1 @@
+export { LomaBoldUser } from "./LomaBoldUser";

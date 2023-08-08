@@ -1,0 +1,1 @@
+export { IconlyBoldLock } from "./IconlyBoldLock";

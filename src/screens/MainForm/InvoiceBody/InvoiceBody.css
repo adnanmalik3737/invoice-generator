@@ -1,0 +1,71 @@
+.mainBody {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mainBodyTo {
+  flex: 1;
+  min-width: 100px;
+}
+
+.fromBody {
+  align-items: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 35px;
+  position: absolute;
+  margin-top: -80px;
+}
+
+.invoice-body {
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  margin: 5px 0;
+}
+
+.From {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 28px;
+  margin: 30px 10px;
+}
+
+.invoice-body label {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  height: 20px;
+  letter-spacing: 0;
+  line-height: 20px;
+  white-space: nowrap;
+  width: 70px;
+  padding: 10px 10px;
+  max-width: 100px;
+}
+
+.invoice-body input {
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #d7d7d7;
+  border-radius: 4px;
+  height: 30px;
+  padding: 3px 10px;
+  width: 200px;
+}
+
+.invoice-body textarea {
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #d7d7d7;
+  border-radius: 4px;
+  height: 30px;
+  padding: 3px 10px;
+  width: 200px;
+}
