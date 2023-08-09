@@ -1,1 +1,0 @@
-export { InvoiceGenerator } from "./InvoiceGenerator";

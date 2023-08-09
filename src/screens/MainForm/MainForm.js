@@ -173,7 +173,7 @@ function MainForm() {
           <div className="text-wrapper-32">www.domian.com</div>
         </div>
       </div> */}
-      <div className="separator" />
+      {/* <div className="separator" />
       <div className="separator-2" />
       <div className="separator-3" />
       <img
@@ -226,7 +226,7 @@ function MainForm() {
           Maximum size of 1MB.
         </p>
       </div>
-      <p className="link-show-additional">Add extra tax in total amount</p>
+      <p className="link-show-additional">Add extra tax in total amount</p> */}
     </div>
   );
 }

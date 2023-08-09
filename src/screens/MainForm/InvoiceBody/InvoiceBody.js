@@ -1,5 +1,6 @@
 import React from "react";
 import InvoiceFrom from "./InvoiceFrom";
+import InvoiceForm from "./InvoiceForm.js";
 
 function Body() {
   return (
@@ -12,6 +13,9 @@ function Body() {
         <div className="mainBodyTo">
           <InvoiceFrom />
         </div>
+      </div>
+      <div className="invoiceForm">
+        <InvoiceForm />
       </div>
     </>
   );

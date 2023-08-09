@@ -107,6 +107,18 @@
   width: 107px;
 }
 
+.formHeader .invoiceInfo .infoItem .inputLabel {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border-radius: 4px;
+  display: flex;
+  left: 2px;
+  padding: 4.5px 13px 5.5px 4px;
+  position: absolute;
+  top: 4px;
+  width: 107px;
+}
+
 .formHeader .invoiceInfo .infoItem input {
   align-items: flex-start;
   background-color: #ffffff;
@@ -115,7 +127,19 @@
   border-radius: 4px;
   display: inline-block;
   height: 20px;
-  left: 100px;
   padding: 3px 10px;
+  max-width: 100px;
+}
+
+.formHeader .invoiceInfo .infoItem .inputItem {
+  color: #9ca3af;
+  font-family: "Ubuntu-Light", Helvetica;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
   width: 100px;
 }

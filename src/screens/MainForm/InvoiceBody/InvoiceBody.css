@@ -1,7 +1,7 @@
 .mainBody {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  min-height: 600px;
 }
 
 .mainBodyTo {
@@ -16,7 +16,6 @@
   justify-content: center;
   margin-left: 35px;
   position: absolute;
-  margin-top: -80px;
 }
 
 .invoice-body {
@@ -68,4 +67,41 @@
   height: 30px;
   padding: 3px 10px;
   width: 200px;
+}
+
+.invoiceForm {
+  width: 100%;
+  min-height: 200px;
+  height: auto;
+}
+
+.itemsTable {
+  padding: 0 30px;
+}
+
+.tableArea {
+  width: 100%;
+  padding: 30px;
+  text-align: left;
+}
+
+.invoiceItemIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+}
+
+.invoiceDeleteIcon {
+  border-radius: 5px;
+  background: #e4e4e4;
+  padding: 8px;
+  width: 2rem;
+  height: 2rem;
+}
+
+.TableHead {
+  border-bottom-width: 1px;
+  border-color: rgba(14, 46, 114, 0.5);
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
