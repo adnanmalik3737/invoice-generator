@@ -6,6 +6,7 @@ const InvoiceItem = ({
   name,
   qty,
   price,
+  itax,
   amount,
   onDeleteItem,
   onEdtiItem,
@@ -14,9 +15,23 @@ const InvoiceItem = ({
     onDeleteItem(id);
   };
 
+  function calculateTotalPrice(price, tax, qty) {
+    const taxcalculated = tax * price;
+    console.log(taxcalculated);
+
+    // return ((price + { taxcalculated }) * qty).toFixed(2);
+    return tax * price;
+  }
+
+  const calculateTotalAmount = () => {
+    const totalPrice =
+      parseFloat(price) + (parseFloat(itax) * parseFloat(price)) / 100;
+    return (totalPrice * parseInt(qty)).toFixed(2);
+  };
+
   return (
     <tr>
-      <td className="flex items-center justify-center">
+      <td className="inputAction">
         <button className="invoiceDeleteIcon" onClick={deleteItemHandler}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +50,7 @@ const InvoiceItem = ({
           </svg>
         </button>
       </td>
-      <td className="">
+      <td className="inputDesc">
         <InvoiceField
           onEditItem={(event) => onEdtiItem(event)}
           cellData={{
@@ -47,11 +62,11 @@ const InvoiceItem = ({
           }}
         />
       </td>
-      <td className="">
+      <td className="inputRate">
         <InvoiceField
           onEditItem={(event) => onEdtiItem(event)}
           cellData={{
-            className: "text-right",
+            className: "",
             type: "number",
             min: "0.01",
             step: "0.01",
@@ -61,7 +76,20 @@ const InvoiceItem = ({
           }}
         />
       </td>
-      <td className="">
+      <td className="inputTax">
+        <InvoiceField
+          onEditItem={(event) => onEdtiItem(event)}
+          cellData={{
+            type: "number",
+            min: "0.01",
+            step: "0.01",
+            name: "itax",
+            id: id,
+            value: itax,
+          }}
+        />
+      </td>
+      <td className="inputQty">
         <InvoiceField
           onEditItem={(event) => onEdtiItem(event)}
           cellData={{
@@ -73,9 +101,20 @@ const InvoiceItem = ({
           }}
         />
       </td>
-      <td className="">
+
+      <td className="inputAmount">
         {/* Calculate and display the total price */}
-        {parseFloat(price) * parseInt(qty)}
+
+        {/* {(
+          ((parseFloat(price) +
+            parseFloat(parseFloat(itax) * parseFloat(price))) /
+            100) *
+          parseInt(qty)
+        ).toFixed(2)} */}
+
+        {(parseFloat(price) * parseInt(qty)).toFixed(2)}
+
+        {/* {calculateTotalAmount()} */}
       </td>
     </tr>
   );

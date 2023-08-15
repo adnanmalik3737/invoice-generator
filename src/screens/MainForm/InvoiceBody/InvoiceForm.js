@@ -5,8 +5,11 @@ import { uid } from "uid";
 
 const InvoiceForm = () => {
   // const [isOpen, setIsOpen] = useState(false);
-  // const [discount, setDiscount] = useState('');
-  // const [tax, setTax] = useState('');
+  const [discount, setDiscount] = useState("");
+  const [tax, setTax] = useState("");
+  const [gst, setGst] = useState("");
+  const [itax, setItax] = useState("");
+  const [shipping, setShipping] = useState(0);
   // const [invoiceNumber, setInvoiceNumber] = useState(1);
   // const [cashierName, setCashierName] = useState('');
   // const [customerName, setCustomerName] = useState('');
@@ -55,17 +58,53 @@ const InvoiceForm = () => {
     setItems(newItems);
   };
 
+  const [showField, setShowField] = useState(false);
+  const [buttonText, setButtonText] = useState("+ Tax");
+
+  const toggleField = () => {
+    setShowField(!showField);
+    setButtonText(showField ? "+ Tax" : "- Tax");
+  };
+
+  const [showFieldDiscount, setShowFieldDiscount] = useState(false);
+  const [buttonText2, setButtonText2] = useState("+ Discount");
+
+  const toggleField2 = () => {
+    setShowFieldDiscount(!showFieldDiscount);
+    setButtonText2(showFieldDiscount ? "+ Discount" : "- Discount");
+  };
+
+  const [showFieldShipping, setShowFieldShipping] = useState(false);
+  const [buttonText3, setButtonText3] = useState("+ Shipping");
+
+  const toggleField3 = () => {
+    setShowFieldShipping(!showFieldShipping);
+    setButtonText3(showFieldShipping ? "+ Shipping" : "- Shipping");
+  };
+
+  const subtotal = items.reduce((prev, curr) => {
+    if (curr.name.trim().length > 0)
+      return prev + Number(curr.price * Math.floor(curr.qty));
+    else return prev;
+  }, 0);
+  const taxRate = (tax * subtotal) / 100;
+  const gstRate = (gst * subtotal) / 100;
+  const discountRate = (discount * subtotal) / 100;
+  const shippingAmount = parseFloat(shipping);
+  const total = subtotal - discountRate + taxRate + gstRate + shippingAmount;
+
   return (
     <>
       <div className="itemsTable">
         <table className="tableArea">
           <thead>
             <tr className="TableHead">
-              <th className="text-center">ACTION</th>
-              <th className="text-center">DESCRIPTION</th>
-              <th className="text-center">RATE</th>
-              <th className="text-center">QTY</th>
-              <th className="text-center">AMOUNT</th>
+              <th className="textAction tableHeading"></th>
+              <th className="textDesc tableHeading">DESCRIPTION</th>
+              <th className="textRate tableHeading">RATE</th>
+              <th className="textTax tableHeading">TAX</th>
+              <th className="textQty tableHeading">QTY</th>
+              <th className="textAmount tableHeading">AMOUNT</th>
             </tr>
           </thead>
           <tbody>
@@ -75,6 +114,7 @@ const InvoiceForm = () => {
                 id={item.id}
                 name={item.name}
                 qty={item.qty}
+                itax={item.itax}
                 price={item.price}
                 onDeleteItem={deleteItemHandler}
                 onEdtiItem={edtiItemHandler}
@@ -83,8 +123,141 @@ const InvoiceForm = () => {
           </tbody>
         </table>
         <button className="" type="button" onClick={addItemHandler}>
-          Add Item
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="15"
+            viewBox="0 0 16 15"
+            fill="none"
+          >
+            <path
+              d="M7.82422 1.31738V7.31738M7.82422 7.31738V13.3174M7.82422 7.31738H13.8242M7.82422 7.31738H1.82422"
+              stroke="white"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
         </button>
+      </div>
+
+      <div className="totalFields">
+        <div className="extraOptions">
+          <div className="addRemoveButton">
+            <a className="addRemove" onClick={toggleField}>
+              {buttonText}
+            </a>
+          </div>
+          <div className="addRemoveButton">
+            <a className="addRemove" onClick={toggleField2}>
+              {buttonText2}
+            </a>
+          </div>
+          <div className="addRemoveButton">
+            <a className="addRemove" onClick={toggleField3}>
+              {buttonText3}
+            </a>
+          </div>
+        </div>
+        <div className="totalFieldContainer">
+          <span className="totalField">Subtotal:</span>
+          <span className="FinalSubTotal">${subtotal.toFixed(2)}</span>
+        </div>
+        <div>
+          {showFieldDiscount && (
+            <div className="totalFieldContainer">
+              <span className="totalField">Discount:</span>
+              {/* <span>
+            ({discount || "0"}%)${discountRate.toFixed(2)}
+          </span> */}
+              <span className="totalSymbols">%</span>
+              <input
+                className=""
+                type="number"
+                name="discount"
+                id="discount"
+                min="0"
+                step="0.01"
+                placeholder="0.0"
+                value={discount}
+                onChange={(event) => setDiscount(event.target.value)}
+              />
+            </div>
+          )}
+        </div>
+        <div className="totalFieldContainer">
+          <span className="totalField">Tax:</span>
+          <span className="totalSymbols">%</span>
+          <input
+            className=""
+            type="number"
+            name="tax"
+            id="tax"
+            min="0.01"
+            step="0.01"
+            placeholder="0.0"
+            value={tax}
+            onChange={(event) => setTax(event.target.value)}
+          />
+
+          {/* <span>
+            ({tax || "0"}%)${taxRate.toFixed(2)}
+          </span> */}
+        </div>
+        <div>
+          {showField && (
+            <div className="totalFieldContainer">
+              <span className="totalField">GST:</span>
+              <span className="totalSymbols">%</span>
+              <input
+                className=""
+                type="number"
+                name="gst"
+                id="gst"
+                min="0.01"
+                step="0.01"
+                placeholder="0.0"
+                value={gst}
+                onChange={(event) => setGst(event.target.value)}
+              />
+            </div>
+          )}
+        </div>
+        <div>
+          {showFieldShipping && (
+            <div className="totalFieldContainer">
+              <span className="totalField">Shipping:</span>
+              <span className="totalSymbols">$</span>
+              <input
+                className=""
+                type="number"
+                name="shipping"
+                id="shipping"
+                min="0.01"
+                step="0.01"
+                placeholder="0.0"
+                value={shipping}
+                onChange={(event) => setShipping(event.target.value)}
+              />
+
+              {/* <span>
+            ({tax || "0"}%)${taxRate.toFixed(2)}
+          </span> */}
+            </div>
+          )}
+        </div>
+        <div className="totalFieldContainer">
+          <span className="totalField">Total:</span>
+          <span className="FinalTotal">
+            ${total % 1 === 0 ? total : total.toFixed(2)}
+          </span>
+        </div>
+      </div>
+
+      {/* Notes */}
+      <div className="Notes">
+        <p className="labelNotes">Add Note ( Optional )</p>
+        <input type="text" classname="lael-input"></input>
       </div>
     </>
   );

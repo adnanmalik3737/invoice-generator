@@ -1,12 +1,20 @@
 .mainBody {
   display: flex;
   justify-content: space-between;
-  min-height: 600px;
+  min-height: 500px;
+  position: relative;
+}
+.mainForm {
+  background-color: #ffffff;
+  border: 1px none;
+  height: auto;
+  position: relative;
+  width: 750px;
 }
 
 .mainBodyTo {
   flex: 1;
-  min-width: 100px;
+  min-width: 50%;
 }
 
 .fromBody {
@@ -14,7 +22,7 @@
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 35px;
+  margin-left: 30px;
   position: absolute;
 }
 
@@ -71,17 +79,16 @@
 
 .invoiceForm {
   width: 100%;
-  min-height: 200px;
+  min-height: 300px;
   height: auto;
 }
 
 .itemsTable {
-  padding: 0 30px;
+  padding: 0 40px;
 }
 
 .tableArea {
   width: 100%;
-  padding: 30px;
   text-align: left;
 }
 
@@ -100,8 +107,201 @@
 }
 
 .TableHead {
+  width: 100%;
   border-bottom-width: 1px;
   border-color: rgba(14, 46, 114, 0.5);
   font-size: 1rem;
   line-height: 1.5rem;
+}
+
+.totalFields {
+  width: 35%;
+  margin: 0 60%;
+}
+
+.totalField {
+  width: 110px;
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+.totalFieldContainer input {
+  width: 50px;
+  padding: 2px 5px;
+  margin: 5px;
+}
+
+.FinalSubTotal {
+  width: 50px;
+  padding: 2px 5px;
+  margin: 5px;
+  color: #333;
+  text-align: right;
+  font-family: "Ubuntu-Bold", Helvetica;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 24px; /* 119.403% */
+}
+
+.FinalTotal {
+  width: 50px;
+  padding: 2px 5px;
+  margin: 5px;
+  color: #333;
+  text-align: right;
+  font-family: "Ubuntu-Bold", Helvetica;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 119.403% */
+}
+
+.totalFieldContainer {
+  display: flex;
+  margin-right: 40px;
+  width: 300px;
+}
+.totalSymbols {
+  width: 10px;
+  padding: 10px 0;
+}
+
+.addRemove {
+  border-bottom: 1px solid #2e77bb;
+  padding: 10px 0 2px 0;
+  cursor: pointer;
+  margin-right: 20px;
+  color: #2e77bb;
+  text-align: right;
+  font-family: Segoe UI;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 133.333% */
+}
+.text-center {
+  width: 20%;
+}
+.addRemoveButton,
+.addRemoveField {
+  padding: 10px 0;
+}
+
+.extraOptions {
+  display: flex;
+  padding: 0 20px;
+}
+
+.textAction,
+.inputAction {
+  width: 80px;
+}
+
+.hrLine {
+  width: 659px;
+  height: 0.1px;
+  background-color: #ababab;
+}
+
+.tableHeading {
+  color: #333;
+  font-family: "Ubuntu-Bold", Helvetica;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 133.333% */
+}
+
+.textDesc,
+.inputDesc {
+  width: 250px;
+}
+.inputDesc input {
+  display: flex;
+  width: 200px;
+  padding: 10px 20px 10px 10px;
+  align-items: flex-start;
+  border-radius: 4px;
+  border: 1px solid #9ca3af;
+  background: #fff;
+}
+
+.textRate,
+.inputRate {
+  width: 200px;
+}
+
+.inputRate input {
+  display: flex;
+  width: 80px;
+  padding: 10px 20px 10px 10px;
+  align-items: flex-start;
+  border-radius: 4px;
+  border: 1px solid #9ca3af;
+  background: #fff;
+}
+
+.textTax,
+.inputTax {
+  width: 80px;
+}
+
+.inputTax input {
+  display: flex;
+  width: 40px;
+  padding: 10px 20px 10px 10px;
+  align-items: flex-start;
+  border-radius: 4px;
+  border: 1px solid #9ca3af;
+  background: #fff;
+}
+.textQty,
+.inputQty {
+  width: 80px;
+}
+
+.inputQty input {
+  display: flex;
+  width: 30px;
+  padding: 10px 20px 10px 10px;
+  align-items: flex-start;
+  border-radius: 4px;
+  border: 1px solid #9ca3af;
+  background: #fff;
+}
+
+.textAmount,
+.inputAmount {
+  width: 150px;
+}
+
+.inputAmount {
+  display: flex;
+  width: 30px;
+  padding: 10px 20px 10px 10px;
+  align-items: flex-start;
+  background: #fff;
+}
+
+.Notes {
+  width: 660px;
+  padding: 40px;
+}
+
+.Notes .labelNotes {
+  color: #333;
+  font-family: "Ubuntu-Bold", Helvetica;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+}
+
+.Notes input {
+  width: 660px;
+  height: 121px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  border: 1px solid #9ca3af;
+  background: #fff;
 }

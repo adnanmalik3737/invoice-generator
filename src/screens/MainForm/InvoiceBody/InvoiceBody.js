@@ -14,6 +14,8 @@ function Body() {
           <InvoiceFrom />
         </div>
       </div>
+
+      <hr className="hrLine" />
       <div className="invoiceForm">
         <InvoiceForm />
       </div>

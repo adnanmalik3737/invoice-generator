@@ -34,7 +34,7 @@ function Header() {
         </div>
         <div className="item">
           <div className="upload">
-            <div className="div">Upload Logo</div>
+            <div className="uploadLogo">Upload Logo</div>
             <div className="textWrapper">
               <p className="text">
                 240 x 240 pixels @ 72 DPI,
