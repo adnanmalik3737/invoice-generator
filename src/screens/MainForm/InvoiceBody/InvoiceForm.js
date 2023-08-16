@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import InvoiceItem from "./InvoiceItem";
+import "../invoiceHeader/invoiceHeader.css";
+import ImageUploader from "../FileUpload.js";
+import SignaturePopup from "../SignaturePopup";
 import { uid } from "uid";
 // import incrementString from "../../../helpers/incrementString";
 
@@ -142,6 +145,20 @@ const InvoiceForm = () => {
       </div>
 
       <div className="totalFields">
+        {/* <div className="currencySelector">
+          <label>Invoice summary</label>
+          <select
+            id="dropdown"
+            value={selectedOption}
+            onChange={handleOptionChange}
+          >
+            <option value="$">USD</option>
+            <option value="CAD">CAD</option>
+            <option value="Euro">Euro</option>
+            <option value="PKR">PKR</option>
+          </select>
+        </div> */}
+
         <div className="extraOptions">
           <div className="addRemoveButton">
             <a className="addRemove" onClick={toggleField}>
@@ -257,7 +274,38 @@ const InvoiceForm = () => {
       {/* Notes */}
       <div className="Notes">
         <p className="labelNotes">Add Note ( Optional )</p>
-        <input type="text" classname="lael-input"></input>
+        <input type="text" className="lael-input"></input>
+      </div>
+
+      <div className="formHeader">
+        <div className="itemHeader">
+          <ImageUploader
+            inputId="upload-logo-12"
+            uploadUrl="YOUR_URL_2"
+            onImageChange={(imageData) => {
+              // Handle image data update for this specific usage
+            }}
+          />
+        </div>
+
+        <div className="itemHeader">
+          <div className="upload">
+            <div className="uploadLogo">Upload Stamp</div>
+            <div className="textWrapper">
+              <p className="text">
+                120 x 120 pixels @ 72 DPI,
+                <br />
+                Maximum size of 1MB.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="itemHeader">
+          <div className="signature">
+            <p className="signText">Signature</p>
+            <SignaturePopup />
+          </div>
+        </div>
       </div>
     </>
   );
