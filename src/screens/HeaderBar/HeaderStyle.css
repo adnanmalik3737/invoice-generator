@@ -1,0 +1,114 @@
+.headerBar {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  padding: 3px 20px;
+  border-bottom: 1px solid #333333;
+  background-color: #ffffff;
+}
+
+.headerBar .div-d-flex {
+  height: 40px;
+  position: relative;
+  width: 257.53px;
+}
+
+.headerBar .link {
+  height: 25px;
+  left: 0;
+  position: absolute;
+  top: 12px;
+  width: 20px;
+}
+
+.headerBar .span-title-divider {
+  border-color: #e2e2e2;
+  border-left-style: solid;
+  border-left-width: 1px;
+  height: 30px;
+  left: 40px;
+  position: absolute;
+  top: 0;
+  width: 1px;
+}
+
+.headerBar .div-title {
+  align-items: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.8px;
+  left: 61px;
+  padding: 0px 5.53px 0px 0px;
+  position: absolute;
+  top: 7px;
+}
+
+.headerBar .heading-free {
+  color: #333333;
+  font-family: "Ubuntu-Medium", Helvetica;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 19.8px;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.headerBar .link-by-zoho-invoice {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 13px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.headerBar .SIGN-UP-IT-s-FREE-wrapper {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  padding: 0px 9.94px 0px 0px;
+  position: relative;
+}
+
+.headerBar .SIGN-UP-IT-s-FREE {
+  color: #ffffff;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.42px;
+  line-height: 16px;
+  margin-top: -1px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.headerBar .div-primary-cta-in {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  padding: 0px 0px 0px 10px;
+  position: relative;
+}
+
+.headerBar .heading-free-wrapper {
+  border-radius: 4px;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.headerBar .text-wrapper {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 19.8px;
+}

@@ -10,6 +10,7 @@
   height: auto;
   position: relative;
   width: 750px;
+  margin: 2% 0% 0 5%;
 }
 
 .mainBodyTo {
@@ -190,6 +191,16 @@
 .extraOptions {
   display: flex;
   padding: 0 20px;
+}
+
+.currencyDrop {
+  display: flex;
+  width: 105px;
+  padding: 5px 15px;
+  align-items: flex-start;
+  border-radius: 4px;
+  border: 1px solid #009bd6;
+  background: #fff;
 }
 
 .textAction,

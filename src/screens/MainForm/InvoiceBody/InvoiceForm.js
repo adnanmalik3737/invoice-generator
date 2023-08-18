@@ -145,19 +145,21 @@ const InvoiceForm = () => {
       </div>
 
       <div className="totalFields">
-        {/* <div className="currencySelector">
+        <div className="extraOptions">
           <label>Invoice summary</label>
           <select
             id="dropdown"
-            value={selectedOption}
-            onChange={handleOptionChange}
+            className="currencyDrop"
+            value=""
+            // value={selectedOption}
+            // onChange={handleOptionChange}
           >
             <option value="$">USD</option>
             <option value="CAD">CAD</option>
             <option value="Euro">Euro</option>
             <option value="PKR">PKR</option>
           </select>
-        </div> */}
+        </div>
 
         <div className="extraOptions">
           <div className="addRemoveButton">
