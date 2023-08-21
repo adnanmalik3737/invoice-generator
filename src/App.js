@@ -7,9 +7,10 @@ import MainForm from "./screens/MainForm/MainForm.js";
 import Header from "./screens/MainForm/invoiceHeader/invoiceHeader";
 import ImageUploader from "./screens/MainForm/FileUpload";
 import HeaderBar from "./screens/HeaderBar/Header.js";
+import SidebarOptions from "./screens/Sidebar/SidebarOptions";
 function App() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-
+  const [selectedColor, setSelectedColor] = useState();
   const openPopup = () => {
     setIsPopupOpen(true);
   };
@@ -25,6 +26,17 @@ function App() {
           <Sidebar />
           <div className="headBody">
             <HeaderBar />
+            <div
+              className="colorField"
+              style={{
+                backgroundColor: selectedColor,
+                width: 750,
+                height: 5,
+                marginLeft: 60,
+              }}
+            >
+              {/* Your content here */}
+            </div>
             <div className="navComponents">
               <Routes>
                 <Route path="/create-invoice" element={<MainForm />}></Route>
@@ -36,9 +48,20 @@ function App() {
                 ></Route>
                 <Route
                   path="/professional-business-use"
-                  component={<MainForm />}
+                  component={
+                    <MainForm
+                      selectedColor={selectedColor}
+                      setSelectedColor={setSelectedColor}
+                    />
+                  }
                 ></Route>
               </Routes>
+              <div className="sidebarOptions">
+                <SidebarOptions
+                  selectedColor={selectedColor}
+                  setSelectedColor={setSelectedColor}
+                ></SidebarOptions>
+              </div>
             </div>
           </div>
         </div>
