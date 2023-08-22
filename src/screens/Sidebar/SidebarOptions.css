@@ -30,11 +30,18 @@
 .sidebar-btn:hover {
   background-color: #009bd6;
   color: white;
+  fill: white;
+  stroke: white;
 }
 
 .sidebar-btn span {
   padding: 0 10px;
   margin-left: 20px;
+}
+
+span svg path:hover {
+  fill: white;
+  stroke: white;
 }
 .sidebar-btn p {
   display: flex;

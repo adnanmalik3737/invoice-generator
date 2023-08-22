@@ -1,5 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import "./SidebarOptions.css";
+
+// const reviewInvoiceHandler = (event) => {
+//   event.preventDefault();
+//   setIsOpen(true);
+// };
+
+// const addNextInvoiceHandler = () => {
+//   setInvoiceNumber((prevNumber) => incrementString(prevNumber));
+//   setItems([
+//     {
+//       id: uid(6),
+//       name: "",
+//       qty: 1,
+//       price: "1.00",
+//     },
+//   ]);
+// };
 
 const predefinedColors = [
   "#ffffff",
@@ -19,8 +36,6 @@ const predefinedColors = [
 ];
 
 function SidebarOptions(props) {
-  // const [selectedColor, setSelectedColor] = useState(predefinedColors[0]);
-
   return (
     <div className="sidebarOption">
       <button className="sidebar-btn">
@@ -205,6 +220,7 @@ function SidebarOptions(props) {
             <path
               d="M5.77637 1.03711V6.03711M5.77637 6.03711V11.0371M5.77637 6.03711H10.7764M5.77637 6.03711H0.776367"
               stroke="#009BD6"
+              fill="#fff"
               stroke-width="1.5"
               stroke-linecap="round"
               stroke-linejoin="round"

@@ -44,6 +44,34 @@
   margin: 30px 10px;
 }
 
+.fromButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.arrow {
+  margin-left: 5px;
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  z-index: 1;
+  width: 300px; /* or whatever width you want */
+}
+
+.fromButton:hover + .dropdownContent,
+.fromButton:focus + .dropdownContent {
+  display: block;
+}
+
+/* Add more styles as needed */
+
 .invoice-body label {
   color: #333333;
   font-family: "Ubuntu-Regular", Helvetica;
@@ -196,7 +224,7 @@
 .currencyDrop {
   display: flex;
   width: 105px;
-  padding: 5px 15px;
+  padding: 10px;
   align-items: flex-start;
   border-radius: 4px;
   border: 1px solid #009bd6;
@@ -239,7 +267,7 @@
 
 .textRate,
 .inputRate {
-  width: 200px;
+  width: 120px;
 }
 
 .inputRate input {
@@ -273,7 +301,7 @@
 
 .inputQty input {
   display: flex;
-  width: 30px;
+  width: 40px;
   padding: 10px 20px 10px 10px;
   align-items: flex-start;
   border-radius: 4px;
@@ -315,4 +343,8 @@
   border-radius: 4px;
   border: 1px solid #9ca3af;
   background: #fff;
+}
+
+.reviewBtn {
+  margin: 10px 30px;
 }
