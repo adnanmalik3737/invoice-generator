@@ -214,6 +214,7 @@ button {
 .wholeBody {
   display: flex;
   width: 98vmax;
+  position: fixed;
 }
 .navComponents {
   display: flex;

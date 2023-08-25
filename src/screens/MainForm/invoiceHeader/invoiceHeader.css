@@ -7,6 +7,15 @@
   position: sticky;
 }
 
+.formHeaderB {
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  align-items: center;
+  position: sticky;
+}
+
 .invoiceInfo {
   padding: 10px;
 }
@@ -104,14 +113,14 @@
   top: 170px;
 } */
 
-.formHeader .invoiceInfo .infoItem {
+.invoiceInfo .infoItem {
   height: 33px;
   position: relative;
   width: 300px;
   margin: auto;
 }
 
-.formHeader .invoiceInfo .infoItem label {
+.invoiceInfo .infoItem label {
   color: #333;
   font-family: "Ubuntu-Light", Helvetica;
   font-size: 13px;
@@ -128,7 +137,7 @@
   width: 107px;
 }
 
-.formHeader .invoiceInfo .infoItem .inputLabel {
+.invoiceInfo .infoItem .inputLabel {
   align-items: flex-start;
   background-color: #ffffff;
   border-radius: 4px;
@@ -140,7 +149,7 @@
   width: 107px;
 }
 
-.formHeader .invoiceInfo .infoItem input {
+.invoiceInfo .infoItem input {
   align-items: flex-start;
   background-color: #ffffff;
   border: 1px solid;
@@ -152,7 +161,7 @@
   max-width: 100px;
 }
 
-.formHeader .invoiceInfo .infoItem .inputItem {
+.invoiceInfo .infoItem .inputItem {
   color: #9ca3af;
   font-family: "Ubuntu-Light", Helvetica;
   font-size: 13px;

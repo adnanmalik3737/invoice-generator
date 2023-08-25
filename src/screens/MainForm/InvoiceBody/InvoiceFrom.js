@@ -2,7 +2,6 @@ import React from "react";
 import "./InvoiceBody.css";
 
 function InvoiceFrom() {
-  // const [isOpen, setIsOpen] = useState(false);
   return (
     <>
       <div className="fromBody">

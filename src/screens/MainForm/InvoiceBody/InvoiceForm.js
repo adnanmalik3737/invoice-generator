@@ -4,7 +4,6 @@ import "../invoiceHeader/invoiceHeader.css";
 import ImageUploader from "../FileUpload.js";
 import InvoiceModel from "../../InvoiceModel/InvoiceModel.js";
 import incrementString from "../../helpers/incrementString";
-// import MainForm from "../MainForm/MainForm";
 import SignaturePopup from "../SignaturePopup";
 import { uid } from "uid";
 

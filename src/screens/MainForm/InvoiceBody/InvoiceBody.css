@@ -7,11 +7,33 @@
 .mainForm {
   background-color: #ffffff;
   border: 1px none;
-  height: auto;
+  height: 700px;
   position: relative;
   width: 750px;
-  margin: 2% 0% 0 5%;
+  margin: 0 0 0 5%;
+  overflow-x: scroll;
 }
+
+/* Scroller Style */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #009bd6;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #3067ae;
+}
+
+/* Scroller Style Ends */
 
 .mainBodyTo {
   flex: 1;
@@ -347,4 +369,17 @@
 
 .reviewBtn {
   margin: 10px 30px;
+}
+
+.inputItem {
+  color: #9ca3af;
+  font-family: "Ubuntu-Light", Helvetica;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: 100px;
 }

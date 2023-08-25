@@ -4,7 +4,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { toPng } from "html-to-image";
 import { jsPDF } from "jspdf";
 
-const InvoiceModal = ({
+const InvoiceModel = ({
   isOpen,
   setIsOpen,
   invoiceInfo,
@@ -118,14 +118,14 @@ const InvoiceModal = ({
               <div className="boxA" id="print">
                 <h1 className="modelHeading">INVOICE</h1>
                 <div className="mt-6">
-                  {/* <div className="mb-4 grid grid-cols-2">
+                  <div className="mb-4 grid grid-cols-2">
                     <span className="font-bold">Invoice Number:</span>
                     <span>{invoiceInfo.invoiceNumber}</span>
-                    <span className="font-bold">Cashier:</span>
+                    {/* <span className="font-bold">Cashier:</span>
                     <span>{invoiceInfo.cashierName}</span>
                     <span className="font-bold">Customer:</span>
-                    <span>{invoiceInfo.customerName}</span>
-                  </div> */}
+                    <span>{invoiceInfo.customerName}</span> */}
+                  </div>
 
                   <table className="modelTable">
                     <thead>
@@ -253,4 +253,4 @@ const InvoiceModal = ({
   );
 };
 
-export default InvoiceModal;
+export default InvoiceModel;
