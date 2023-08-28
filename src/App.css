@@ -158,7 +158,7 @@ button {
 
 /* src/components/Sidebar.css */
 .sidebar {
-  width: 20%;
+  width: 345px;
   height: 100vh;
   background-color: #004d6b;
   color: #fff;

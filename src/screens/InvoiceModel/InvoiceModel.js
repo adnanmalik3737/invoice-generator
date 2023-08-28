@@ -1,9 +1,19 @@
-import React, { Fragment } from "react";
+// import React, { Fragment } from "react";
+// import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import "./Model.css";
 import { Dialog, Transition } from "@headlessui/react";
 import { toPng } from "html-to-image";
 import { jsPDF } from "jspdf";
+import ImageUploader from "../MainForm/FileUpload";
+import "../MainForm/invoiceHeader/invoiceHeader.css";
 
+const date = new Date();
+const today = date.toLocaleDateString("en-GB", {
+  month: "numeric",
+  day: "numeric",
+  year: "numeric",
+});
 const InvoiceModel = ({
   isOpen,
   setIsOpen,
@@ -82,11 +92,15 @@ const InvoiceModel = ({
       });
   };
 
+  const [uploadedImage, setUploadedImage] = useState({ preview: "", raw: "" });
+
   return (
-    <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as="div" className="modelView" onClose={closeModal}>
-        <div className="innerModel">
-          <Transition.Child
+    SaveAsPDFHandler,
+    (
+      <Transition appear show={isOpen} as={Fragment}>
+        <Dialog as="div" className="modelView" onClose={closeModal}>
+          <div className="innerModel">
+            {/* <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
             enterFrom="opacity-0"
@@ -96,160 +110,159 @@ const InvoiceModel = ({
             leaveTo="opacity-0"
           >
             <Dialog.Overlay className="innerDialog" />
-          </Transition.Child>
+          </Transition.Child> */}
 
-          {/* This element is to trick the browser into centering the modal contents.
+            {/* This element is to trick the browser into centering the modal contents.
           <span
             className="WhiteSpace"
             aria-hidden="true"
           >
             &#8203;
           </span> */}
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0 scale-95"
-            enterTo="opacity-100 scale-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100 scale-100"
-            leaveTo="opacity-0 scale-95"
-          >
-            <div className="transitionAll modelBox">
-              <div className="boxA" id="print">
-                <h1 className="modelHeading">INVOICE</h1>
-                <div className="mt-6">
-                  <div className="mb-4 grid grid-cols-2">
-                    <span className="font-bold">Invoice Number:</span>
-                    <span>{invoiceInfo.invoiceNumber}</span>
-                    {/* <span className="font-bold">Cashier:</span>
-                    <span>{invoiceInfo.cashierName}</span>
-                    <span className="font-bold">Customer:</span>
-                    <span>{invoiceInfo.customerName}</span> */}
-                  </div>
-
-                  <table className="modelTable">
-                    <thead>
-                      <tr className="tableHead">
-                        <th>ITEM</th>
-                        <th className="text-center">QTY</th>
-                        <th className="text-right">PRICE</th>
-                        <th className="text-right">AMOUNT</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {items.map((item) => (
-                        <tr key={item.id}>
-                          <td className="w-full">{item.name}</td>
-                          <td className="min-w-[50px] text-center">
-                            {item.qty}
-                          </td>
-                          <td className="min-w-[80px] text-right">
-                            ${Number(item.price).toFixed(2)}
-                          </td>
-                          <td className="min-w-[90px] text-right">
-                            ${Number(item.price * item.qty).toFixed(2)}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-
-                  <div className="mt-4 flex flex-col items-end space-y-2">
-                    <div className="flex w-full justify-between border-t border-black/10 pt-2">
-                      <span className="font-bold">Subtotal:</span>
-                      <span>${invoiceInfo.subtotal.toFixed(2)}</span>
-                    </div>
-                    <div className="flex w-full justify-between">
-                      <span className="font-bold">Discount:</span>
-                      <span>${invoiceInfo.discountRate.toFixed(2)}</span>
-                    </div>
-                    <div className="flex w-full justify-between">
-                      <span className="font-bold">Tax:</span>
-                      <span>${invoiceInfo.taxRate.toFixed(2)}</span>
-                    </div>
-                    <div className="flex w-full justify-between border-t border-black/10 py-2">
-                      <span className="font-bold">Total:</span>
-                      <span className="font-bold">
-                        $
-                        {invoiceInfo.total % 1 === 0
-                          ? invoiceInfo.total
-                          : invoiceInfo.total.toFixed(2)}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-4 flex space-x-2 px-4 pb-6">
-                <button
-                  className="flex w-full items-center justify-center space-x-1 rounded-md border border-blue-500 py-2 text-sm text-blue-500 shadow-sm hover:bg-blue-500 hover:text-white"
-                  onClick={SaveAsPDFHandler}
-                >
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
+            >
+              <div className="transitionAll modelBox">
+                <button className="modelClose" onClick={closeModal}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="#333"
-                  >
-                    <g clip-path="url(#clip0_234_96328)">
-                      <path
-                        d="M2.43945 0.566406V15.5078H13.5576V4.86719H9.4209V0.566406H2.43945ZM3.37988 1.50391H8.48047V5.80469H12.6201V14.5703H3.37988V1.50391Z"
-                        fill="#333333"
-                      />
-                      <path
-                        d="M10.4316 3.69238H13.5605L10.4316 0.566406V3.69238Z"
-                        fill="#333333"
-                      />
-                      <path
-                        d="M7.58984 7.34277H8.52734V12.6367H7.58984V7.34277Z"
-                        fill="#333333"
-                      />
-                      <path
-                        d="M8.03809 13.7529L5.39844 11.3975L6.02246 10.6973L8.04395 12.502L10.0947 10.6943L10.7158 11.3975L8.03809 13.7529Z"
-                        fill="#333333"
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_234_96328">
-                        <rect
-                          width="15"
-                          height="15"
-                          fill="white"
-                          transform="translate(0.5 0.537109)"
-                        />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                  <span>Download</span>
-                </button>
-                <button
-                  onClick={addNextInvoiceHandler}
-                  className="flex w-full items-center justify-center space-x-1 rounded-md bg-blue-500 py-2 text-sm text-white shadow-sm hover:bg-blue-600"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4"
+                    width="10"
+                    height="10"
+                    viewBox="0 0 18 18"
                     fill="none"
-                    viewBox="0 0 24 24"
-                    width="16"
-                    height="16"
-                    stroke="currentColor"
                   >
                     <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 5l7 7-7 7M5 5l7 7-7 7"
+                      d="M1.51855 16.5522L16.5186 1.55225M1.51855 1.55225L16.5186 16.5522"
+                      stroke="#009BD6"
+                      stroke-width="1.33333"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
                     />
                   </svg>
-                  <span>Next</span>
                 </button>
+                <div className="boxA" id="print">
+                  <div className="previewHeader">
+                    <div className="PreviewHeaderItem">
+                      {/* <img
+                        src={uploadedImage.preview}
+                        alt="Uploaded"
+                        width="200"
+                        height="200"
+                      /> */}
+                    </div>
+                    <h1 className="h-1 PreviewHeaderItem">INVOICE</h1>
+                  </div>
+
+                  <div className="">
+                    <div className="invoiceInfo">
+                      <div className="infoItem">
+                        <span className="inputItem">Invoice Number:</span>
+                        <span className="previewText">
+                          {invoiceInfo.invoiceNumber}
+                        </span>
+
+                        {/* <span className="previewLabel">Cashier:</span>
+                    <span>{invoiceInfo.cashierName}</span>
+                    <span className="previewLabel">Customer:</span>
+                    <span>{invoiceInfo.customerName}</span> */}
+                      </div>
+                      <div className="infoItem">
+                        <span className="inputItem">Invoice Date:</span>
+                        <span className="previewText">{today}</span>
+                      </div>
+
+                      <div className="infoItem">
+                        <span className="inputItem">Due Date:</span>
+                        <span className="previewText">{today}</span>
+                      </div>
+                    </div>
+                    <table className="modelTable">
+                      <thead>
+                        <tr className="tableHead">
+                          <th className="text-left">DESCRIPTION</th>
+                          <th className="">QTY</th>
+                          <th className="">PRICE</th>
+                          <th className="">AMOUNT</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {items.map((item) => (
+                          <tr key={item.id}>
+                            <td className="previewText text-left">
+                              {item.name}
+                            </td>
+                            <td className="min-w-[50px] text-center">
+                              {item.qty}
+                            </td>
+                            <td className="previewText">
+                              ${Number(item.price).toFixed(2)}
+                            </td>
+                            <td className="previewText">
+                              ${Number(item.price * item.qty).toFixed(2)}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+
+                    <div className="previewTotalFields">
+                      <div className="extraOptions">
+                        <span className="previewLabel">Subtotal:</span>
+                        <span className="previewText">
+                          ${invoiceInfo.subtotal.toFixed(2)}
+                        </span>
+                      </div>
+                      <div className="extraOptions">
+                        <span className="previewLabel">Discount:</span>
+                        <span className="previewText">
+                          ${invoiceInfo.discountRate.toFixed(2)}
+                        </span>
+                      </div>
+                      <div className="extraOptions">
+                        <span className="previewLabel">Tax:</span>
+                        <span className="previewText">
+                          ${invoiceInfo.taxRate.toFixed(2)}
+                        </span>
+                      </div>
+                      <div className="extraOptions">
+                        <span className="previewLabel">Shipping:</span>
+                        <span className="previewText">
+                          ${invoiceInfo.shipping}
+                        </span>
+                      </div>
+                      <div className="extraOptions">
+                        <span className="previewLabel">Total:</span>
+                        <span className="previewText">
+                          $
+                          {invoiceInfo.total % 1 === 0
+                            ? invoiceInfo.total
+                            : invoiceInfo.total.toFixed(2)}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="previewNotes">{invoiceInfo.notes}</div>
+                  </div>
+                </div>
+                <div className="">
+                  <button className="" onClick={SaveAsPDFHandler}>
+                    <span>Download</span>
+                  </button>
+                  <button onClick={addNextInvoiceHandler} className="">
+                    <span>Next</span>
+                  </button>
+                </div>
               </div>
-            </div>
-          </Transition.Child>
-        </div>
-      </Dialog>
-    </Transition>
+            </Transition.Child>
+          </div>
+        </Dialog>
+      </Transition>
+    )
   );
 };
 

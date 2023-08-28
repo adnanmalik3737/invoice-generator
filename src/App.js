@@ -30,7 +30,7 @@ function App() {
               className="colorField"
               style={{
                 backgroundColor: selectedColor,
-                width: 750,
+                width: 730,
                 height: 5,
                 marginLeft: 60,
               }}

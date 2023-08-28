@@ -1,6 +1,12 @@
 import React from "react";
 import "./SidebarOptions.css";
+import InvoiceModel from "../InvoiceModel/InvoiceModel.js";
 
+// const invoiceInstance = InvoiceModel(); // Create an instance
+
+// const handleDownloadClick = () => {
+//   invoiceInstance.SaveAsPDFHandler(); // Call the extracted function
+// };
 // const reviewInvoiceHandler = (event) => {
 //   event.preventDefault();
 //   setIsOpen(true);
@@ -39,6 +45,7 @@ function SidebarOptions(props) {
   return (
     <div className="sidebarOption">
       <button className="sidebar-btn">
+        {/* onClick={handleDownloadClick} */}
         <span>
           <svg
             xmlns="http://www.w3.org/2000/svg"

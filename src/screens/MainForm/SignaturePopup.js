@@ -44,7 +44,7 @@ function SignaturePopup() {
         trigger={
           <button
             className="addSignBtn"
-            onClick={() => toggleBodyDarkened(true)}
+            // onClick={() => toggleBodyDarkened(true)}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -64,8 +64,8 @@ function SignaturePopup() {
           </button>
         }
         closeOnDocumentClick={false}
-        onOpen={() => toggleBodyDarkened(true)} // Add this line
-        onClose={() => toggleBodyDarkened(false)} // Add this line
+        // onOpen={() => toggleBodyDarkened(true)} // Add this line
+        // onClose={() => toggleBodyDarkened(false)} // Add this line
       >
         {(close) => (
           <div className="signatureInput">

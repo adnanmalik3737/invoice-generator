@@ -5,16 +5,33 @@ import "./FileUpload.css";
 function ImageUploader(props) {
   const [image, setImage] = useState({ preview: "", raw: "" });
 
+  // Old function for updating image
+  // const handleLogoChange = (e) => {
+  //   if (e.target.files.length) {
+  //     setImage({
+  //       preview: URL.createObjectURL(e.target.files[0]),
+  //       raw: e.target.files[0],
+  //     });
+
+  //     // Pass the image raw data to a callback prop, if provided
+  //     if (props.onImageChange) {
+  //       props.onImageChange(e.target.files[0]);
+  //     }
+  //   }
+  // };
+
+  // New function for updating image
   const handleLogoChange = (e) => {
     if (e.target.files.length) {
-      setImage({
+      const imageData = {
         preview: URL.createObjectURL(e.target.files[0]),
         raw: e.target.files[0],
-      });
+      };
+      setImage(imageData);
 
       // Pass the image raw data to a callback prop, if provided
       if (props.onImageChange) {
-        props.onImageChange(e.target.files[0]);
+        props.onImageChange(imageData);
       }
     }
   };

@@ -68,7 +68,7 @@ const InvoiceItem = ({
           cellData={{
             className: "",
             type: "number",
-            min: "0.01",
+            // min: "0.01",
             step: "0.01",
             name: "price",
             id: id,
@@ -81,7 +81,7 @@ const InvoiceItem = ({
           onEditItem={(event) => onEdtiItem(event)}
           cellData={{
             type: "number",
-            min: "0.01",
+            // min: "0.01",
             step: "0.01",
             name: "itax",
             id: id,

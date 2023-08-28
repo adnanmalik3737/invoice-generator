@@ -5,13 +5,15 @@
   position: relative;
 }
 .mainForm {
-  background-color: #ffffff;
   border: 1px none;
-  height: 700px;
   position: relative;
   width: 750px;
   margin: 0 0 0 5%;
+}
+.mainFormBody {
+  background-color: #ffffff;
   overflow-x: scroll;
+  height: 650px;
 }
 
 /* Scroller Style */
@@ -209,7 +211,7 @@
 
 .totalFieldContainer {
   display: flex;
-  margin-right: 40px;
+  /* margin-right: 40px; */
   width: 300px;
 }
 .totalSymbols {
@@ -241,6 +243,7 @@
 .extraOptions {
   display: flex;
   padding: 0 20px;
+  justify-content: space-between;
 }
 
 .currencyDrop {
@@ -367,8 +370,33 @@
   background: #fff;
 }
 
-.reviewBtn {
-  margin: 10px 30px;
+.invoiceTopBtn {
+  margin: 10px 0;
+  display: inline-flex;
+  width: 86.52px;
+  height: 38.28px;
+  padding: 7px 14.52px 6.28px 13px;
+  align-items: flex-start;
+  border-radius: 4px;
+  background: #fff;
+  color: #333;
+}
+.invoiceTopBtn span {
+  color: #333;
+  text-align: center;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24.286px; /* 142.857% */
+  letter-spacing: -0.51px;
+  margin: auto;
+  text-align: center;
+}
+
+.invoiceTop {
+  display: flex;
+  /* padding: 20px 0; */
+  justify-content: space-between;
 }
 
 .inputItem {
