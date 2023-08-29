@@ -19,13 +19,22 @@ function App() {
     setIsPopupOpen(false);
   };
 
+  const [sidebarVisible, setSidebarVisible] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarVisible((prevVisibility) => !prevVisibility);
+  };
+
   return (
     <div>
       <Router>
         <div className="wholeBody">
-          <Sidebar />
+          <Sidebar isVisible={sidebarVisible} />
           <div className="headBody">
-            <HeaderBar />
+            <HeaderBar
+              toggleSidebar={toggleSidebar}
+              sidebarVisible={sidebarVisible}
+            />
             <div
               className="colorField"
               style={{

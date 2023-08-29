@@ -5,12 +5,14 @@
   padding: 3px 20px;
   border-bottom: 1px solid #333333;
   background-color: #ffffff;
+  width: 100%;
 }
 
-.headerBar .div-d-flex {
+.logo_icon_bar {
   height: 40px;
-  position: relative;
-  width: 257.53px;
+  display: flex;
+  width: 350px;
+  justify-content: center;
 }
 
 .headerBar .link {
@@ -21,26 +23,19 @@
   width: 20px;
 }
 
-.headerBar .span-title-divider {
+.title-divider {
   border-color: #e2e2e2;
   border-left-style: solid;
   border-left-width: 1px;
   height: 30px;
-  left: 40px;
-  position: absolute;
-  top: 0;
   width: 1px;
+  margin: 10px 10px;
 }
 
 .headerBar .div-title {
-  align-items: flex-start;
   display: inline-flex;
   flex-direction: column;
-  gap: 0.8px;
-  left: 61px;
-  padding: 0px 5.53px 0px 0px;
-  position: absolute;
-  top: 7px;
+  padding: 10px;
 }
 
 .headerBar .heading-free {
@@ -68,6 +63,13 @@
   width: fit-content;
 }
 
+.headerLogo {
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
 .headerBar .SIGN-UP-IT-s-FREE-wrapper {
   align-items: flex-start;
   display: inline-flex;
@@ -90,12 +92,10 @@
   width: fit-content;
 }
 
-.headerBar .div-primary-cta-in {
-  align-items: flex-start;
-  display: inline-flex;
-  flex: 0 0 auto;
-  padding: 0px 0px 0px 10px;
-  position: relative;
+.headerBar .accountsIconText {
+  width: 200px;
+  padding: 0 10px;
+  display: flex;
 }
 
 .headerBar .heading-free-wrapper {
@@ -111,4 +111,6 @@
   font-weight: 400;
   letter-spacing: 0;
   line-height: 19.8px;
+  display: flex;
+  align-items: center;
 }

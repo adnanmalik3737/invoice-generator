@@ -13,13 +13,23 @@ import SignaturePopup from "./SignaturePopup";
 
 function MainForm(props) {
   const [image, setImage] = useState({ preview: "", raw: "" });
+  const [uploadedImage, setUploadedImage] = useState(null);
   const [invoiceNumber, setInvoiceNumber] = useState(1);
-  const date = new Date();
-  const today = date.toLocaleDateString("en-GB", {
-    month: "numeric",
-    day: "numeric",
-    year: "numeric",
-  });
+  // const date = new Date();
+  // const today = date.toLocaleDateString("en-GB", {
+  //   month: "numeric",
+  //   day: "numeric",
+  //   year: "numeric",
+  // });
+
+  const [invoiceDate, setInvoiceDate] = useState("");
+  const [dueDate, setDueDate] = useState("");
+
+  const [invoiceFields, setInvoiceFields] = useState("");
+
+  const handleFieldsChange = (updatedFields) => {
+    setInvoiceFields(updatedFields);
+  };
 
   //For Editable content
   const [isEditable, setIsEditable] = useState(false);
@@ -60,7 +70,7 @@ function MainForm(props) {
     const formData = new FormData();
     formData.append("image", image.raw);
 
-    await fetch("YOUR_URL", {
+    await fetch("logoFile", {
       method: "POST",
       headers: {
         "Content-Type": "multipart/form-data",
@@ -88,17 +98,9 @@ function MainForm(props) {
   const [gst, setGst] = useState("");
   const [itax, setItax] = useState("");
   const [shipping, setShipping] = useState(0);
-  const [notes, setnotes] = useState("");
+  const [notes, setNotes] = useState("");
   // const [cashierName, setCashierName] = useState('');
   // const [customerName, setCustomerName] = useState('');
-  // const [items, setItems] = useState([
-  //   {
-  //     id: uid(6),
-  //     name: "",
-  //     qty: 1,
-  //     price: "0.00",
-  //   },
-  // ]);
 
   const addItemHandler = () => {
     const id = uid(6);
@@ -173,7 +175,7 @@ function MainForm(props) {
 
   const [symbol, setSymbol] = useState("$"); // default to USD
 
-  const handleDropdownChange = (event) => {
+  const handleCurrencyChange = (event) => {
     setSymbol(event.target.value);
   };
 
@@ -195,7 +197,8 @@ function MainForm(props) {
             setIsOpen={setIsOpen}
             invoiceInfo={{
               invoiceNumber,
-              today,
+              invoiceDate,
+              dueDate,
               subtotal,
               taxRate,
               discountRate,
@@ -206,6 +209,8 @@ function MainForm(props) {
             }}
             items={items}
             onAddNextInvoice={addNextInvoiceHandler}
+            uploadedImage={uploadedImage}
+            invoiceFields={invoiceFields}
           />
 
           <button className="invoiceTopBtn" type="reset">
@@ -217,7 +222,7 @@ function MainForm(props) {
           <div className="formHeader">
             <div className="itemHeader">
               <ImageUploader
-                inputId="upload-logo-1"
+                inputId="logoFile"
                 uploadUrl="YOUR_URL"
                 onImageChange={(imageData) => {
                   // Handle image data update for this specific usage
@@ -269,12 +274,21 @@ function MainForm(props) {
               </div>
               <div className="infoItem">
                 <label className="inputItem">Invoice Date</label>
-                {/* <input type="date" className="inputItem"></input> */}
-                <span className="inputItem">{today}</span>
+                <input
+                  type="date"
+                  className="inputItem"
+                  value={invoiceDate}
+                  onChange={(event) => setInvoiceDate(event.target.value)}
+                />
               </div>
               <div className="infoItem">
                 <label className="inputItem">Due Date</label>
-                <input type="date" className="inputItem"></input>
+                <input
+                  type="date"
+                  className="inputItem"
+                  value={dueDate}
+                  onChange={(event) => setDueDate(event.target.value)}
+                />
               </div>
             </div>
           </div>
@@ -288,55 +302,56 @@ function MainForm(props) {
                 label="Invoice From"
                 initialFields={[
                   {
-                    id: "name",
+                    id: "sendername",
                     type: "text",
                     labelText: "Name",
                     placeholder: "Business Name",
                     defaultValue: "",
                   },
                   {
-                    id: "email",
+                    id: "senderemail",
                     type: "email",
                     labelText: "Email",
                     placeholder: "name@business.com",
                     defaultValue: "",
                   },
                   {
-                    id: "company",
+                    id: "sendercompany",
                     type: "text",
                     labelText: "Company",
                     placeholder: "Company Name",
                     defaultValue: "",
                   },
                   {
-                    id: "phone",
+                    id: "senderphone",
                     type: "text",
                     labelText: "Phone",
                     placeholder: "(123) 456 789",
                     defaultValue: "",
                   },
                   {
-                    id: "address",
+                    id: "senderaddress",
                     type: "textarea",
                     labelText: "Address",
                     placeholder: "Street",
                     defaultValue: "",
                   },
                   {
-                    id: "city",
+                    id: "sendercity",
                     type: "text",
                     labelText: "City",
                     placeholder: "Select City",
                     defaultValue: "",
                   },
                   {
-                    id: "country",
+                    id: "sendercountry",
                     type: "text",
                     labelText: "Country",
                     placeholder: "Select Country",
                     defaultValue: "",
                   },
                 ]}
+                onFieldsChange={handleFieldsChange}
               />
             </div>
 
@@ -345,55 +360,56 @@ function MainForm(props) {
                 label="Invoice To"
                 initialFields={[
                   {
-                    id: "name",
+                    id: "receivername",
                     type: "text",
                     labelText: "Name",
                     placeholder: "Business Name",
                     defaultValue: "",
                   },
                   {
-                    id: "email",
+                    id: "receiveremail",
                     type: "email",
                     labelText: "Email",
                     placeholder: "name@business.com",
                     defaultValue: "",
                   },
                   {
-                    id: "company",
+                    id: "receivercompany",
                     type: "text",
                     labelText: "Company",
                     placeholder: "Company Name",
                     defaultValue: "",
                   },
                   {
-                    id: "phone",
+                    id: "receiverphone",
                     type: "text",
                     labelText: "Phone",
                     placeholder: "(123) 456 789",
                     defaultValue: "",
                   },
                   {
-                    id: "address",
+                    id: "receiveraddress",
                     type: "textarea",
                     labelText: "Address",
                     placeholder: "Street",
                     defaultValue: "",
                   },
                   {
-                    id: "city",
+                    id: "receivercity",
                     type: "text",
                     labelText: "City",
                     placeholder: "Select City",
                     defaultValue: "",
                   },
                   {
-                    id: "country",
+                    id: "receivercountry",
                     type: "text",
                     labelText: "Country",
                     placeholder: "Select Country",
                     defaultValue: "",
                   },
                 ]}
+                onFieldsChange={handleFieldsChange}
               />
             </div>
           </div>
@@ -455,7 +471,7 @@ function MainForm(props) {
                   id="dropdown"
                   aria-label="Change Currency"
                   className="currencyDrop"
-                  onChange={handleDropdownChange}
+                  onChange={handleCurrencyChange}
                   value={symbol}
                 >
                   <option value="$">USD</option>
@@ -594,12 +610,17 @@ function MainForm(props) {
             {/* Notes */}
             <div className="Notes">
               <p className="labelNotes">Add Note ( Optional )</p>
-              <input type="text" className="lael-input" value={notes}></input>
+              <input
+                type="text"
+                className="lael-input"
+                value={notes}
+                onChange={(event) => setNotes(event.target.value)}
+              ></input>
             </div>
             <div className="formHeader">
               <div className="itemHeader">
                 <ImageUploader
-                  inputId="upload-logo-12"
+                  inputId="stampFile"
                   uploadUrl="YOUR_URL_2"
                   onImageChange={(imageData) => {
                     // Handle image data update for this specific usage

@@ -20,9 +20,22 @@ const InvoiceModel = ({
   invoiceInfo,
   items,
   onAddNextInvoice,
+  uploadedImage,
+  invoiceFields,
 }) => {
   function closeModal() {
     setIsOpen(false);
+  }
+
+  const fieldItems = [];
+
+  for (const field of invoiceFields) {
+    fieldItems.push(
+      <div key={field.id} className="extraOptions">
+        <div className="previewLabel">{field.labelText}:</div>
+        <div className="previewText">{field.value}</div>
+      </div>
+    );
   }
 
   const addNextInvoiceHandler = () => {
@@ -92,8 +105,6 @@ const InvoiceModel = ({
       });
   };
 
-  const [uploadedImage, setUploadedImage] = useState({ preview: "", raw: "" });
-
   return (
     SaveAsPDFHandler,
     (
@@ -149,12 +160,9 @@ const InvoiceModel = ({
                 <div className="boxA" id="print">
                   <div className="previewHeader">
                     <div className="PreviewHeaderItem">
-                      {/* <img
-                        src={uploadedImage.preview}
-                        alt="Uploaded"
-                        width="200"
-                        height="200"
-                      /> */}
+                      {uploadedImage && (
+                        <img src={uploadedImage} alt="Uploaded" />
+                      )}
                     </div>
                     <h1 className="h-1 PreviewHeaderItem">INVOICE</h1>
                   </div>
@@ -174,12 +182,26 @@ const InvoiceModel = ({
                       </div>
                       <div className="infoItem">
                         <span className="inputItem">Invoice Date:</span>
-                        <span className="previewText">{today}</span>
+                        <span className="previewText">
+                          {invoiceInfo.invoiceDate}
+                        </span>
                       </div>
 
                       <div className="infoItem">
                         <span className="inputItem">Due Date:</span>
-                        <span className="previewText">{today}</span>
+                        <span className="previewText">
+                          {invoiceInfo.dueDate}
+                        </span>
+                      </div>
+                      <div className="PreviewToFromFields">
+                        <div className="PreviewToFields">
+                          <div className="toFromTitle">From</div>
+                          {fieldItems}
+                        </div>
+                        <div className="PreviewToFields">
+                          <div className="toFromTitle">Bill To</div>
+                          {fieldItems}
+                        </div>
                       </div>
                     </div>
                     <table className="modelTable">
@@ -201,10 +223,12 @@ const InvoiceModel = ({
                               {item.qty}
                             </td>
                             <td className="previewText">
-                              ${Number(item.price).toFixed(2)}
+                              {invoiceInfo.symbol}
+                              {Number(item.price).toFixed(2)}
                             </td>
                             <td className="previewText">
-                              ${Number(item.price * item.qty).toFixed(2)}
+                              {invoiceInfo.symbol}
+                              {Number(item.price * item.qty).toFixed(2)}
                             </td>
                           </tr>
                         ))}
@@ -215,31 +239,35 @@ const InvoiceModel = ({
                       <div className="extraOptions">
                         <span className="previewLabel">Subtotal:</span>
                         <span className="previewText">
-                          ${invoiceInfo.subtotal.toFixed(2)}
+                          {invoiceInfo.symbol}
+                          {invoiceInfo.subtotal.toFixed(2)}
                         </span>
                       </div>
                       <div className="extraOptions">
                         <span className="previewLabel">Discount:</span>
                         <span className="previewText">
-                          ${invoiceInfo.discountRate.toFixed(2)}
+                          {invoiceInfo.symbol}
+                          {invoiceInfo.discountRate.toFixed(2)}
                         </span>
                       </div>
                       <div className="extraOptions">
                         <span className="previewLabel">Tax:</span>
                         <span className="previewText">
-                          ${invoiceInfo.taxRate.toFixed(2)}
+                          {invoiceInfo.symbol}
+                          {invoiceInfo.taxRate.toFixed(2)}
                         </span>
                       </div>
                       <div className="extraOptions">
                         <span className="previewLabel">Shipping:</span>
                         <span className="previewText">
-                          ${invoiceInfo.shipping}
+                          {invoiceInfo.symbol}
+                          {invoiceInfo.shipping}
                         </span>
                       </div>
                       <div className="extraOptions">
                         <span className="previewLabel">Total:</span>
                         <span className="previewText">
-                          $
+                          {invoiceInfo.symbol}
                           {invoiceInfo.total % 1 === 0
                             ? invoiceInfo.total
                             : invoiceInfo.total.toFixed(2)}
@@ -249,13 +277,14 @@ const InvoiceModel = ({
                     <div className="previewNotes">{invoiceInfo.notes}</div>
                   </div>
                 </div>
+                <div className="clearflex" />
                 <div className="">
                   <button className="" onClick={SaveAsPDFHandler}>
                     <span>Download</span>
                   </button>
-                  <button onClick={addNextInvoiceHandler} className="">
+                  {/* <button onClick={addNextInvoiceHandler} className="">
                     <span>Next</span>
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </Transition.Child>

@@ -164,8 +164,11 @@ button {
   color: #fff;
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  position: sticky;
+  padding: 40px 20px;
+  /* position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999; */
 }
 
 .major-items {
@@ -179,9 +182,13 @@ button {
   line-height: 22.857px; /* 152.381% */
   cursor: pointer;
 }
+
+.major-items span {
+  margin-right: 10px;
+}
 .Navdropdown a {
   display: block;
-  padding: 10px;
+  padding: 10px 20px;
   text-decoration: none;
   color: #d3d3d3;
   font-size: 13px;
@@ -197,8 +204,12 @@ button {
   background: #008bc0;
 }
 
-.major-items {
-  position: sticky;
+.navlist {
+  display: flex;
+}
+
+.navlist svg {
+  padding: 10px;
 }
 
 .major-items a:hover,
@@ -213,7 +224,7 @@ button {
 
 .wholeBody {
   display: flex;
-  width: 98vmax;
+  width: 100%;
   position: fixed;
 }
 .navComponents {
@@ -223,5 +234,13 @@ button {
 .headBody {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .wholeBody {
+    display: flex;
+    /* flex-direction: column; */
+    width: 100%;
+  }
 }

@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import "./InvoiceBody.css";
 
-function SenderReceiver({ className, label, initialFields }) {
+function SenderReceiver({ className, label, initialFields, onFieldsChange }) {
   const [fields, setFields] = useState(initialFields);
   const [customLabel, setCustomLabel] = useState(""); // For user-defined label text
+
+  const handleFieldChange = (fieldId, value) => {
+    const updatedFields = fields.map((field) =>
+      field.id === fieldId ? { ...field, value } : field
+    );
+    setFields(updatedFields);
+    onFieldsChange(updatedFields);
+  };
 
   const addField = () => {
     // if (!customLabel.trim()) {
@@ -39,6 +47,8 @@ function SenderReceiver({ className, label, initialFields }) {
               className="input-field"
               placeholder={field.placeholder}
               defaultValue={field.defaultValue}
+              value={field.value}
+              onChange={(e) => handleFieldChange(field.id, e.target.value)}
             />
           ) : (
             <textarea
@@ -46,6 +56,8 @@ function SenderReceiver({ className, label, initialFields }) {
               className="input-field"
               placeholder={field.placeholder}
               defaultValue={field.defaultValue}
+              value={field.value}
+              onChange={(e) => handleFieldChange(field.id, e.target.value)}
             />
           )}
           {/* 

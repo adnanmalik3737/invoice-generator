@@ -54,7 +54,10 @@
 
 .boxA {
   padding: 30px;
-  height: 650px;
+  height: auto;
+}
+.clearflex {
+  clear: both;
 }
 
 .modelHeading {
@@ -82,6 +85,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  width: 50%;
 }
 
 .previewHeader {
@@ -149,11 +153,12 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  text-align: right;
 }
 
 .extraOptions {
   display: flex;
-  padding: 5px 20px;
+  padding: 5px 20px 0 5px;
   justify-content: space-between;
 }
 
@@ -165,4 +170,22 @@
 .previewTotalFields {
   width: 35%;
   float: right;
+}
+
+.PreviewToFromFields {
+  display: flex;
+  padding: 10px 0;
+}
+
+.PreviewToFields {
+  width: 50%;
+}
+
+.toFromTitle {
+  color: #333;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px; /* 140% */
+  padding: 10px 0;
 }
