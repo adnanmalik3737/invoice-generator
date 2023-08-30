@@ -10,8 +10,7 @@
 
 .innerModel {
   text-align: center;
-  padding-left: 4rem;
-  min-height: 100vh;
+  /* min-height: 100vh; */
 }
 
 .innerDialog {
@@ -38,6 +37,7 @@
   min-height: 1000px;
   display: inline-block;
   margin-top: 4rem;
+  margin-left: -4rem;
   margin-bottom: 0rem;
   background: rgba(255, 255, 255, 1);
   border: 0.1px solid grey;

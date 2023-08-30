@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./HeaderStyle.css";
+import Accounts from "./Accounts";
 
 const HeaderBar = ({ toggleSidebar, sidebarVisible }) => {
+  const [isPopupOpen, setPopupOpen] = useState(false);
+
   return (
     <div className="headerBar">
       <div className="logo_icon_bar">
@@ -20,7 +23,7 @@ const HeaderBar = ({ toggleSidebar, sidebarVisible }) => {
           </svg>
         </div>
         {/* // Logo copied from Sidebar component */}
-        {!sidebarVisible && (
+        {sidebarVisible && (
           <div className="headerLogo">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +54,11 @@ const HeaderBar = ({ toggleSidebar, sidebarVisible }) => {
         {/* <div className="heading-free-wrapper">        </div> */}
         <div className="text-wrapper">Register</div>
         <div className="title-divider" />
-        <div className="text-wrapper">Login</div>
+        {/* <div className="text-wrapper">Login</div> */}
+        <button className="loginBtn" onClick={() => setPopupOpen(true)}>
+          Login
+        </button>
+        <Accounts isOpen={isPopupOpen} onClose={() => setPopupOpen(false)} />
       </div>
     </div>
   );

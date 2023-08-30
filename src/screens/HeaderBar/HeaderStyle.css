@@ -11,8 +11,8 @@
 .logo_icon_bar {
   height: 40px;
   display: flex;
-  width: 350px;
-  justify-content: center;
+  width: 300px;
+  justify-content: space-evenly;
 }
 
 .headerBar .link {
@@ -21,6 +21,17 @@
   position: absolute;
   top: 12px;
   width: 20px;
+}
+
+.loginBtn {
+  background-color: #fff;
+  color: #111;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+.loginBtn:hover {
+  color: #007bff;
 }
 
 .title-divider {

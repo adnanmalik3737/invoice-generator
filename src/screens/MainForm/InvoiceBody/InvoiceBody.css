@@ -8,12 +8,13 @@
   border: 1px none;
   position: relative;
   width: 750px;
-  margin-left: 75px;
+  margin-left: 40px;
 }
 .mainFormBody {
   background-color: #ffffff;
   overflow-x: scroll;
-  height: 650px;
+  height: 610px;
+  border-radius: 10px;
 }
 
 /* Scroller Style */
@@ -169,7 +170,7 @@
 
 .totalFields {
   width: 35%;
-  margin: 0 60%;
+  margin: 0 58%;
 }
 
 .totalField {
