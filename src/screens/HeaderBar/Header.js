@@ -4,6 +4,17 @@ import Accounts from "./Accounts";
 
 const HeaderBar = ({ toggleSidebar, sidebarVisible }) => {
   const [isPopupOpen, setPopupOpen] = useState(false);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setPopupOpen(true);
+  };
+
+  // Function to handle user logout
+  const handleLogout = () => {
+    // Perform logout actions here
+    setIsUserLoggedIn(false);
+  };
 
   return (
     <div className="headerBar">
@@ -51,14 +62,42 @@ const HeaderBar = ({ toggleSidebar, sidebarVisible }) => {
         </div>
       </div>
       <div className="accountsIconText">
-        {/* <div className="heading-free-wrapper">        </div> */}
-        <div className="text-wrapper">Register</div>
+        {/* <div className="text-wrapper">Register</div> */}
         <div className="title-divider" />
         {/* <div className="text-wrapper">Login</div> */}
-        <button className="loginBtn" onClick={() => setPopupOpen(true)}>
-          Login
+        {/* <button className="loginBtn" onClick={() => setPopupOpen(true)}>
+          Register or Sign in
         </button>
-        <Accounts isOpen={isPopupOpen} onClose={() => setPopupOpen(false)} />
+        <Accounts isOpen={isPopupOpen} onClose={() => setPopupOpen(false)} /> */}
+
+        {/* <button className="loginBtn" onClick={() => setPopupOpen(true)}>
+          Register or Sign in
+        </button>
+        <Accounts
+          isOpen={isPopupOpen}
+          onClose={() => setPopupOpen(false)}
+          setIsUserLoggedIn={setIsUserLoggedIn}
+        /> */}
+
+        {isUserLoggedIn ? (
+          // If user is logged in, display user profile button
+          <button className="profileBtn" onClick={handleLogout}>
+            User Profile
+          </button>
+        ) : (
+          // If user is not logged in, display login/register button
+          <button className="loginBtn" onClick={handleLogin}>
+            Register or Sign in
+          </button>
+        )}
+        {isPopupOpen && (
+          <Accounts
+            isOpen={isPopupOpen}
+            onClose={() => setPopupOpen(false)}
+            setIsUserLoggedIn={setIsUserLoggedIn}
+          />
+        )}
+        {/* Render other header components */}
       </div>
     </div>
   );

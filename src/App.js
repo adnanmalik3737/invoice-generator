@@ -4,9 +4,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Sidebar from "./screens/Navbar/LeftNavbar";
 import SignaturePopup from "./screens/MainForm/SignaturePopup";
 import MainForm from "./screens/MainForm/MainForm.js";
-import Header from "./screens/MainForm/invoiceHeader/invoiceHeader";
+import InvoiceHeader from "./screens/MainForm/invoiceHeader/invoiceHeader";
 import ImageUploader from "./screens/MainForm/FileUpload";
 import HeaderBar from "./screens/HeaderBar/Header.js";
+import ResetPassword from "./screens/HeaderBar/ResetPassword.js";
 import SidebarOptions from "./screens/Sidebar/SidebarOptions";
 function App() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -50,7 +51,10 @@ function App() {
               <Routes>
                 <Route path="/create-invoice" element={<MainForm />}></Route>
                 <Route path="/history" element={<SignaturePopup />}></Route>
-                <Route path="/pdf-templates" element={<Header />}></Route>
+                <Route
+                  path="/pdf-templates"
+                  element={<InvoiceHeader />}
+                ></Route>
                 <Route
                   path="/attach-with-websites"
                   component={<ImageUploader />}
@@ -64,13 +68,17 @@ function App() {
                     />
                   }
                 ></Route>
+                <Route
+                  path="/resetpassword"
+                  element={<ResetPassword />}
+                ></Route>
               </Routes>
-              <div className="sidebarOptions">
+              {/* <div className="sidebarOptions">
                 <SidebarOptions
                   selectedColor={selectedColor}
                   setSelectedColor={setSelectedColor}
                 ></SidebarOptions>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

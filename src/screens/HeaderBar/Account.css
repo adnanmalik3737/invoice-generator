@@ -23,7 +23,7 @@
 
 .accountsubtitle {
   color: #333;
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   text-align: center;
@@ -76,17 +76,49 @@
 
 .accountPopup p {
   text-align: center;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+}
+
+.accountPopup .forgot {
+  text-align: right;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-right: 15px;
+  color: #009bd6;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px; /* 214.286% */
+  text-decoration-line: underline;
+}
+.accountPopup .remember {
+  text-align: right;
+  margin-right: 15px;
+  margin-top: 10px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px; /* 214.286% */
 }
 
 .accountPopup p span {
-  text-align: center;
-  color: #007bff;
-  text-decoration: underline;
+  color: #009bd6;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px;
+  text-decoration-line: underline;
   cursor: pointer;
 }
 
 .accountPopup .input-icons svg {
   position: absolute;
+}
+
+.accountPopup .input-icons img {
+  position: absolute;
+  padding: 8px 12px;
 }
 
 .accountPopup .input-icons {

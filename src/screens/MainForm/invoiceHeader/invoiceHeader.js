@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./invoiceHeader.css";
 import ImageUploader from "../FileUpload.js";
 
-function Header(props) {
+function InvoiceHeader(props) {
   const [image, setImage] = useState({ preview: "", raw: "" });
 
   const handleLogoChange = (e) => {
@@ -83,4 +83,4 @@ function Header(props) {
   );
 }
 
-export default Header;
+export default InvoiceHeader;

@@ -76,8 +76,8 @@ const InvoiceItem = ({
           }}
         />
       </td>
-      <td className="inputTax">
-        {/* <InvoiceField
+      {/* <td className="inputTax">
+        <InvoiceField
           onEditItem={(event) => onEdtiItem(event)}
           cellData={{
             type: "number",
@@ -87,8 +87,8 @@ const InvoiceItem = ({
             id: id,
             value: itax,
           }}
-        /> */}
-      </td>
+        />
+      </td> */}
       <td className="inputQty">
         <InvoiceField
           onEditItem={(event) => onEdtiItem(event)}

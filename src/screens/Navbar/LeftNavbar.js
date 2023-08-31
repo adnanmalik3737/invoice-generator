@@ -55,7 +55,10 @@ function Sidebar({ isVisible }) {
             </g>
           </svg>
         </span>
-        <NavItem title="Billing" subItems={["Create Invoice", "History"]} />
+        <NavItem
+          title="Billing"
+          subItems={["Create Invoice", "History", "ResetPassword"]}
+        />
       </div>
       <div className="navlist">
         <span>
