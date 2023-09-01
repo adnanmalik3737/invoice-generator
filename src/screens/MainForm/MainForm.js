@@ -226,6 +226,7 @@ function MainForm(props) {
                 shipping,
                 total,
                 notes,
+                selectedColor,
               }}
               items={items}
               onAddNextInvoice={addNextInvoiceHandler}

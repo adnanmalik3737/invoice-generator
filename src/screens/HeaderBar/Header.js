@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./HeaderStyle.css";
 import Accounts from "./Accounts";
+import UserProfile from "./UserProfile";
 
 const HeaderBar = ({ toggleSidebar, sidebarVisible }) => {
   const [isPopupOpen, setPopupOpen] = useState(false);
@@ -80,7 +81,7 @@ const HeaderBar = ({ toggleSidebar, sidebarVisible }) => {
         /> */}
 
         {isUserLoggedIn ? (
-          // If user is logged in, display user profile button
+          // If user is logged in, display user profile button {handleLogout}
           <button className="profileBtn" onClick={handleLogout}>
             User Profile
           </button>

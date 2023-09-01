@@ -1,5 +1,7 @@
 // LoginSignupPopup.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { CookiesProvider, useCookies } from "react-cookie";
 import "./Account.css";
 import instagram from "../../img/instagram.svg";
 import facebook from "../../img/facebook.svg";
@@ -9,6 +11,7 @@ import passwordIcon from "../../img/passwordIcon.svg";
 import closePopup from "../../img/closePopup.svg";
 import recoverPass from "../../img/recoverPass.svg";
 import userA from "../../img/userA.svg";
+import UserProfile from "./UserProfile";
 
 const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -20,46 +23,200 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
   const [resetEmail, setResetEmail] = useState("");
   const [resetMessage, setResetMessage] = useState("");
 
+  const [user, setUser] = useState(null);
+
   const [loginResponse, setLoginResponse] = useState({});
+
+  // Define the fetchUserData function to be passed to UserProfile
+  // async function fetchUserData() {
+  //   try {
+  //     const response = await fetch(
+  //       "https://invoice-generator.up.railway.app/api/user/get",
+  //       {
+  //         method: "GET",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
+
+  //     if (response.status === 200) {
+  //       const data = await response.json();
+  //       // setUserData(data);
+  //       console.log("Fetched user data:", data.message);
+  //       console.log("Success:", response.status);
+
+  //       // Assuming you have a loginResponse object with user property
+  //       // setLoginResponse({ ...loginResponse, user: data });
+  //     } else {
+  //       console.error("Failed to fetch user data:", response.statusText);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching user data:", error);
+  //   }
+  // }
+
+  // Login Function with Fetch Methd
+  // const handleLoginSubmit = async (e) => {
+  //   console.log("Login function triggered");
+  //   e.preventDefault();
+  //   try {
+  //     const response = await fetch(
+  //       "https://invoice-generator.up.railway.app/api/auth/login",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           email,
+  //           password,
+  //         }),
+  //       }
+  //     );
+
+  //     const loginData = await response.json();
+  //     if (response.status === 200) {
+  //       setIsUserLoggedIn(true);
+  //       setLoginResponse(loginData);
+  //       console.log("User data:", loginResponse);
+
+  //       console.log("Data fetched");
+  //       // fetchUserData(); // Invoke the fetchUserData callback
+
+  //       // onClose();
+  //       const body = JSON.stringify({
+  //         email,
+  //         password,
+  //       });
+  //       console.log(body);
+  //       console.log(loginData);
+  //     } else {
+  //       console.log("Login Error:", loginData.error);
+  //     }
+  //   } catch (error) {
+  //     console.error("Network Error:", error.message);
+  //   }
+  // };
+
+  // Login Function with Axios Method
+
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+
   const handleLoginSubmit = async (e) => {
     console.log("Login function triggered");
     e.preventDefault();
-    try {
-      const response = await fetch(
-        "https://invoice-generator.up.railway.app/api/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email,
-            password,
-          }),
-        }
-      );
 
-      const loginData = await response.json();
-      if (response.ok) {
+    try {
+      const response = await axios
+        .post("https://invoice-generator.up.railway.app/api/auth/login", {
+          email,
+          password,
+        })
+        .then((response) => {
+          setCookie("user", response.data, {
+            path: "https://invoice-generator.up.railway.app/api/user/get",
+          });
+        });
+
+      if (response.status === 200) {
         setIsUserLoggedIn(true);
-        setLoginResponse(loginData);
-        onClose();
+        setLoginResponse(response.data);
+        console.log("User data:", response.data);
+
+        console.log("Data fetched");
+        // fetchUserData(); // Invoke the fetchUserData callback
+
+        // onClose();
         const body = JSON.stringify({
           email,
           password,
         });
         console.log(body);
-        console.log(loginData);
+        console.log(response.data);
       } else {
-        console.log("Login Error:", loginData.error);
+        console.log("Login Error:", response.data.error);
       }
     } catch (error) {
       console.error("Network Error:", error.message);
     }
   };
 
+  // Get User data API with AXIOS Method
+  async function fetchUserData() {
+    try {
+      const response = await axios.get(
+        "https://invoice-generator.up.railway.app/api/user/get",
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        const userData = response.data;
+        setUser(userData); // Update state with user data
+        console.log("Fetched user data:", userData);
+        console.log("Response:", response.status);
+
+        setLoginResponse({ ...loginResponse, user: userData });
+      } else {
+        console.error("Failed to fetch user data:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  }
+
+  // Signup User Function
+
   const [signupResponse, setSignupResponse] = useState({});
 
+  // const handleSignupSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (password !== confirmPassword) {
+  //     setPasswordMismatch(true);
+  //     return;
+  //   }
+
+  //   try {
+  //     const response = await fetch(
+  //       "https://invoice-generator.up.railway.app/api/user/create",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           name,
+  //           email,
+  //           password,
+  //           phoneNumber: "111111111111",
+  //         }),
+  //       }
+  //     );
+
+  //     const signupData = await response.json();
+  //     setSignupResponse(signupData);
+  //     if (response.ok) {
+  //       console.log("Signup Success!");
+  //       const body = JSON.stringify({
+  //         name,
+  //         email,
+  //         password,
+  //         confirmPassword,
+  //       });
+  //       console.log(signupData);
+  //     } else {
+  //       console.log("Signup Error:", signupData.error);
+  //     }
+  //   } catch (error) {
+  //     console.error("Network Error:", error.message);
+  //   }
+  // };
+
+  // Signup Function using AXIOS Method
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -68,25 +225,23 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
     }
 
     try {
-      const response = await fetch(
+      const response = await axios.post(
         "https://invoice-generator.up.railway.app/api/user/create",
         {
-          method: "POST",
+          name,
+          email,
+          password,
+          phoneNumber: "",
+        },
+        {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            name,
-            email,
-            password,
-            phoneNumber: "111111111111",
-          }),
         }
       );
 
-      const signupData = await response.json();
-      setSignupResponse(signupData);
-      if (response.ok) {
+      setSignupResponse(response.data);
+      if (response.status === 200) {
         console.log("Signup Success!");
         const body = JSON.stringify({
           name,
@@ -94,34 +249,63 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
           password,
           confirmPassword,
         });
-        console.log(signupData);
+        console.log(response.data);
       } else {
-        console.log("Signup Error:", signupData.error);
+        console.log("Signup Error:", response.data.error);
       }
     } catch (error) {
       console.error("Network Error:", error.message);
     }
   };
 
+  // Reset Password Function
+
+  // const handleResetRequest = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const response = await fetch(
+  //       "https://invoice-generator.up.railway.app/api/user/forgetpassword",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({ email: resetEmail }),
+  //       }
+  //     );
+
+  //     const data = await response.json();
+  //     if (response.ok) {
+  //       setResetMessage("Reset link sent to your email");
+  //     } else {
+  //       setResetMessage(data.error || "Error resetting password");
+  //     }
+  //   } catch (error) {
+  //     console.error("Network Error:", error.message);
+  //     setResetMessage("Network error. Please try again.");
+  //   }
+  // };
+
+  // Reset Functionality using Axios Method
   const handleResetRequest = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(
+      const response = await axios.post(
         "https://invoice-generator.up.railway.app/api/user/forgetpassword",
         {
-          method: "POST",
+          email: resetEmail,
+        },
+        {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ email: resetEmail }),
         }
       );
 
-      const data = await response.json();
-      if (response.ok) {
+      if (response.status === 200) {
         setResetMessage("Reset link sent to your email");
       } else {
-        setResetMessage(data.error || "Error resetting password");
+        setResetMessage(response.data.error || "Error resetting password");
       }
     } catch (error) {
       console.error("Network Error:", error.message);
@@ -154,6 +338,12 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
       });
     });
   };
+
+  // useEffect(() => {
+  //   if (user) {
+  //     fetchUserData();
+  //   }
+  // }, [user, fetchUserData]);
 
   return (
     <div className={`accountPopup ${isOpen ? "open" : ""}`}>
@@ -232,9 +422,11 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
         )}
 
         {isLogin ? (
-          <button className="LogSignBtn hideOnReset" type="submit">
-            Login
-          </button>
+          <>
+            <button className="LogSignBtn hideOnReset" type="submit">
+              Login
+            </button>
+          </>
         ) : (
           <button className="LogSignBtn" type="submit">
             Signup
@@ -242,7 +434,6 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
         )}
 
         <div className="response-details">
-          {/* {signupResponse.data?.name},{signupResponse.data?.email}, */}
           {isLogin ? (
             <p>{loginResponse.message}</p>
           ) : (
@@ -250,6 +441,14 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
           )}
         </div>
       </form>
+
+      {loginResponse &&
+      loginResponse.message === "Authentication successful" ? (
+        // <UserProfile user={loginResponse.user} fetchUserData={fetchUserData} />
+        <button className=" hideOnReset" onClick={fetchUserData}>
+          get
+        </button>
+      ) : null}
 
       {/* Reset Form Starts */}
       <form onSubmit={handleResetRequest}>

@@ -22,6 +22,7 @@ const InvoiceModel = ({
   onAddNextInvoice,
   uploadedImage,
   invoiceFields,
+  selectedColor,
 }) => {
   function closeModal() {
     setIsOpen(false);
@@ -140,6 +141,13 @@ const InvoiceModel = ({
               leaveTo="opacity-0 scale-95"
             >
               <div className="transitionAll modelBox">
+                <div
+                  className="colorField"
+                  style={{
+                    backgroundColor: selectedColor,
+                    height: 5,
+                  }}
+                ></div>
                 <button className="modelClose" onClick={closeModal}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
