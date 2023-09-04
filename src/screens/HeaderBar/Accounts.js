@@ -23,63 +23,36 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
   const [resetEmail, setResetEmail] = useState("");
   const [resetMessage, setResetMessage] = useState("");
 
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
 
-  const [loginResponse, setLoginResponse] = useState({});
+  // const [loginResponse, setLoginResponse] = useState({});
 
-  // Define the fetchUserData function to be passed to UserProfile
-  // async function fetchUserData() {
-  //   try {
-  //     const response = await fetch(
-  //       "https://invoice-generator.up.railway.app/api/user/get",
-  //       {
-  //         method: "GET",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     );
+  // // Fetch Methods Removed
 
-  //     if (response.status === 200) {
-  //       const data = await response.json();
-  //       // setUserData(data);
-  //       console.log("Fetched user data:", data.message);
-  //       console.log("Success:", response.status);
+  // // Login Function with Axios Method
 
-  //       // Assuming you have a loginResponse object with user property
-  //       // setLoginResponse({ ...loginResponse, user: data });
-  //     } else {
-  //       console.error("Failed to fetch user data:", response.statusText);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching user data:", error);
-  //   }
-  // }
+  // const [cookies, setCookie, removeCookie] = useCookies(["user"]);
 
-  // Login Function with Fetch Methd
   // const handleLoginSubmit = async (e) => {
   //   console.log("Login function triggered");
   //   e.preventDefault();
-  //   try {
-  //     const response = await fetch(
-  //       "https://invoice-generator.up.railway.app/api/auth/login",
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //           email,
-  //           password,
-  //         }),
-  //       }
-  //     );
 
-  //     const loginData = await response.json();
+  //   try {
+  //     const response = await axios
+  //       .post("https://invoice-generator.up.railway.app/api/auth/login", {
+  //         email,
+  //         password,
+  //       })
+  //       .then((response) => {
+  //         setCookie("user", response.data, {
+  //           path: "/",
+  //         });
+  //       });
+
   //     if (response.status === 200) {
   //       setIsUserLoggedIn(true);
-  //       setLoginResponse(loginData);
-  //       console.log("User data:", loginResponse);
+  //       setLoginResponse(response.data);
+  //       console.log("User data:", response.data);
 
   //       console.log("Data fetched");
   //       // fetchUserData(); // Invoke the fetchUserData callback
@@ -90,44 +63,84 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
   //         password,
   //       });
   //       console.log(body);
-  //       console.log(loginData);
+  //       console.log(response.data);
   //     } else {
-  //       console.log("Login Error:", loginData.error);
+  //       console.log("Login Error:", response.data.error);
   //     }
   //   } catch (error) {
   //     console.error("Network Error:", error.message);
   //   }
   // };
 
-  // Login Function with Axios Method
+  // const handleLoginSuccess = (userData) => {
+  //   // Save user data in cookie
+  //   setCookie("user", JSON.stringify(userData), { path: "/" });
+  // };
 
-  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  // // When user logs out
+  // const handleLogout = () => {
+  //   removeCookie("user", { path: "/" });
+  //   // Other logout logic here...
+  // };
+
+  // // Get User data API with AXIOS Method
+  // async function fetchUserData() {
+  //   try {
+  //     const response = await axios.get(
+  //       "https://invoice-generator.up.railway.app/api/user/get",
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
+
+  //     if (response.status === 200) {
+  //       const userData = response.data;
+  //       setUser(userData); // Update state with user data
+  //       console.log("Fetched user data:", userData);
+  //       console.log("Response:", response.status);
+
+  //       setLoginResponse({ ...loginResponse, user: userData });
+  //     } else {
+  //       console.error("Failed to fetch user data:", response.statusText);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching user data:", error);
+  //   }
+  // }
+
+  // // Whenever you need to get user details from the cookie
+  // const getUserDetailsFromCookie = () => {
+  //   const userDetails = JSON.parse(cookies.user);
+  //   return userDetails;
+  // };
+
+  const [user, setUser] = useState(null);
+  const [loginResponse, setLoginResponse] = useState({});
 
   const handleLoginSubmit = async (e) => {
     console.log("Login function triggered");
     e.preventDefault();
 
     try {
-      const response = await axios
-        .post("https://invoice-generator.up.railway.app/api/auth/login", {
+      const response = await axios.post(
+        "https://invoice-generator.up.railway.app/api/auth/login",
+        {
           email,
           password,
-        })
-        .then((response) => {
-          setCookie("user", response.data, {
-            path: "https://invoice-generator.up.railway.app/api/user/get",
-          });
-        });
+        },
+        {
+          withCredentials: true, // Ensure cookies (like the session ID) are sent with the request
+        }
+      );
 
       if (response.status === 200) {
         setIsUserLoggedIn(true);
         setLoginResponse(response.data);
         console.log("User data:", response.data);
-
-        console.log("Data fetched");
-        // fetchUserData(); // Invoke the fetchUserData callback
-
-        // onClose();
+        // fetchUserData();  Fetch user data after successful login
+        onClose();
         const body = JSON.stringify({
           email,
           password,
@@ -142,25 +155,37 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
     }
   };
 
+  // When user logs out
+  const handleLogout = async () => {
+    try {
+      await axios.post(
+        "https://invoice-generator.up.railway.app/api/auth/logout"
+        // {},
+        // { withCredentials: true }
+      );
+      // Other logout logic here...
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
+
   // Get User data API with AXIOS Method
   async function fetchUserData() {
     try {
       const response = await axios.get(
         "https://invoice-generator.up.railway.app/api/user/get",
         {
-          headers: {
-            "Content-Type": "application/json",
-          },
+          // headers: {
+          //   "Content-Type": "application/json",
+          // },
+          withCredentials: true, // Ensure cookies (like the session ID) are sent with the request
         }
       );
 
       if (response.status === 200) {
         const userData = response.data;
-        setUser(userData); // Update state with user data
+        setUser(userData);
         console.log("Fetched user data:", userData);
-        console.log("Response:", response.status);
-
-        setLoginResponse({ ...loginResponse, user: userData });
       } else {
         console.error("Failed to fetch user data:", response.statusText);
       }
@@ -172,49 +197,6 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
   // Signup User Function
 
   const [signupResponse, setSignupResponse] = useState({});
-
-  // const handleSignupSubmit = async (e) => {
-  //   e.preventDefault();
-  //   if (password !== confirmPassword) {
-  //     setPasswordMismatch(true);
-  //     return;
-  //   }
-
-  //   try {
-  //     const response = await fetch(
-  //       "https://invoice-generator.up.railway.app/api/user/create",
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //           name,
-  //           email,
-  //           password,
-  //           phoneNumber: "111111111111",
-  //         }),
-  //       }
-  //     );
-
-  //     const signupData = await response.json();
-  //     setSignupResponse(signupData);
-  //     if (response.ok) {
-  //       console.log("Signup Success!");
-  //       const body = JSON.stringify({
-  //         name,
-  //         email,
-  //         password,
-  //         confirmPassword,
-  //       });
-  //       console.log(signupData);
-  //     } else {
-  //       console.log("Signup Error:", signupData.error);
-  //     }
-  //   } catch (error) {
-  //     console.error("Network Error:", error.message);
-  //   }
-  // };
 
   // Signup Function using AXIOS Method
   const handleSignupSubmit = async (e) => {
@@ -257,34 +239,6 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
       console.error("Network Error:", error.message);
     }
   };
-
-  // Reset Password Function
-
-  // const handleResetRequest = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = await fetch(
-  //       "https://invoice-generator.up.railway.app/api/user/forgetpassword",
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({ email: resetEmail }),
-  //       }
-  //     );
-
-  //     const data = await response.json();
-  //     if (response.ok) {
-  //       setResetMessage("Reset link sent to your email");
-  //     } else {
-  //       setResetMessage(data.error || "Error resetting password");
-  //     }
-  //   } catch (error) {
-  //     console.error("Network Error:", error.message);
-  //     setResetMessage("Network error. Please try again.");
-  //   }
-  // };
 
   // Reset Functionality using Axios Method
   const handleResetRequest = async (e) => {

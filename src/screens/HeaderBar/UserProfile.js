@@ -30,12 +30,34 @@ function UserProfile({ user, fetchUserData }) {
     <div className="userProfile">
       {/* Display user data from the fetched response */}
       {userData && (
-        <div>
-          <h1>Hiiiiiiiiiiiiiiiii</h1>
-          {/* <p>Name: {userData.name}</p>
-          <p>Email: {userData.email}</p> */}
-          {/* Add other user data fields */}
-        </div>
+        <>
+          <div className="profile-picture">
+            <img src={user.profileImage} alt="User Profile" />
+          </div>
+          <div className="profile-details">
+            <div className="full-name">
+              <label>Full Name:</label>
+              <span>{user.fullName}</span>
+            </div>
+            <div className="username">
+              <label>Username:</label>
+              <span>{user.username}</span>
+            </div>
+            <div className="email">
+              <label>Email:</label>
+              <span>{user.email}</span>
+            </div>
+            <div className="date-of-birth">
+              <label>Date of Birth:</label>
+              <span>{user.dob}</span>
+            </div>
+            <div className="address">
+              <label>Address:</label>
+              <span>{user.address}</span>
+            </div>
+            {/* ... Add other fields as per the image ... */}
+          </div>
+        </>
       )}
     </div>
   );

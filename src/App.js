@@ -9,11 +9,18 @@ import ImageUploader from "./screens/MainForm/FileUpload";
 import HeaderBar from "./screens/HeaderBar/Header.js";
 import ResetPassword from "./screens/HeaderBar/ResetPassword.js";
 import SidebarOptions from "./screens/Sidebar/SidebarOptions";
+import UserProfile from "./screens/HeaderBar/UserProfile";
 function App() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedColor, setSelectedColor] = useState();
   const openPopup = () => {
     setIsPopupOpen(true);
+  };
+
+  const [showUserProfile, setShowUserProfile] = useState(false);
+
+  const openUserProfile = () => {
+    setShowUserProfile(true);
   };
 
   const closePopup = () => {
@@ -35,8 +42,9 @@ function App() {
             <HeaderBar
               toggleSidebar={toggleSidebar}
               sidebarVisible={sidebarVisible}
+              openUserProfile={openUserProfile}
             />
-            <div
+            {/* <div
               className="colorField"
               style={{
                 backgroundColor: selectedColor,
@@ -45,9 +53,9 @@ function App() {
                 marginLeft: 60,
               }}
             >
-              {/* Your content here */}
-            </div>
+            </div> */}
             <div className="navComponents">
+              {showUserProfile && <UserProfile />}
               <Routes>
                 <Route path="/create-invoice" element={<MainForm />}></Route>
                 <Route path="/history" element={<SignaturePopup />}></Route>
@@ -72,6 +80,10 @@ function App() {
                   path="/resetpassword"
                   element={<ResetPassword />}
                 ></Route>
+
+                {showUserProfile && (
+                  <Route path="/user-profile" element={<UserProfile />}></Route>
+                )}
               </Routes>
               {/* <div className="sidebarOptions">
                 <SidebarOptions
