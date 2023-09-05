@@ -17,13 +17,15 @@ function App() {
   const openPopup = () => {
     setIsPopupOpen(true);
   };
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
-  // useEffect(() => {
-  //   const isLoggedIn = localStorage.getItem("isUserLoggedIn");
-  //   if (isLoggedIn === "true") {
-  //     setIsUserLoggedIn(true);
-  //   }
-  // }, []);
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("isUserLoggedIn");
+    console.log(isLoggedIn);
+    if (isLoggedIn === "true") {
+      setIsUserLoggedIn(true);
+    }
+  }, []);
 
   const [showUserProfile, setShowUserProfile] = useState(false);
 

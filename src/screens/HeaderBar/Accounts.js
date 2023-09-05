@@ -12,6 +12,8 @@ import recoverPass from "../../img/recoverPass.svg";
 import userA from "../../img/userA.svg";
 import UserProfile from "./UserProfile";
 
+axios.defaults.withCredentials = true;
+
 const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
@@ -21,6 +23,7 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
   const [passwordMismatch, setPasswordMismatch] = useState(false);
   const [resetEmail, setResetEmail] = useState("");
   const [resetMessage, setResetMessage] = useState("");
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   // const [user, setUser] = useState(null);
 
@@ -124,13 +127,10 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "https://invoice-generator.up.railway.app/api/auth/login",
-        {
-          email,
-          password,
-        }
-      );
+      const response = await axios.post(`${baseUrl}api/auth/login`, {
+        email,
+        password,
+      });
 
       if (response.status === 200) {
         setIsUserLoggedIn(true);
@@ -154,16 +154,37 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
   };
 
   // Google Login Function
-
   const handleGoogleLogin = async (e) => {
     console.log("Login function triggered");
     e.preventDefault();
-
     try {
-      const response = await axios.get(
-        "https://invoice-generator.up.railway.app/api/auth/google"
-      );
+      const response = await axios.get(`${baseUrl}api/auth/google`);
+      if (response.status === 200) {
+        setIsUserLoggedIn(true);
+        setLoginResponse(response.data);
+        console.log("User data:", response.data);
+        // fetchUserData();  Fetch user data after successful login
+        // onClose();
+        const body = JSON.stringify({
+          email,
+          password,
+        });
+        console.log(body);
+        console.log(response.data);
+      } else {
+        console.log("Login Error:", response.data.error);
+      }
+    } catch (error) {
+      console.error("Network Error:", error.message);
+    }
+  };
 
+  // Facebook Login Function
+  const handleFbLogin = async (e) => {
+    console.log("Login function triggered");
+    e.preventDefault();
+    try {
+      const response = await axios.get(`${baseUrl}api/auth/facebook`);
       if (response.status === 200) {
         setIsUserLoggedIn(true);
         setLoginResponse(response.data);
@@ -185,12 +206,9 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
   };
 
   // Logout Function
-
   const handleLogout = async () => {
     try {
-      const logresponse = await axios.get(
-        "https://invoice-generator.up.railway.app/api/auth/logout"
-      );
+      const logresponse = await axios.get(`${baseUrl}api/auth/logout`);
       if (logresponse.data.message === "Logged out successfully!") {
         // Reset user data and login state
         setUser(null);
@@ -210,15 +228,11 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
   // Get User data API with AXIOS Method
   async function fetchUserData() {
     try {
-      const response = await axios.get(
-        "https://invoice-generator.up.railway.app/api/user/get",
-        {
-          // headers: {
-          //   "Content-Type": "application/json",
-          // },
-          withCredentials: true, // Ensure cookies (like the session ID) are sent with the request
-        }
-      );
+      const response = await axios.get(`${baseUrl}api/user/get`, {
+        // headers: {
+        //   "Content-Type": "application/json",
+        // },
+      });
 
       if (response.status === 200) {
         const userData = response.data;
@@ -246,7 +260,7 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
 
     try {
       const response = await axios.post(
-        "https://invoice-generator.up.railway.app/api/user/create",
+        `${baseUrl}api/user/create`,
         {
           name,
           email,
@@ -260,21 +274,23 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
         }
       );
 
-      setSignupResponse(response.data);
-      if (response.status === 200) {
-        console.log("Signup Success!");
+      setSignupResponse(response.data.message);
+      if (response.data.code === 201) {
+        console.log(response.data);
         const body = JSON.stringify({
           name,
           email,
           password,
           confirmPassword,
         });
-        console.log(response.data);
+      } else if (response.data.code === 400) {
+        console.log("Signup Error:", response.data.message);
       } else {
-        console.log("Signup Error:", response.data.error);
+        console.log("Signup error:", response.data.errors[0].msg);
+        setSignupResponse(response.data.errors[0].msg);
       }
     } catch (error) {
-      console.error("Network Error:", error.message);
+      console.error("Network Errrror:", error.message);
     }
   };
 
@@ -283,7 +299,7 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://invoice-generator.up.railway.app/api/user/forgetpassword",
+        `${baseUrl}api/user/forgetpassword`,
         {
           email: resetEmail,
         },
@@ -426,11 +442,7 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
         )}
 
         <div className="response-details">
-          {isLogin ? (
-            <p>{loginResponse.message}</p>
-          ) : (
-            <p>{signupResponse.message}</p>
-          )}
+          {isLogin ? <p>{loginResponse.message}</p> : <p>{signupResponse}</p>}
         </div>
       </form>
 
@@ -517,7 +529,7 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
             </div>
           </div>
           <div className="socials">
-            <div className="facebook">
+            <div className="facebook" onClick={handleFbLogin}>
               <img src={facebook} width="24" height="24" />
             </div>
           </div>

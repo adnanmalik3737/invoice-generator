@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./HeaderStyle.css";
+import companyLogo from "../../img/companyLogo.svg";
 
 const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState("");
@@ -39,8 +40,11 @@ const ResetPassword = () => {
       );
 
       const responseData = await response.json();
-      if (response.ok) {
+      console.log(responseData.data);
+      if (responseData.code === 200) {
         setMessage("Password successfully reset!");
+      } else if (responseData.code === 400) {
+        setMessage("Invalid or expired token");
       } else {
         setMessage("Password not successfully reset!");
       }
@@ -50,22 +54,30 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="resetPass">
-      <h2>Reset Password</h2>
-      <form className="resetPassForm" onSubmit={handleResetPassword}>
-        <input
-          type="password"
-          placeholder="New Password"
-          onChange={(e) => setNewPassword(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Confirm New Password"
-          onChange={(e) => setConfirmNewPassword(e.target.value)}
-        />
-        <button type="submit">Reset Password</button>
-      </form>
-      {message && <p>{message}</p>}
+    <div className="resetPassword">
+      <div className="resetPass">
+        <img src={companyLogo} width="50" height="30"></img>
+
+        <h2>Create New Password</h2>
+        <p>
+          Enter a unique and strong password that is easy to remember so that
+          you won't forget it the next time.
+        </p>
+        <form className="resetPassForm" onSubmit={handleResetPassword}>
+          <input
+            type="password"
+            placeholder="New Password"
+            onChange={(e) => setNewPassword(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Confirm New Password"
+            onChange={(e) => setConfirmNewPassword(e.target.value)}
+          />
+          <button type="submit">Reset Password</button>
+        </form>
+        {message && <p>{message}</p>}
+      </div>
     </div>
   );
 };

@@ -95,16 +95,16 @@ function SidebarOptions(props) {
         style={{ backgroundColor: props.selectedColor }}
       >
         Selected Color
-      </div> */}
+      </div>
       <button
         className="sidebar-btn dotted"
         onClick={() => {
-          /* Logic to add new item field */
+          
         }}
       >
         <span>0</span>
         <span>New Item Field</span>
-      </button>
+      </button> */}
     </div>
   );
 }
