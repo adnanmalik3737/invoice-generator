@@ -1,7 +1,6 @@
 // LoginSignupPopup.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { CookiesProvider, useCookies } from "react-cookie";
 import "./Account.css";
 import instagram from "../../img/instagram.svg";
 import facebook from "../../img/facebook.svg";
@@ -118,6 +117,7 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
 
   const [user, setUser] = useState(null);
   const [loginResponse, setLoginResponse] = useState({});
+  const [logoutResponse, setLogoutResponse] = useState({});
 
   const handleLoginSubmit = async (e) => {
     console.log("Login function triggered");
@@ -129,9 +129,6 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
         {
           email,
           password,
-        },
-        {
-          withCredentials: true, // Ensure cookies (like the session ID) are sent with the request
         }
       );
 
@@ -139,8 +136,9 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
         setIsUserLoggedIn(true);
         setLoginResponse(response.data);
         console.log("User data:", response.data);
+        localStorage.setItem("isUserLoggedIn", "true");
         // fetchUserData();  Fetch user data after successful login
-        onClose();
+        // onClose();
         const body = JSON.stringify({
           email,
           password,
@@ -155,15 +153,55 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
     }
   };
 
-  // When user logs out
+  // Google Login Function
+
+  const handleGoogleLogin = async (e) => {
+    console.log("Login function triggered");
+    e.preventDefault();
+
+    try {
+      const response = await axios.get(
+        "https://invoice-generator.up.railway.app/api/auth/google"
+      );
+
+      if (response.status === 200) {
+        setIsUserLoggedIn(true);
+        setLoginResponse(response.data);
+        console.log("User data:", response.data);
+        // fetchUserData();  Fetch user data after successful login
+        // onClose();
+        const body = JSON.stringify({
+          email,
+          password,
+        });
+        console.log(body);
+        console.log(response.data);
+      } else {
+        console.log("Login Error:", response.data.error);
+      }
+    } catch (error) {
+      console.error("Network Error:", error.message);
+    }
+  };
+
+  // Logout Function
+
   const handleLogout = async () => {
     try {
-      await axios.post(
+      const logresponse = await axios.get(
         "https://invoice-generator.up.railway.app/api/auth/logout"
-        // {},
-        // { withCredentials: true }
       );
-      // Other logout logic here...
+      if (logresponse.data.message === "Logged out successfully!") {
+        // Reset user data and login state
+        setUser(null);
+        setIsUserLoggedIn(false);
+        setLoginResponse({}); // Clear the login response
+        console.log(logresponse.data.message);
+        localStorage.removeItem("isUserLoggedIn");
+        // onClose();
+      } else {
+        console.log("Logout Error:", logresponse.data);
+      }
     } catch (error) {
       console.error("Logout error:", error);
     }
@@ -398,10 +436,21 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
 
       {loginResponse &&
       loginResponse.message === "Authentication successful" ? (
-        // <UserProfile user={loginResponse.user} fetchUserData={fetchUserData} />
-        <button className=" hideOnReset" onClick={fetchUserData}>
-          get
-        </button>
+        <div className="getLogout">
+          {/* 
+          <UserProfile
+            user={loginResponse.user}
+            fetchUserData={fetchUserData}
+            
+          /> */}
+          <button className=" hideOnReset" onClick={fetchUserData}>
+            Get User Data
+          </button>
+          <></>
+          <button className=" hideOnReset" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
       ) : null}
 
       {/* Reset Form Starts */}
@@ -463,7 +512,7 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
 
         <div className="socialLogins">
           <div className="socials">
-            <div className="google">
+            <div className="google" onClick={handleGoogleLogin}>
               <img src={google} width="24" height="24" />
             </div>
           </div>

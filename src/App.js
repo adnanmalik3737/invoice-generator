@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Sidebar from "./screens/Navbar/LeftNavbar";
 import SignaturePopup from "./screens/MainForm/SignaturePopup";
@@ -10,12 +10,20 @@ import HeaderBar from "./screens/HeaderBar/Header.js";
 import ResetPassword from "./screens/HeaderBar/ResetPassword.js";
 import SidebarOptions from "./screens/Sidebar/SidebarOptions";
 import UserProfile from "./screens/HeaderBar/UserProfile";
+
 function App() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedColor, setSelectedColor] = useState();
   const openPopup = () => {
     setIsPopupOpen(true);
   };
+
+  // useEffect(() => {
+  //   const isLoggedIn = localStorage.getItem("isUserLoggedIn");
+  //   if (isLoggedIn === "true") {
+  //     setIsUserLoggedIn(true);
+  //   }
+  // }, []);
 
   const [showUserProfile, setShowUserProfile] = useState(false);
 
@@ -57,6 +65,7 @@ function App() {
             <div className="navComponents">
               {showUserProfile && <UserProfile />}
               <Routes>
+                <Route path="/home"></Route>
                 <Route path="/create-invoice" element={<MainForm />}></Route>
                 <Route path="/history" element={<SignaturePopup />}></Route>
                 <Route
@@ -81,9 +90,8 @@ function App() {
                   element={<ResetPassword />}
                 ></Route>
 
-                {showUserProfile && (
-                  <Route path="/user-profile" element={<UserProfile />}></Route>
-                )}
+                {showUserProfile && <></>}
+                <Route path="/user-profile" element={<UserProfile />}></Route>
               </Routes>
               {/* <div className="sidebarOptions">
                 <SidebarOptions

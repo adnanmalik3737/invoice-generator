@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  margin: 5% 10%;
   /* Make the container fill the viewport */
   width: 50%;
   height: 50%;

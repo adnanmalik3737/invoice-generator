@@ -29,36 +29,44 @@ function UserProfile({ user, fetchUserData }) {
   return (
     <div className="userProfile">
       {/* Display user data from the fetched response */}
-      {userData && (
-        <>
-          <div className="profile-picture">
-            <img src={user.profileImage} alt="User Profile" />
+      <div className="profileHeader">
+        <div className="profileWelcome">
+          <p className="mainText">Welcome Abroad, {"Arslan"} 🤝</p>
+          <p className="beowText">
+            Enter your organization details to get started.
+          </p>
+        </div>
+      </div>
+      {/* {userData && ( */}
+      <>
+        <div className="profile-picture">
+          {/* <img src={user.profileImage} alt="User Profile" /> */}
+        </div>
+        <div className="profile-details">
+          <div className="full-name">
+            <label>Full Name:</label>
+            {/* <span>{user.name}</span> */}
           </div>
-          <div className="profile-details">
-            <div className="full-name">
-              <label>Full Name:</label>
-              <span>{user.fullName}</span>
-            </div>
-            <div className="username">
-              <label>Username:</label>
-              <span>{user.username}</span>
-            </div>
-            <div className="email">
-              <label>Email:</label>
-              <span>{user.email}</span>
-            </div>
-            <div className="date-of-birth">
-              <label>Date of Birth:</label>
-              <span>{user.dob}</span>
-            </div>
-            <div className="address">
-              <label>Address:</label>
-              <span>{user.address}</span>
-            </div>
-            {/* ... Add other fields as per the image ... */}
+          <div className="username">
+            <label>Username:</label>
+            {/* <span>{user.username}</span> */}
           </div>
-        </>
-      )}
+          <div className="email">
+            <label>Email:</label>
+            {/* <span>{user.email}</span> */}
+          </div>
+          <div className="date-of-birth">
+            <label>Date of Birth:</label>
+            {/* <span>{user.dob}</span> */}
+          </div>
+          <div className="address">
+            <label>Address:</label>
+            {/* <span>{user.address}</span> */}
+          </div>
+          {/* ... Add other fields as per the image ... */}
+        </div>
+      </>
+      {/* )} */}
     </div>
   );
 }

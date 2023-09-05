@@ -151,6 +151,13 @@
   clear: both;
 }
 
+.getLogout {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+}
+
 .socialLogins {
   display: flex;
   width: 100%;
@@ -171,6 +178,7 @@
   margin: auto;
   padding: 12px;
   width: 20px;
+  cursor: pointer;
 }
 
 .response-details {

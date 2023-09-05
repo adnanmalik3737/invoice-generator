@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./HeaderStyle.css";
 import Accounts from "./Accounts";
+import { Link } from "react-router-dom";
 import UserProfile from "./UserProfile";
 
 const HeaderBar = ({ toggleSidebar, sidebarVisible, openUserProfile }) => {
@@ -81,10 +82,10 @@ const HeaderBar = ({ toggleSidebar, sidebarVisible, openUserProfile }) => {
         /> */}
 
         {isUserLoggedIn ? (
-          // If user is logged in, display user profile button {handleLogout}
-          <button className="profileBtn" onClick={openUserProfile}>
-            User Profile
-          </button>
+          // If user is logged in, display user profile button {handleLogout} // onClick={openUserProfile}
+          <Link to={"/user-profile"} className="profileBtn">
+            {"AR"}
+          </Link>
         ) : (
           // If user is not logged in, display login/register button  onClick={handleLogin}
           <button className="loginBtn" onClick={handleLogin}>

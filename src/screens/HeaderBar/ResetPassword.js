@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./HeaderStyle.css";
 
 const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState("");
@@ -49,9 +50,9 @@ const ResetPassword = () => {
   };
 
   return (
-    <div>
+    <div className="resetPass">
       <h2>Reset Password</h2>
-      <form onSubmit={handleResetPassword}>
+      <form className="resetPassForm" onSubmit={handleResetPassword}>
         <input
           type="password"
           placeholder="New Password"
