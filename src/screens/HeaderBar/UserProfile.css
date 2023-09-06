@@ -1,34 +1,44 @@
+.profilePage {
+  width: 100%;
+  display: flex;
+  margin: 5% 10%;
+  flex-direction: column;
+}
+.profilePage h2 {
+  color: #333;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24.286px; /* 97.143% */
+  letter-spacing: -0.51px;
+}
+
 .userProfile {
-  /* Use Flexbox to center the content */
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  margin: 5% 10%;
-  /* Make the container fill the viewport */
-  width: 50%;
-  height: 50%;
-  position: absolute;
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.7
-  ); /* Optional: semi-transparent background to focus on the profile */
+  width: 60%;
+  height: 30%;
+  padding: 30px;
+  border-radius: 4px;
 
-  /* Styling for the user profile content */
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-  background-color: #fff; /* White background for the profile content */
+  background: #fff;
+  box-shadow: 0px 0px 17px 0px rgba(16, 40, 73, 0.09);
+}
+
+.profileHeader {
+  display: flex;
+  justify-content: space-between;
 }
 
 .profile-picture {
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   overflow: hidden;
+  border: 2px solid #009bd6;
   border-radius: 50%;
-  margin: 0 auto;
+  margin-left: 1%;
+  /* margin-right: 10%; */
 }
 
 .profile-picture img {
@@ -48,4 +58,23 @@
 .profile-details label {
   font-weight: bold;
   margin-right: 10px;
+}
+
+.userName {
+  color: #333;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.userEmail {
+  color: #333;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.editButtons {
+  margin: auto 0;
 }

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./HeaderStyle.css";
 import companyLogo from "../../img/companyLogo.svg";
 
-const ResetPassword = () => {
+const ResetPassword = ({ onClose }) => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [message, setMessage] = useState("");
   const [token, setToken] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -43,6 +45,9 @@ const ResetPassword = () => {
       console.log(responseData.data);
       if (responseData.code === 200) {
         setMessage("Password successfully reset!");
+        setTimeout(() => {
+          navigate("/home");
+        }, 1000);
       } else if (responseData.code === 400) {
         setMessage("Invalid or expired token");
       } else {

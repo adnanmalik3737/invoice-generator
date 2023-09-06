@@ -26,97 +26,7 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
   const baseUrl = process.env.REACT_APP_BASE_URL;
 
   // const [user, setUser] = useState(null);
-
   // const [loginResponse, setLoginResponse] = useState({});
-
-  // // Fetch Methods Removed
-
-  // // Login Function with Axios Method
-
-  // const [cookies, setCookie, removeCookie] = useCookies(["user"]);
-
-  // const handleLoginSubmit = async (e) => {
-  //   console.log("Login function triggered");
-  //   e.preventDefault();
-
-  //   try {
-  //     const response = await axios
-  //       .post("https://invoice-generator.up.railway.app/api/auth/login", {
-  //         email,
-  //         password,
-  //       })
-  //       .then((response) => {
-  //         setCookie("user", response.data, {
-  //           path: "/",
-  //         });
-  //       });
-
-  //     if (response.status === 200) {
-  //       setIsUserLoggedIn(true);
-  //       setLoginResponse(response.data);
-  //       console.log("User data:", response.data);
-
-  //       console.log("Data fetched");
-  //       // fetchUserData(); // Invoke the fetchUserData callback
-
-  //       // onClose();
-  //       const body = JSON.stringify({
-  //         email,
-  //         password,
-  //       });
-  //       console.log(body);
-  //       console.log(response.data);
-  //     } else {
-  //       console.log("Login Error:", response.data.error);
-  //     }
-  //   } catch (error) {
-  //     console.error("Network Error:", error.message);
-  //   }
-  // };
-
-  // const handleLoginSuccess = (userData) => {
-  //   // Save user data in cookie
-  //   setCookie("user", JSON.stringify(userData), { path: "/" });
-  // };
-
-  // // When user logs out
-  // const handleLogout = () => {
-  //   removeCookie("user", { path: "/" });
-  //   // Other logout logic here...
-  // };
-
-  // // Get User data API with AXIOS Method
-  // async function fetchUserData() {
-  //   try {
-  //     const response = await axios.get(
-  //       "https://invoice-generator.up.railway.app/api/user/get",
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     );
-
-  //     if (response.status === 200) {
-  //       const userData = response.data;
-  //       setUser(userData); // Update state with user data
-  //       console.log("Fetched user data:", userData);
-  //       console.log("Response:", response.status);
-
-  //       setLoginResponse({ ...loginResponse, user: userData });
-  //     } else {
-  //       console.error("Failed to fetch user data:", response.statusText);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching user data:", error);
-  //   }
-  // }
-
-  // // Whenever you need to get user details from the cookie
-  // const getUserDetailsFromCookie = () => {
-  //   const userDetails = JSON.parse(cookies.user);
-  //   return userDetails;
-  // };
 
   const [user, setUser] = useState(null);
   const [loginResponse, setLoginResponse] = useState({});
@@ -274,7 +184,12 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
         }
       );
 
-      setSignupResponse(response.data.message);
+      if (typeof response.data.message === "string") {
+        setSignupResponse(response.data.message);
+      } else {
+        setSignupResponse("An unexpected error occurred.");
+      }
+
       if (response.data.code === 201) {
         console.log(response.data);
         const body = JSON.stringify({
@@ -286,17 +201,40 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
       } else if (response.data.code === 400) {
         console.log("Signup Error:", response.data.message);
       } else {
-        console.log("Signup error:", response.data.errors[0].msg);
-        setSignupResponse(response.data.errors[0].msg);
+        if (
+          response.data.errors &&
+          response.data.errors.length > 0 &&
+          typeof response.data.errors[0].msg === "string"
+        ) {
+          console.log("Signup Error:", response.data.errors[0].msg);
+          setSignupResponse(response.data.errors[0].msg);
+        } else {
+          console.log("Unexpected Error format:", response.data.errors);
+          setSignupResponse(response.data.message);
+          // Handle unexpected error formats or set a default error message
+        }
       }
     } catch (error) {
-      console.error("Network Errrror:", error.message);
+      console.error("Network Error:", error.message);
     }
   };
+
+  // Timeout messages
+  const [showApiResponse, setShowApiResponse] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowApiResponse(false);
+    }, 10000);
+
+    // Cleanup function to clear the timeout if the component unmounts
+    // return () => clearTimeout(timer);
+  }, []);
 
   // Reset Functionality using Axios Method
   const handleResetRequest = async (e) => {
     e.preventDefault();
+    console.log("forgot Email triggered");
     try {
       const response = await axios.post(
         `${baseUrl}api/user/forgetpassword`,
@@ -347,11 +285,11 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
     });
   };
 
-  // useEffect(() => {
-  //   if (user) {
-  //     fetchUserData();
-  //   }
-  // }, [user, fetchUserData]);
+  useEffect(() => {
+    if (user) {
+      fetchUserData();
+    }
+  }, []);
 
   return (
     <div className={`accountPopup ${isOpen ? "open" : ""}`}>
@@ -440,29 +378,34 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
             Signup
           </button>
         )}
-
+        {/* {showApiResponse && ()} */}
         <div className="response-details">
-          {isLogin ? <p>{loginResponse.message}</p> : <p>{signupResponse}</p>}
+          {isLogin ? (
+            <p>{loginResponse.message}</p>
+          ) : (
+            typeof signupResponse === "string" && <p>{signupResponse}</p>
+          )}
         </div>
       </form>
 
-      {loginResponse &&
+      {isLogin &&
+      loginResponse &&
       loginResponse.message === "Authentication successful" ? (
-        <div className="getLogout">
-          {/* 
+        <>
+          <div className="getLogout">
+            <button className=" hideOnReset" onClick={fetchUserData}>
+              Get User Data
+            </button>
+
+            <button className=" hideOnReset" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
           <UserProfile
             user={loginResponse.user}
             fetchUserData={fetchUserData}
-            
-          /> */}
-          <button className=" hideOnReset" onClick={fetchUserData}>
-            Get User Data
-          </button>
-          <></>
-          <button className=" hideOnReset" onClick={handleLogout}>
-            Logout
-          </button>
-        </div>
+          />
+        </>
       ) : null}
 
       {/* Reset Form Starts */}
@@ -520,7 +463,7 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
           )}
         </p>
         <p className="dividerText">or</p>
-        <div class="divider"></div>
+        <div className="divider"></div>
 
         <div className="socialLogins">
           <div className="socials">

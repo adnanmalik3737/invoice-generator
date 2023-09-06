@@ -159,7 +159,7 @@ button {
 /* src/components/Sidebar.css */
 .sidebar {
   width: 345px;
-  height: 100vh;
+  height: 100vmin;
   background-color: #004d6b;
   color: #fff;
   display: flex;
@@ -225,7 +225,7 @@ button {
 .wholeBody {
   display: flex;
   width: 100%;
-  position: fixed;
+  position: absolute;
 }
 .navComponents {
   display: flex;

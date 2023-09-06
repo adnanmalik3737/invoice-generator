@@ -10,6 +10,7 @@ import HeaderBar from "./screens/HeaderBar/Header.js";
 import ResetPassword from "./screens/HeaderBar/ResetPassword.js";
 import SidebarOptions from "./screens/Sidebar/SidebarOptions";
 import UserProfile from "./screens/HeaderBar/UserProfile";
+import History from "./screens/History/UserHistory";
 
 function App() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -69,7 +70,7 @@ function App() {
               <Routes>
                 <Route path="/home"></Route>
                 <Route path="/create-invoice" element={<MainForm />}></Route>
-                <Route path="/history" element={<SignaturePopup />}></Route>
+                <Route path="/history" element={<History />}></Route>
                 <Route
                   path="/pdf-templates"
                   element={<InvoiceHeader />}

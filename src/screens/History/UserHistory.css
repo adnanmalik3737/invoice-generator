@@ -1,0 +1,274 @@
+.form {
+  background-color: #ffffff;
+  border-radius: 10px;
+  height: 500px;
+  position: relative;
+  width: 1052px;
+  margin: 0 5%;
+}
+
+.form .overlap {
+  background-color: #ffffff;
+  border: 0.5px solid;
+  border-color: #9ca3af;
+  border-radius: 5px;
+  height: 60px;
+  left: 25px;
+  position: absolute;
+  top: 70px;
+  width: 1001px;
+}
+
+.form .text-wrapper {
+  color: #009bd6;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 18px;
+  font-weight: 400;
+  height: 21px;
+  left: 35px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 18px;
+  white-space: nowrap;
+}
+
+.form .div {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 18px;
+  font-weight: 400;
+  height: 21px;
+  left: 229px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 18px;
+  white-space: nowrap;
+}
+
+.form .text-wrapper-2 {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 18px;
+  font-weight: 400;
+  height: 21px;
+  left: 617px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 18px;
+  white-space: nowrap;
+}
+
+.form .group {
+  height: 6px;
+  left: 943px;
+  position: absolute;
+  top: 26px;
+  width: 28px;
+}
+
+.form .ellipse {
+  background-color: #333333;
+  border-radius: 3px;
+  height: 6px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 6px;
+}
+
+.form .ellipse-2 {
+  background-color: #333333;
+  border-radius: 3px;
+  height: 6px;
+  left: 11px;
+  position: absolute;
+  top: 0;
+  width: 6px;
+}
+
+.form .ellipse-3 {
+  background-color: #333333;
+  border-radius: 3px;
+  height: 6px;
+  left: 22px;
+  position: absolute;
+  top: 0;
+  width: 6px;
+}
+
+.form .overlap-group {
+  background-color: #ffffff;
+  border: 0.5px solid;
+  border-color: #9ca3af;
+  border-radius: 5px;
+  height: 60px;
+  left: 25px;
+  position: absolute;
+  top: 140px;
+  width: 1001px;
+}
+
+.form .overlap-2 {
+  background-color: #ffffff;
+  border: 0.5px solid;
+  border-color: #9ca3af;
+  border-radius: 5px;
+  height: 60px;
+  left: 25px;
+  position: absolute;
+  top: 210px;
+  width: 1001px;
+}
+
+.form .overlap-3 {
+  background-color: #ffffff;
+  border: 0.5px solid;
+  border-color: #9ca3af;
+  border-radius: 5px;
+  height: 60px;
+  left: 25px;
+  position: absolute;
+  top: 280px;
+  width: 1001px;
+}
+
+.form .overlap-4 {
+  background-color: #ffffff;
+  border: 0.5px solid;
+  border-color: #9ca3af;
+  border-radius: 5px;
+  height: 60px;
+  left: 25px;
+  position: absolute;
+  top: 350px;
+  width: 1001px;
+}
+
+.form .overlap-5 {
+  background-color: #ffffff;
+  border: 0.5px solid;
+  border-color: #9ca3af;
+  border-radius: 5px;
+  height: 60px;
+  left: 25px;
+  position: absolute;
+  top: 420px;
+  width: 1001px;
+}
+
+.form .overlap-6 {
+  background-color: #ffffff;
+  border: 0.5px solid;
+  border-color: #9ca3af;
+  border-radius: 5px;
+  height: 60px;
+  left: 25px;
+  position: absolute;
+  top: 490px;
+  width: 1001px;
+}
+
+.form .overlap-7 {
+  background-color: #ffffff;
+  border: 0.5px solid;
+  border-color: #9ca3af;
+  border-radius: 5px;
+  height: 60px;
+  left: 25px;
+  position: absolute;
+  top: 560px;
+  width: 1001px;
+}
+
+.form .overlap-8 {
+  background-color: #ffffff;
+  border: 0.5px solid;
+  border-color: #9ca3af;
+  border-radius: 5px;
+  height: 60px;
+  left: 25px;
+  position: absolute;
+  top: 630px;
+  width: 1001px;
+}
+
+.form .overlap-9 {
+  background-color: #ffffff;
+  border: 0.5px solid;
+  border-color: #9ca3af;
+  border-radius: 5px;
+  height: 60px;
+  left: 25px;
+  position: absolute;
+  top: 700px;
+  width: 1001px;
+}
+
+.form .navbar {
+  background-color: #008bc0;
+  border-radius: 5px 5px 0px 0px;
+  height: 60px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 1052px;
+}
+
+.form .text-wrapper-3 {
+  color: #ffffff;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 18px;
+  font-weight: 400;
+  height: 21px;
+  left: 50px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 18px;
+  white-space: nowrap;
+}
+
+.form .text-wrapper-4 {
+  color: #ffffff;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 18px;
+  font-weight: 400;
+  height: 21px;
+  left: 292px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 18px;
+  white-space: nowrap;
+}
+
+.form .date-time {
+  color: #ffffff;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 18px;
+  font-weight: 400;
+  height: 21px;
+  left: 680px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 18px;
+  white-space: nowrap;
+}
+
+.form .text-wrapper-5 {
+  color: #ffffff;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 18px;
+  font-weight: 400;
+  height: 21px;
+  left: 952px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 18px;
+  white-space: nowrap;
+}
