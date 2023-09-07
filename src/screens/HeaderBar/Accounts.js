@@ -25,7 +25,6 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
   const [resetMessage, setResetMessage] = useState("");
   const baseUrl = process.env.REACT_APP_BASE_URL;
 
-  // const [user, setUser] = useState(null);
   // const [loginResponse, setLoginResponse] = useState({});
 
   const [user, setUser] = useState(null);
@@ -34,10 +33,11 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
 
   const handleLoginSubmit = async (e) => {
     console.log("Login function triggered");
+    console.log(`${baseUrl}/api/auth/login`);
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${baseUrl}api/auth/login`, {
+      const response = await axios.post(`${baseUrl}/api/auth/login`, {
         email,
         password,
       });
@@ -47,8 +47,10 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
         setLoginResponse(response.data);
         console.log("User data:", response.data);
         localStorage.setItem("isUserLoggedIn", "true");
-        // fetchUserData();  Fetch user data after successful login
-        // onClose();
+        fetchUserData(); // Fetch user data after successful login
+        setTimeout(() => {
+          onClose();
+        }, 2000);
         const body = JSON.stringify({
           email,
           password,
@@ -68,13 +70,14 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
     console.log("Login function triggered");
     e.preventDefault();
     try {
-      const response = await axios.get(`${baseUrl}api/auth/google`);
+      const response = await axios.get(`${baseUrl}/api/auth/google`);
       if (response.status === 200) {
         setIsUserLoggedIn(true);
         setLoginResponse(response.data);
         console.log("User data:", response.data);
         // fetchUserData();  Fetch user data after successful login
         // onClose();
+
         const body = JSON.stringify({
           email,
           password,
@@ -94,7 +97,7 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
     console.log("Login function triggered");
     e.preventDefault();
     try {
-      const response = await axios.get(`${baseUrl}api/auth/facebook`);
+      const response = await axios.get(`${baseUrl}/api/auth/facebook`);
       if (response.status === 200) {
         setIsUserLoggedIn(true);
         setLoginResponse(response.data);
@@ -118,7 +121,7 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
   // Logout Function
   const handleLogout = async () => {
     try {
-      const logresponse = await axios.get(`${baseUrl}api/auth/logout`);
+      const logresponse = await axios.get(`${baseUrl}/api/auth/logout`);
       if (logresponse.data.message === "Logged out successfully!") {
         // Reset user data and login state
         setUser(null);
@@ -138,15 +141,11 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
   // Get User data API with AXIOS Method
   async function fetchUserData() {
     try {
-      const response = await axios.get(`${baseUrl}api/user/get`, {
-        // headers: {
-        //   "Content-Type": "application/json",
-        // },
-      });
+      const response = await axios.get(`${baseUrl}/api/user/get`, {});
 
       if (response.status === 200) {
         const userData = response.data;
-        setUser(userData);
+        setUser(userData); // Update the lifted state
         console.log("Fetched user data:", userData);
       } else {
         console.error("Failed to fetch user data:", response.statusText);
@@ -170,7 +169,7 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
 
     try {
       const response = await axios.post(
-        `${baseUrl}api/user/create`,
+        `${baseUrl}/api/user/create`,
         {
           name,
           email,
@@ -237,7 +236,7 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
     console.log("forgot Email triggered");
     try {
       const response = await axios.post(
-        `${baseUrl}api/user/forgetpassword`,
+        `${baseUrl}/api/user/forgetpassword`,
         {
           email: resetEmail,
         },
@@ -285,11 +284,11 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
     });
   };
 
-  useEffect(() => {
-    if (user) {
-      fetchUserData();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (user) {
+  //     fetchUserData();
+  //   }
+  // }, []);
 
   return (
     <div className={`accountPopup ${isOpen ? "open" : ""}`}>
@@ -401,10 +400,10 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
               Logout
             </button>
           </div>
-          <UserProfile
+          {/* <UserProfile
             user={loginResponse.user}
             fetchUserData={fetchUserData}
-          />
+          /> */}
         </>
       ) : null}
 

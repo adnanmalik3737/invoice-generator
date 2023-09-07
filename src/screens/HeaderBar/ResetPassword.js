@@ -9,6 +9,7 @@ const ResetPassword = ({ onClose }) => {
   const [message, setMessage] = useState("");
   const [token, setToken] = useState("");
   const navigate = useNavigate();
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -27,19 +28,16 @@ const ResetPassword = ({ onClose }) => {
     }
 
     try {
-      const response = await fetch(
-        "https://invoice-generator.up.railway.app/api/user/resetpassword",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            resetToken: token,
-            newPassword: newPassword,
-          }),
-        }
-      );
+      const response = await fetch(`${baseUrl}/api/user/resetpassword`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          resetToken: token,
+          newPassword: newPassword,
+        }),
+      });
 
       const responseData = await response.json();
       console.log(responseData.data);

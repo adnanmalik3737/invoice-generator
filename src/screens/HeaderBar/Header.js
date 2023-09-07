@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import "./HeaderStyle.css";
 import Accounts from "./Accounts";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserProfile from "./UserProfile";
+import logoIcon from "..//../img/logoIcon.svg";
 
-const HeaderBar = ({ toggleSidebar, sidebarVisible, openUserProfile }) => {
+const HeaderBar = ({ toggleSidebar, sidebarVisible, user }) => {
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const [isUserVisible, setUserVisible] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = () => {
     setPopupOpen(true);
@@ -38,23 +41,7 @@ const HeaderBar = ({ toggleSidebar, sidebarVisible, openUserProfile }) => {
         {/* // Logo copied from Sidebar component */}
         {sidebarVisible && (
           <div className="headerLogo">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="52"
-              height="31"
-              viewBox="0 0 52 31"
-              stroke="2"
-              fill="none"
-            >
-              <path
-                d="M40.1778 30.8119C39.5011 30.8119 38.8156 30.6712 38.1565 30.3812L24.0954 24.1147C21.5819 22.9985 20.4483 20.0367 21.5644 17.5231L27.8304 3.46084C28.9465 0.947216 31.9081 -0.18655 34.4215 0.929639L48.4826 7.19612C50.996 8.3123 52.1298 11.2742 51.0137 13.7878L44.7477 27.85C43.9128 29.7132 42.0848 30.8119 40.1778 30.8119ZM39.3253 27.7445C40.3887 28.2191 41.6366 27.7357 42.1112 26.6811L48.3773 12.6189C48.8518 11.5554 48.3684 10.3074 47.3138 9.83278L33.2439 3.5663C32.1805 3.0917 30.9326 3.57509 30.458 4.62976L24.192 18.692C23.7175 19.7554 24.2008 21.0035 25.2554 21.4781L39.3253 27.7445Z"
-                fill="#8DC540"
-              />
-              <path
-                d="M26.6256 13.2518L24.5516 17.8923C24.5253 17.945 24.4989 17.989 24.4725 18.0329L25.281 23.025C25.4656 24.1763 24.6835 25.2574 23.541 25.4419L8.3374 27.9028C7.78375 27.9907 7.2213 27.8589 6.76431 27.5337C6.30733 27.2085 6.00853 26.7163 5.92065 26.1626L3.45995 10.9579C3.37207 10.4042 3.50389 9.84167 3.82906 9.38465C4.15422 8.92763 4.64636 8.6288 5.20002 8.54092L20.4036 6.08003C20.5178 6.06245 20.6321 6.05366 20.7376 6.05366C21.7482 6.05366 22.6534 6.79193 22.8204 7.82902L23.6377 12.8563L25.782 8.04874L25.6677 7.37199C25.2283 4.65623 22.6622 2.80177 19.9466 3.24122L4.74303 5.7021C3.43359 5.90425 2.27354 6.61615 1.50018 7.69718C0.718033 8.77821 0.410446 10.0965 0.621363 11.4149L3.08206 26.6197C3.29298 27.938 4.00482 29.0893 5.08577 29.8715C5.93822 30.4956 6.94887 30.812 7.99466 30.812C8.25831 30.812 8.53074 30.7944 8.80318 30.7504L24.0068 28.2895C26.7223 27.8501 28.5766 25.2837 28.1372 22.568L26.6256 13.2518Z"
-                fill="#C62828"
-              />
-            </svg>
+            <img src={logoIcon} width="52" height="31" />
           </div>
         )}
         <div className="title-divider" />
@@ -64,30 +51,24 @@ const HeaderBar = ({ toggleSidebar, sidebarVisible, openUserProfile }) => {
         </div>
       </div>
       <div className="accountsIconText">
-        {/* <div className="text-wrapper">Register</div> */}
         <div className="title-divider" />
-        {/* <div className="text-wrapper">Login</div> */}
-        {/* <button className="loginBtn" onClick={() => setPopupOpen(true)}>
-          Register or Sign in
-        </button>
-        <Accounts isOpen={isPopupOpen} onClose={() => setPopupOpen(false)} /> */}
-
-        {/* <button className="loginBtn" onClick={() => setPopupOpen(true)}>
-          Register or Sign in
-        </button>
-        <Accounts
-          isOpen={isPopupOpen}
-          onClose={() => setPopupOpen(false)}
-          setIsUserLoggedIn={setIsUserLoggedIn}
-        /> */}
-
         {isUserLoggedIn ? (
           // If user is logged in, display user profile button {handleLogout} // onClick={openUserProfile}
-          <Link to={"/user-profile"} className="profileBtn">
-            {"AR"}
-          </Link>
+          // <Link to={"/user-profile"} className="profileBtn">
+          //   {"AR"}
+          // </Link>
+          <>
+            <button
+              className="profileBtn"
+              onClick={() => {
+                navigate("/user-profile", { state: { user: user } });
+              }}
+            >
+              {"AR"}
+            </button>
+          </>
         ) : (
-          // If user is not logged in, display login/register button  onClick={handleLogin}
+          // If user is not logged in, display login/register button
           <button className="loginBtn" onClick={handleLogin}>
             Register or Sign in
           </button>

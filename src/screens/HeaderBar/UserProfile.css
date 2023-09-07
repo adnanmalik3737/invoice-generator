@@ -14,16 +14,70 @@
 }
 
 .userProfile {
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   width: 60%;
-  height: 30%;
   padding: 30px;
   border-radius: 4px;
-
   background: #fff;
   box-shadow: 0px 0px 17px 0px rgba(16, 40, 73, 0.09);
+}
+
+.userSecurity {
+  justify-content: center;
+  width: 60%;
+  padding: 30px;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0px 0px 17px 0px rgba(16, 40, 73, 0.09);
+}
+
+.userSecurity form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.userProfile form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+}
+
+.formFields input {
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #9ca3af;
+  padding: 6px 10px;
+  margin-bottom: 10%;
+  margin-top: 3%;
+}
+.formFields label {
+  color: #000;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.formBtns {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.secondaryBtn {
+  align-items: flex-start;
+  border-radius: 4px;
+  background: #f2f3f5;
+  margin-right: 3%;
+  color: #009bd6;
+}
+
+.primryBtn {
+  background-color: #009bd6;
+  color: #fff;
 }
 
 .profileHeader {
@@ -32,23 +86,62 @@
 }
 
 .profile-picture {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   overflow: hidden;
   border: 2px solid #009bd6;
+  background-color: #009bd6;
   border-radius: 50%;
   margin-left: 1%;
   /* margin-right: 10%; */
 }
 
-.profile-picture img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.profile-picture div {
+  color: #fff;
+  font-size: 40px;
+  margin: auto;
+  font-style: normal;
+  font-weight: 400;
+  padding: 16px;
+  /* line-height: 61.484px; 165% */
 }
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+}
+
+.profileInfo .infoH {
+  color: #333;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding: 5px 0;
+}
+.profileInfo .infoP {
+  color: #333;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  padding: 5px 0;
+}
+
+/* .profile-picture img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+} */
 
 .profile-details {
   margin-top: 20px;
+}
+
+.securityInfo {
+  display: flex;
+  flex-direction: column;
 }
 
 .profile-details > div {
