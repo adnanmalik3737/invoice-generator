@@ -21,6 +21,7 @@ const InvoiceForm = () => {
     {
       id: uid(6),
       name: "",
+      title: "",
       qty: 1,
       price: "0.00",
     },
@@ -33,6 +34,7 @@ const InvoiceForm = () => {
       {
         id: id,
         name: "",
+        title: "",
         qty: 1,
         price: "0.00",
       },
@@ -47,6 +49,7 @@ const InvoiceForm = () => {
     const editedItem = {
       id: event.target.id,
       name: event.target.name,
+      title: event.target.title,
       value: event.target.value,
     };
 
@@ -140,10 +143,10 @@ const InvoiceForm = () => {
                 <InvoiceItem
                   key={item.id}
                   id={item.id}
-                  name={item.name}
-                  qty={item.qty}
+                  title={item.title}
+                  quantity={item.quantity}
                   itax={item.itax}
-                  price={item.price}
+                  rate={item.rate}
                   onDeleteItem={deleteItemHandler}
                   onEdtiItem={edtiItemHandler}
                 />
@@ -196,7 +199,7 @@ const InvoiceForm = () => {
               isOpen={isOpen}
               setIsOpen={setIsOpen}
               invoiceInfo={{
-                subtotal,
+                subotal,
                 taxRate,
                 discountRate,
                 total,

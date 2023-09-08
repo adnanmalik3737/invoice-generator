@@ -48,9 +48,9 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
         console.log("User data:", response.data);
         localStorage.setItem("isUserLoggedIn", "true");
         fetchUserData(); // Fetch user data after successful login
-        setTimeout(() => {
-          onClose();
-        }, 2000);
+        // setTimeout(() => {
+        //   onClose();
+        // }, 2000);
         const body = JSON.stringify({
           email,
           password,

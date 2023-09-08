@@ -162,13 +162,10 @@ button {
   height: 100vmin;
   background-color: #004d6b;
   color: #fff;
-  display: flex;
+  display: flex !important;
   flex-direction: column;
+  justify-content: space-between;
   padding: 40px 20px;
-  /* position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 999; */
 }
 
 .major-items {
@@ -229,6 +226,27 @@ button {
 }
 .navComponents {
   display: flex;
+}
+
+.navBarItems {
+  display: flex;
+  flex-direction: column;
+}
+.logoutBtn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 80%;
+}
+.logoutText {
+  color: #fff;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  /* line-height: 22.857px; */
+  display: flex;
+  align-items: center;
 }
 
 .headBody {
