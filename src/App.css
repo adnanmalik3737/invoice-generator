@@ -162,7 +162,7 @@ button {
   height: 100vmin;
   background-color: #004d6b;
   color: #fff;
-  display: flex !important;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 40px 20px;
@@ -237,7 +237,9 @@ button {
   display: flex;
   align-items: center;
   position: absolute;
-  top: 80%;
+  padding: 100px 10px;
+  bottom: 40%;
+
 }
 .logoutText {
   color: #fff;

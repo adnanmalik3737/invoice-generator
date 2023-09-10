@@ -33,9 +33,14 @@ const predefinedColors = [
 function MainForm(props) {
   const [image, setImage] = useState({ preview: "", raw: "" });
   const [uploadedImage, setUploadedImage] = useState(null);
+  const [uploadedStamp, setUploadedStamp] = useState(null);
   const [invoiceNumber, setInvoiceNumber] = useState(1);
   const [selectedColor, setSelectedColor] = useState();
   const baseUrl = process.env.REACT_APP_BASE_URL;
+
+  // For Signature Popup
+  const [imageURL, setImageURL] = useState(null);
+
   // const date = new Date();
   // const today = date.toLocaleDateString("en-GB", {
   //   month: "numeric",
@@ -94,28 +99,28 @@ function MainForm(props) {
     },
   ]);
 
-  const handleLogoChange = (e) => {
-    if (e.target.files.length) {
-      setImage({
-        preview: URL.createObjectURL(e.target.files[0]),
-        raw: e.target.files[0],
-      });
-    }
-  };
+  // const handleLogoChange = (e) => {
+  //   if (e.target.files.length) {
+  //     setImage({
+  //       preview: URL.createObjectURL(e.target.files[0]),
+  //       raw: e.target.files[0],
+  //     });
+  //   }
+  // };
 
-  const handleUpload = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("image", image.raw);
+  // const handleUpload = async (e) => {
+  //   e.preventDefault();
+  //   const formData = new FormData();
+  //   formData.append("image", image.raw);
 
-    await fetch("logoFile", {
-      method: "POST",
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      body: formData,
-    });
-  };
+  //   await fetch("logoFile", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //     },
+  //     body: formData,
+  //   });
+  // };
 
   const addNextInvoiceHandler = () => {
     setInvoiceNumber((prevNumber) => incrementString(prevNumber));
@@ -131,14 +136,12 @@ function MainForm(props) {
 
   // InvoiceForm constants
   const [isOpen, setIsOpen] = useState(false);
-  const [discount, setDiscount] = useState();
-  const [tax, setTax] = useState();
-  const [gst, setGst] = useState();
+  const [discount, setDiscount] = useState(0);
+  const [tax, setTax] = useState(0);
+  const [gst, setGst] = useState(0);
   const [itax, setItax] = useState();
   const [shipping, setShipping] = useState(0);
   const [notes, setNotes] = useState("");
-  // const [cashierName, setCashierName] = useState('');
-  // const [customerName, setCustomerName] = useState('');
 
   const addItemHandler = () => {
     const id = uid(6);
@@ -220,18 +223,30 @@ function MainForm(props) {
   const reviewInvoiceHandler = (event) => {
     event.preventDefault();
     setIsOpen(true);
-    // handleSubmit();
+    handleSubmit();
   };
+
+  // const [uploadedLogo, setUploadedLogo] = useState(null);
 
   const handleSubmit = async () => {
     // Gather all the form data
     const mainFormData = {
       // ... All your form fields. For example:
-      // invoiceNumber: this.state.invoiceNumber,
-      // dueDate: this.state.dueDate,
       // image: image,
       // uploadedImage: uploadedImage,
       // invoiceNumber: invoiceNumber,
+      if(uploadedImage) {
+        mainFormData.append("logo", uploadedImage.raw);
+      },
+      //   if (imageURL) {
+      //     // Convert base64 to Blob
+      //     const fetchRes = await fetch(imageURL);
+      //     const blob = await fetchRes.blob();
+
+      //     // Append to FormData
+      //     mainFormData.append("signature", blob, "signature.png");
+      // },
+      // logo: uploadedImage.raw,
       invoiceDate: invoiceDate,
       dueDate: dueDate,
       // invoiceFields: invoiceFields,
@@ -254,34 +269,122 @@ function MainForm(props) {
       toCity: toCity,
       toPostalCode: toPostalCode,
       toWebsite: toWebsite,
+      // Stringify the items array and append to FormData
+      // formData.append("items", JSON.stringify(items));
       // items: items,
       discount: discount,
-      tax: tax,
-      // gst: gst,
-      // total: total,
+      // tax: tax,
+      tax: gstRate,
+      subTotal: subtotal,
+      total: total,
       shipping: shipping,
-      // notes: notes,
+      note: notes,
     };
 
-    const response = await axios.post(
-      `${baseUrl}/api/invoice/create`,
-      mainFormData
-    );
-    if (response.data.code === 201) {
-      console.log("Success");
-    } else if (response.code === 500) {
-      console.log(response);
-      console.log(response.errors); // or whatever the error message field is named
-    } else if (response.status === 200) {
-      console.log(response.data.errors);
-      console.log(response.errors); // or whatever the error message field is named
+    try {
+      const response = await axios.post(
+        `${baseUrl}/api/invoice/create`,
+        mainFormData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Important when sending FormData
+          },
+        }
+      );
+      if (response.data.code === 201) {
+        console.log("Success");
+        console.log(uploadedImage);
+      } else if (response.code === 500) {
+        console.log(response);
+        console.log(response.errors); // or whatever the error message field is named
+      } else if (response.status === 200) {
+        console.log(response.data.errors);
+        console.log(response.errors); // or whatever the error message field is named
+      }
+    } catch (error) {
+      console.log("Errrorrrrr");
+      console.log(error.message); // Handle any errors that might come up during the request
     }
-    //   try {
-    // } catch (error) {
-    //   console.log("Errrorrrrr");
-    //   console.log(error.message); // Handle any errors that might come up during the request
-    // }
   };
+
+  // Append Method Used Below
+
+  // const handleSubmit = async () => {
+  //   const mainFormData = new FormData();
+
+  //   // Conditionally append the logo if it exists
+  //   if (uploadedImage) {
+  //     mainFormData.append("logo", uploadedImage.raw);
+  //   }
+
+  //   // Conditionally append the signature if it exists
+  //   if (imageURL) {
+  //     const fetchRes = await fetch(imageURL);
+  //     const blob = await fetchRes.blob();
+  //     mainFormData.append("signature", blob, "signature.png");
+  //   }
+
+  //   // Conditionally append the stamp if it exists
+  //   if (uploadedStamp) {
+  //     mainFormData.append("stamp", uploadedStamp.raw);
+  //   }
+
+  //   // Append other fields
+  //   mainFormData.append("invoiceDate", invoiceDate);
+  //   mainFormData.append("dueDate", dueDate);
+  //   mainFormData.append("fromName", fromName);
+  //   mainFormData.append("fromEmail", fromEmail);
+  //   mainFormData.append("fromCompany", fromCompany);
+  //   mainFormData.append("fromPhone", fromPhone);
+  //   mainFormData.append("fromAddress", fromAddress);
+  //   mainFormData.append("fromCountry", fromCountry);
+  //   mainFormData.append("fromCity", fromCity);
+  //   mainFormData.append("fromPostalCode", fromPostalCode);
+  //   mainFormData.append("fromTaxReg", fromTaxReg);
+  //   mainFormData.append("fromWebsite", fromWebsite);
+  //   mainFormData.append("toName", toName);
+  //   mainFormData.append("toEmail", toEmail);
+  //   mainFormData.append("toCompany", toCompany);
+  //   mainFormData.append("toPhone", toPhone);
+  //   mainFormData.append("toAddress", toAddress);
+  //   mainFormData.append("toCountry", toCountry);
+  //   mainFormData.append("toCity", toCity);
+  //   mainFormData.append("toPostalCode", toPostalCode);
+  //   mainFormData.append("toWebsite", toWebsite);
+  //   // mainFormData.append("items", items); // Assuming this is serialized or a string representation
+  //   mainFormData.append("discount", discount);
+  //   mainFormData.append("tax", gst);
+  //   mainFormData.append("subTotal", subtotal);
+  //   mainFormData.append("total", total);
+  //   mainFormData.append("shipping", shipping);
+  //   mainFormData.append("note", notes);
+
+  //   const response = await axios.post(
+  //     `${baseUrl}/api/invoice/create`,
+  //     mainFormData,
+  //     {
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //       },
+  //     }
+  //   );
+  //   if (response.data.code === 201) {
+  //     console.log("Success");
+  //     console.log(uploadedImage);
+  //     console.log(imageURL);
+  //   } else if (response.code === 500) {
+  //     console.log(response);
+  //     console.log(response.errors); // or whatever the error message field is named
+  //   } else if (response.status === 200) {
+  //     console.log(response.data.errors);
+  //   } else {
+  //     console.log(response.errors); // or whatever the error message field is named
+  //   }
+  //   // try {} catch (error) {
+  //   // console.log("Errrorrrrr");
+  //   // console.log(error.message); // Handle any errors that might come up during the request
+  //   // }
+  // };
 
   return (
     <div className="wholeFormBody">
@@ -298,9 +401,28 @@ function MainForm(props) {
               invoiceInfo={{
                 invoiceNumber,
                 invoiceDate,
+                fromName,
+                fromEmail,
+                fromCompany,
+                fromPhone,
+                fromAddress,
+                fromCountry,
+                fromCity,
+                fromPostalCode,
+                fromTaxReg,
+                fromWebsite,
+                toName,
+                toEmail,
+                toCompany,
+                toPhone,
+                toAddress,
+                toCountry,
+                toCity,
+                toPostalCode,
+                toWebsite,
                 dueDate,
                 subtotal,
-                taxRate,
+                gstRate,
                 discountRate,
                 symbol,
                 shipping,
@@ -325,9 +447,7 @@ function MainForm(props) {
                 backgroundColor: selectedColor,
                 height: 5,
               }}
-            >
-              {/* Color Line */}
-            </div>
+            ></div>
             {/* Header Start */}
             <div className="formHeader">
               <div className="itemHeader">
@@ -335,7 +455,7 @@ function MainForm(props) {
                   inputId="logoFile"
                   uploadUrl="YOUR_URL"
                   onImageChange={(imageData) => {
-                    // Handle image data update for this specific usage
+                    setUploadedImage(imageData);
                   }}
                 />
               </div>
@@ -712,9 +832,9 @@ function MainForm(props) {
                     <path
                       d="M7.82422 1.31738V7.31738M7.82422 7.31738V13.3174M7.82422 7.31738H13.8242M7.82422 7.31738H1.82422"
                       stroke="white"
-                      stroke-width="2.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </button>
@@ -880,7 +1000,7 @@ function MainForm(props) {
                     inputId="stampFile"
                     uploadUrl="YOUR_URL_2"
                     onImageChange={(imageData) => {
-                      // Handle image data update for this specific usage
+                      setUploadedStamp(imageData);
                     }}
                   />
                 </div>
@@ -900,7 +1020,10 @@ function MainForm(props) {
                 <div className="itemHeader">
                   <div className="signature">
                     <p className="signText">Signature</p>
-                    <SignaturePopup />
+                    <SignaturePopup
+                      imageURL={imageURL}
+                      setImageURL={setImageURL}
+                    />
                   </div>
                 </div>
               </div>
@@ -949,8 +1072,8 @@ function MainForm(props) {
                   fill="none"
                 >
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M14.5592 7.47686C14.5592 11.4533 11.3356 14.6769 7.35918 14.6769C3.38273 14.6769 0.15918 11.4533 0.15918 7.47686C0.15918 3.50041 3.38273 0.276855 7.35918 0.276855C11.3356 0.276855 14.5592 3.50041 14.5592 7.47686ZM10.4881 11.8785C9.60539 12.5072 8.52545 12.8769 7.35918 12.8769C4.37684 12.8769 1.95918 10.4592 1.95918 7.47686C1.95918 6.31058 2.32891 5.23066 2.95755 4.34791L10.4881 11.8785ZM11.7609 10.6057L4.23036 3.07514C5.11309 2.44655 6.19296 2.07686 7.35918 2.07686C10.3415 2.07686 12.7592 4.49452 12.7592 7.47686C12.7592 8.64308 12.3895 9.72297 11.7609 10.6057Z"
                     fill="#333333"
                   />

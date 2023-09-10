@@ -14,30 +14,40 @@ const today = date.toLocaleDateString("en-GB", {
   day: "numeric",
   year: "numeric",
 });
+
 const InvoiceModel = ({
   isOpen,
   setIsOpen,
-  invoiceInfo,
+  // invoiceInfo,
+  invoiceInfo: invoiceInfoProp,
   items,
   onAddNextInvoice,
   uploadedImage,
-  invoiceFields,
   selectedColor,
+  // invoice = {},
+  invoice: invoiceProp = {},
 }) => {
+  // const { invoiceInfo } = invoice;
+  // console.log(invoice);
+  // console.log(invoiceInfo);
+  const invoiceData = invoiceProp.fromName ? invoiceProp : invoiceInfoProp;
+
   function closeModal() {
     setIsOpen(false);
   }
 
-  const fieldItems = [];
+  // const fieldItems = [];
 
-  for (const field of invoiceFields) {
-    fieldItems.push(
-      <div key={field.id} className="extraOptions">
-        <div className="previewLabel">{field.labelText}:</div>
-        <div className="previewText">{field.value}</div>
-      </div>
-    );
-  }
+  // invoiceFields, // pass as prop inside the const InvoiceModel = ({
+
+  // for (const field of invoiceFields) {
+  //   fieldItems.push(
+  //     <div key={field.id} className="extraOptions">
+  //       <div className="previewLabel">{field.labelText}:</div>
+  //       <div className="previewText">{field.value}</div>
+  //     </div>
+  //   );
+  // }
 
   const addNextInvoiceHandler = () => {
     setIsOpen(false);
@@ -98,7 +108,8 @@ const InvoiceModel = ({
             pdf.addImage(imgData, imageType, 0, 0, pdfWidth, pageHeight);
           }
           // Output / Save
-          pdf.save(`invoice-${invoiceInfo.invoiceNumber}.pdf`);
+          // pdf.save(`invoice-${invoiceInfo.invoiceNumber}.pdf`);
+          pdf.save(`invoice-${invoiceData.invoiceNumber}.pdf`);
         };
       })
       .catch((error) => {
@@ -159,9 +170,9 @@ const InvoiceModel = ({
                     <path
                       d="M1.51855 16.5522L16.5186 1.55225M1.51855 1.55225L16.5186 16.5522"
                       stroke="#009BD6"
-                      stroke-width="1.33333"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.33333"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </button>
@@ -180,35 +191,130 @@ const InvoiceModel = ({
                       <div className="infoItem">
                         <span className="inputItem">Invoice Number:</span>
                         <span className="previewText">
-                          {invoiceInfo.invoiceNumber}
+                          {invoiceData.invoiceNumber}
                         </span>
-
-                        {/* <span className="previewLabel">Cashier:</span>
-                    <span>{invoiceInfo.cashierName}</span>
-                    <span className="previewLabel">Customer:</span>
-                    <span>{invoiceInfo.customerName}</span> */}
                       </div>
                       <div className="infoItem">
                         <span className="inputItem">Invoice Date:</span>
                         <span className="previewText">
-                          {invoiceInfo.invoiceDate}
+                          {invoiceData.invoiceDate}
                         </span>
                       </div>
 
                       <div className="infoItem">
                         <span className="inputItem">Due Date:</span>
                         <span className="previewText">
-                          {invoiceInfo.dueDate}
+                          {invoiceData.dueDate}
                         </span>
                       </div>
                       <div className="PreviewToFromFields">
                         <div className="PreviewToFields">
                           <div className="toFromTitle">From</div>
-                          {fieldItems}
+                          <div className="tofromFieldsModel">
+                            {/* <div className="previewLabel"></div> */}
+                            <div className="previewText">
+                              {invoiceData.fromName}
+                            </div>
+                          </div>
+                          <div className="tofromFieldsModel">
+                            <div className="previewText">
+                              {invoiceData.fromEmail}
+                            </div>
+                          </div>
+                          <div className="tofromFieldsModel">
+                            <div className="previewText">
+                              {invoiceData.fromCompany}
+                            </div>
+                          </div>
+                          <div className="tofromFieldsModel">
+                            <div className="previewText">
+                              {invoiceData.fromPhone}
+                            </div>
+                          </div>
+                          <div className="tofromFieldsModel">
+                            <div className="previewText">
+                              {invoiceData.fromAddress}
+                            </div>
+                          </div>
+                          <div className="tofromFieldsModel">
+                            <div className="previewText">
+                              {invoiceData.fromCountry}
+                            </div>
+                          </div>
+                          <div className="tofromFieldsModel">
+                            <div className="previewText">
+                              {invoiceData.fromCity}
+                            </div>
+                          </div>
+                          <div className="tofromFieldsModel">
+                            <div className="previewText">
+                              {invoiceData.fromPostalCode}
+                            </div>
+                          </div>
+                          <div className="tofromFieldsModel">
+                            <div className="previewText">
+                              {invoiceData.fromTaxReg}
+                            </div>
+                          </div>
+                          <div className="tofromFieldsModel">
+                            <div className="previewText">
+                              {invoiceData.fromWebsite}
+                            </div>
+                          </div>
                         </div>
                         <div className="PreviewToFields">
                           <div className="toFromTitle">Bill To</div>
-                          {fieldItems}
+                          <div className="tofromFieldsModel">
+                            {/* <div className="previewLabel"></div> */}
+                            <div className="previewText">
+                              {invoiceData.toName}
+                            </div>
+                          </div>
+                          <div className="tofromFieldsModel">
+                            <div className="previewText">
+                              {invoiceData.toEmail}
+                            </div>
+                          </div>
+                          <div className="tofromFieldsModel">
+                            <div className="previewText">
+                              {invoiceData.toCompany}
+                            </div>
+                          </div>
+                          <div className="tofromFieldsModel">
+                            <div className="previewText">
+                              {invoiceData.toPhone}
+                            </div>
+                          </div>
+                          <div className="tofromFieldsModel">
+                            <div className="previewText">
+                              {invoiceData.toAddress}
+                            </div>
+                          </div>
+                          <div className="tofromFieldsModel">
+                            <div className="previewText">
+                              {invoiceData.toCountry}
+                            </div>
+                          </div>
+                          <div className="tofromFieldsModel">
+                            <div className="previewText">
+                              {invoiceData.toCity}
+                            </div>
+                          </div>
+                          <div className="tofromFieldsModel">
+                            <div className="previewText">
+                              {invoiceData.toPostalCode}
+                            </div>
+                          </div>
+                          {/* <div className="tofromFieldsModel">
+                            <div className="previewText">
+                              {invoiceData.toTaxReg}
+                            </div>
+                          </div> */}
+                          <div className="tofromFieldsModel">
+                            <div className="previewText">
+                              {invoiceData.toWebsite}
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -221,7 +327,7 @@ const InvoiceModel = ({
                           <th className="">AMOUNT</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      {/* <tbody>
                         {items.map((item) => (
                           <tr key={item.id}>
                             <td className="previewText text-left">
@@ -231,15 +337,34 @@ const InvoiceModel = ({
                               {item.qty}
                             </td>
                             <td className="previewText">
-                              {invoiceInfo.symbol}
+                              {invoiceData?.symbol ?? "$"}
                               {Number(item.price).toFixed(2)}
                             </td>
                             <td className="previewText">
-                              {invoiceInfo.symbol}
+                              {invoiceData?.symbol ?? "$"}
                               {Number(item.price * item.qty).toFixed(2)}
                             </td>
                           </tr>
                         ))}
+                      </tbody> */}
+                      <tbody>
+                        {items &&
+                          items.map((item) => (
+                            <tr key={item.id}>
+                              <td className="previewText text-left">
+                                {item?.name}
+                              </td>
+                              <td className="previewText">{item?.qty}</td>
+                              <td className="previewText">
+                                {invoiceData?.symbol}
+                                {Number(item?.price).toFixed(2)}
+                              </td>
+                              <td className="previewText">
+                                {invoiceData?.symbol}
+                                {Number(item?.price * item?.qty).toFixed(2)}
+                              </td>
+                            </tr>
+                          ))}
                       </tbody>
                     </table>
 
@@ -247,42 +372,49 @@ const InvoiceModel = ({
                       <div className="extraOptions">
                         <span className="previewLabel">Subtotal:</span>
                         <span className="previewText">
-                          {invoiceInfo.symbol}
-                          {invoiceInfo.subtotal.toFixed(2)}
+                          {invoiceData?.symbol ?? "$"}
+                          {invoiceData.subtotal}
+                          {/* {invoiceData.subtotal.toFixed(2)} */}
                         </span>
                       </div>
                       <div className="extraOptions">
                         <span className="previewLabel">Discount:</span>
                         <span className="previewText">
-                          {invoiceInfo.symbol}
-                          {invoiceInfo.discountRate.toFixed(2)}
+                          {invoiceData?.symbol ?? "$"}
+                          {invoiceData.discountRate}
+                          {/* {invoiceData.discountRate.toFixed(2)} */}
                         </span>
                       </div>
                       <div className="extraOptions">
                         <span className="previewLabel">Tax:</span>
                         <span className="previewText">
-                          {invoiceInfo.symbol}
-                          {invoiceInfo.taxRate.toFixed(2)}
+                          {invoiceData?.symbol ?? "$"}
+                          {invoiceData.gstRate}
+                          {/* {invoiceData.taxRate.toFixed(2)} */}
                         </span>
                       </div>
                       <div className="extraOptions">
                         <span className="previewLabel">Shipping:</span>
                         <span className="previewText">
-                          {invoiceInfo.symbol}
-                          {invoiceInfo.shipping}
+                          {invoiceData?.symbol ?? "$"}
+                          {invoiceData.shipping}
                         </span>
                       </div>
                       <div className="extraOptions">
                         <span className="previewLabel">Total:</span>
                         <span className="previewText">
-                          {invoiceInfo.symbol}
-                          {invoiceInfo.total % 1 === 0
-                            ? invoiceInfo.total
-                            : invoiceInfo.total.toFixed(2)}
+                          {invoiceData?.symbol ?? "$"}
+                          {invoiceData.total % 1 === 0
+                            ? invoiceData.total
+                            : invoiceData.total}
+
+                          {/* {invoiceData.total % 1 === 0
+                            ? invoiceData.total
+                            : invoiceData.total.toFixed(2)} */}
                         </span>
                       </div>
                     </div>
-                    <div className="previewNotes">{invoiceInfo.notes}</div>
+                    <div className="previewNotes">{invoiceData.notes}</div>
                   </div>
                 </div>
                 <div className="clearflex" />

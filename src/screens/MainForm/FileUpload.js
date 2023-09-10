@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./FileUpload.css";
+import Frame from "../../img/Frame.svg";
 
 function ImageUploader(props) {
   const [image, setImage] = useState({ preview: "", raw: "" });
@@ -19,20 +20,6 @@ function ImageUploader(props) {
         props.onImageChange(imageData);
       }
     }
-  };
-
-  const handleUpload = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("image", image.raw);
-
-    await fetch(props.uploadUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      body: formData,
-    });
   };
 
   return (
@@ -77,9 +64,14 @@ function ImageUploader(props) {
   );
 }
 
+// ImageUploader.propTypes = {
+//   inputId: PropTypes.string.isRequired,
+//   uploadUrl: PropTypes.string.isRequired,
+//   onImageChange: PropTypes.func,
+// };
 ImageUploader.propTypes = {
-  inputId: PropTypes.string.isRequired,
-  uploadUrl: PropTypes.string.isRequired,
+  inputId: PropTypes.string,
+  uploadUrl: PropTypes.string,
   onImageChange: PropTypes.func,
 };
 

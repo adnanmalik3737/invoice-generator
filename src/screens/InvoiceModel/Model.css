@@ -153,7 +153,12 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  text-align: right;
+  text-align: left;
+}
+.tofromFieldsModel {
+  display: flex;
+  padding: 5px 20px 0 0;
+  justify-content: space-between;
 }
 
 .extraOptions {

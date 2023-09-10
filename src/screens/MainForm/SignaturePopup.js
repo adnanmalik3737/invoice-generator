@@ -3,8 +3,8 @@ import Popup from "reactjs-popup";
 import ImageUploader from "./FileUpload";
 import SignaturePad from "react-signature-canvas";
 
-function SignaturePopup() {
-  const [imageURL, setImageURL] = useState(null); // create a state that will contain our image url
+function SignaturePopup({ imageURL, setImageURL }) {
+  // const [imageURL, setImageURL] = useState(null); // create a state that will contain our image url
 
   const sigCanvas = useRef({});
 
@@ -43,6 +43,7 @@ function SignaturePopup() {
         modal
         trigger={
           <button
+            type="button"
             className="addSignBtn"
             // onClick={() => toggleBodyDarkened(true)}
           >
@@ -56,9 +57,9 @@ function SignaturePopup() {
               <path
                 d="M7.80176 1.65625V7.65625M7.80176 7.65625V13.6562M7.80176 7.65625H13.8018M7.80176 7.65625H1.80176"
                 stroke="white"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </button>
@@ -81,9 +82,9 @@ function SignaturePopup() {
                 <path
                   d="M1.51855 9.55225L9.51855 1.55225M1.51855 1.55225L9.51855 9.55225"
                   stroke="#111"
-                  stroke-width="1.33333"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.33333"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </button>

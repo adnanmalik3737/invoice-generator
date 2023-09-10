@@ -43,9 +43,9 @@ const InvoiceItem = ({
             <path
               d="M1.51855 9.55225L9.51855 1.55225M1.51855 1.55225L9.51855 9.55225"
               stroke="#009BD6"
-              stroke-width="1.33333"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.33333"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
         </button>

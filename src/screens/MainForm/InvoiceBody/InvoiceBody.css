@@ -13,7 +13,7 @@
 .mainFormBody {
   background-color: #ffffff;
   overflow-x: scroll;
-  height: 610px;
+  height: 55vmax;
   border-radius: 10px;
 }
 
