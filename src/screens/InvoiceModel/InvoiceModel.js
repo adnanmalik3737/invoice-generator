@@ -18,7 +18,6 @@ const today = date.toLocaleDateString("en-GB", {
 const InvoiceModel = ({
   isOpen,
   setIsOpen,
-  // invoiceInfo,
   invoiceInfo: invoiceInfoProp,
   items,
   onAddNextInvoice,
@@ -26,10 +25,12 @@ const InvoiceModel = ({
   selectedColor,
   // invoice = {},
   invoice: invoiceProp = {},
+  logo,
+  stamp,
+  signature,
 }) => {
-  // const { invoiceInfo } = invoice;
-  // console.log(invoice);
-  // console.log(invoiceInfo);
+  const imageFileURL = "http://localhost:3001/";
+
   const invoiceData = invoiceProp.fromName ? invoiceProp : invoiceInfoProp;
 
   function closeModal() {
@@ -179,11 +180,31 @@ const InvoiceModel = ({
                 <div className="boxA" id="print">
                   <div className="previewHeader">
                     <div className="PreviewHeaderItem">
-                      {uploadedImage && (
-                        <img src={uploadedImage} alt="Uploaded" />
-                      )}
+                      {uploadedImage && <img src={uploadedImage} alt="logo" />}
                     </div>
                     <h1 className="h-1 PreviewHeaderItem">INVOICE</h1>
+                  </div>
+
+                  {/*  */}
+                  <div>
+                    {logo && (
+                      <img
+                        src={`${imageFileURL}${logo.replace(/\\/g, "/")}`}
+                        alt="Logo"
+                      />
+                    )}
+                    {stamp && (
+                      <img
+                        src={`${imageFileURL}${stamp.replace(/\\/g, "/")}`}
+                        alt="Stamp"
+                      />
+                    )}
+                    {signature && (
+                      <img
+                        src={`${imageFileURL}${signature.replace(/\\/g, "/")}`}
+                        alt="Signature"
+                      />
+                    )}
                   </div>
 
                   <div className="">

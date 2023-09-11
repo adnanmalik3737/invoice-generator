@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import Body from "./InvoiceBody/InvoiceBody.js";
 import "./invoiceHeader/invoiceHeader.css";
 import ImageUploader from "./FileUpload.js";
 import incrementString from "../helpers/incrementString";
@@ -7,7 +6,6 @@ import { uid } from "uid";
 import axios from "axios";
 import SenderReceiver from "./InvoiceBody/SenderReceiver";
 import "../Sidebar/SidebarOptions.css";
-// import InvoiceForm from "./InvoiceBody/InvoiceForm.js";
 
 import InvoiceItem from "./InvoiceBody/InvoiceItem";
 import InvoiceModel from "../InvoiceModel/InvoiceModel.js";
@@ -228,58 +226,156 @@ function MainForm(props) {
 
   // const [uploadedLogo, setUploadedLogo] = useState(null);
 
-  const handleSubmit = async () => {
-    // Gather all the form data
-    const mainFormData = {
-      // ... All your form fields. For example:
-      // image: image,
-      // uploadedImage: uploadedImage,
-      // invoiceNumber: invoiceNumber,
-      if(uploadedImage) {
-        mainFormData.append("logo", uploadedImage.raw);
-      },
-      //   if (imageURL) {
-      //     // Convert base64 to Blob
-      //     const fetchRes = await fetch(imageURL);
-      //     const blob = await fetchRes.blob();
+  // const handleSubmit = async () => {
+  //   // Gather all the form data
+  //   const mainFormData = {
+  //     // ... All your form fields. For example:
+  //     // uploadedImage: uploadedImage,
+  //     // invoiceNumber: invoiceNumber,
+  //     // if(uploadedImage) {
+  //     //   mainFormData.append("logo", uploadedImage.raw);
+  //     // },
+  //     //   if (imageURL) {
+  //     //     // Convert base64 to Blob
+  //     //     const fetchRes = await fetch(imageURL);
+  //     //     const blob = await fetchRes.blob();
 
-      //     // Append to FormData
-      //     mainFormData.append("signature", blob, "signature.png");
-      // },
-      // logo: uploadedImage.raw,
-      invoiceDate: invoiceDate,
-      dueDate: dueDate,
-      // invoiceFields: invoiceFields,
-      fromName: fromName,
-      fromEmail: fromEmail,
-      fromCompany: fromCompany,
-      fromPhone: fromPhone,
-      fromAddress: fromAddress,
-      fromCountry: fromCountry,
-      fromCity: fromCity,
-      fromPostalCode: fromPostalCode,
-      fromTaxReg: fromTaxReg,
-      fromWebsite: fromWebsite,
-      toName: toName,
-      toEmail: toEmail,
-      toCompany: toCompany,
-      toPhone: toPhone,
-      toAddress: toAddress,
-      toCountry: toCountry,
-      toCity: toCity,
-      toPostalCode: toPostalCode,
-      toWebsite: toWebsite,
-      // Stringify the items array and append to FormData
-      // formData.append("items", JSON.stringify(items));
-      // items: items,
-      discount: discount,
-      // tax: tax,
-      tax: gstRate,
-      subTotal: subtotal,
-      total: total,
-      shipping: shipping,
-      note: notes,
-    };
+  //     //     // Append to FormData
+  //     //     mainFormData.append("signature", blob, "signature.png");
+  //     // },
+  //     // if(imageURL) {
+  //     //   // Convert base64 to Blob
+  //     //   const fetchRes = fetch(imageURL);
+  //     //   const blob = fetchRes.blob();
+  //     //   console.log("blob");
+
+  //     //   // Append to FormData
+  //     //   mainFormData.append("signature", blob, "signature.png");
+  //     // },
+  //     signature: imageURL,
+  //     logo: uploadedImage.raw,
+  //     stamp: uploadedStamp.raw,
+  //     invoiceDate: invoiceDate,
+  //     dueDate: dueDate,
+  //     fromName: fromName,
+  //     fromEmail: fromEmail,
+  //     fromCompany: fromCompany,
+  //     fromPhone: fromPhone,
+  //     fromAddress: fromAddress,
+  //     fromCountry: fromCountry,
+  //     fromCity: fromCity,
+  //     fromPostalCode: fromPostalCode,
+  //     fromTaxReg: fromTaxReg,
+  //     fromWebsite: fromWebsite,
+  //     toName: toName,
+  //     toEmail: toEmail,
+  //     toCompany: toCompany,
+  //     toPhone: toPhone,
+  //     toAddress: toAddress,
+  //     toCountry: toCountry,
+  //     toCity: toCity,
+  //     toPostalCode: toPostalCode,
+  //     toWebsite: toWebsite,
+  //     // Stringify the items array and append to FormData
+  //     // formData.append("items", JSON.stringify(items));
+  //     // items: items,
+  //     discount: discount,
+  //     tax: gstRate,
+  //     subTotal: subtotal,
+  //     total: total,
+  //     shipping: shipping,
+  //     note: notes,
+  //   };
+
+  //   try {
+  //     const response = await axios.post(
+  //       `${baseUrl}/api/invoice/create`,
+  //       mainFormData,
+  //       {
+  //         headers: {
+  //           "Content-Type": "multipart/form-data", // Important when sending FormData
+  //         },
+  //       }
+  //     );
+  //     if (response.data.code === 201) {
+  //       console.log("Success");
+  //       console.log(uploadedImage);
+  //       console.log(imageURL);
+  //     } else if (response.code === 500) {
+  //       console.log(response);
+  //       console.log(response.errors);
+  //     } else if (response.status === 200) {
+  //       console.log(response.data.errors);
+  //       console.log(response.errors);
+  //     }
+  //   } catch (error) {
+  //     console.log("Errrorrrrr");
+  //     console.log(error.message); // Handle any errors that might come up during the request
+  //   }
+  // };
+
+  // Append Method Used Below
+
+  const handleSubmit = async () => {
+    const mitems = items.map((item) => ({
+      title: item.name,
+      quantity: parseFloat(item.qty),
+      rate: parseFloat(item.price),
+    }));
+    const mainFormData = new FormData();
+
+    // Conditionally append the logo if it exists
+    if (uploadedImage) {
+      mainFormData.append("logo", uploadedImage.raw);
+    }
+
+    // Conditionally append the signature if it exists
+    if (imageURL) {
+      const fetchRes = await fetch(imageURL);
+      const blob = await fetchRes.blob();
+      mainFormData.append("signature", blob, "signature.png");
+    }
+
+    // Conditionally append the stamp if it exists
+    if (uploadedStamp) {
+      mainFormData.append("stamp", uploadedStamp.raw);
+    }
+
+    // Append other fields
+    mainFormData.append("invoiceDate", invoiceDate);
+    mainFormData.append("dueDate", dueDate);
+    mainFormData.append("fromName", fromName);
+    mainFormData.append("fromEmail", fromEmail);
+    mainFormData.append("fromCompany", fromCompany);
+    mainFormData.append("fromPhone", fromPhone);
+    mainFormData.append("fromAddress", fromAddress);
+    mainFormData.append("fromCountry", fromCountry);
+    mainFormData.append("fromCity", fromCity);
+    mainFormData.append("fromPostalCode", fromPostalCode);
+    mainFormData.append("fromTaxReg", fromTaxReg);
+    mainFormData.append("fromWebsite", fromWebsite);
+    mainFormData.append("toName", toName);
+    mainFormData.append("toEmail", toEmail);
+    mainFormData.append("toCompany", toCompany);
+    mainFormData.append("toPhone", toPhone);
+    mainFormData.append("toAddress", toAddress);
+    mainFormData.append("toCountry", toCountry);
+    mainFormData.append("toCity", toCity);
+    mainFormData.append("toPostalCode", toPostalCode);
+    mainFormData.append("toWebsite", toWebsite);
+    // mainFormData.append("items", mitems); // Assuming this is serialized or a string representation
+    mainFormData.append("invoiceItems", JSON.stringify(mitems));
+    console.log(mitems);
+    mainFormData.append("discount", discount);
+    mainFormData.append("tax", gst);
+    mainFormData.append("subTotal", subtotal);
+    mainFormData.append("total", total);
+    mainFormData.append("shipping", shipping);
+    mainFormData.append("note", notes);
+
+    for (let pair of mainFormData.entries()) {
+      console.log(pair[0] + ": " + pair[1]);
+    }
 
     try {
       const response = await axios.post(
@@ -287,18 +383,21 @@ function MainForm(props) {
         mainFormData,
         {
           headers: {
-            "Content-Type": "multipart/form-data", // Important when sending FormData
+            "Content-Type": "multipart/form-data",
           },
         }
       );
       if (response.data.code === 201) {
         console.log("Success");
+        console.log(mitems);
         console.log(uploadedImage);
-      } else if (response.code === 500) {
+        console.log(imageURL);
+      } else if (response.data.code === 500) {
         console.log(response);
         console.log(response.errors); // or whatever the error message field is named
       } else if (response.status === 200) {
-        console.log(response.data.errors);
+        console.error(response.data.errors);
+      } else {
         console.log(response.errors); // or whatever the error message field is named
       }
     } catch (error) {
@@ -306,85 +405,6 @@ function MainForm(props) {
       console.log(error.message); // Handle any errors that might come up during the request
     }
   };
-
-  // Append Method Used Below
-
-  // const handleSubmit = async () => {
-  //   const mainFormData = new FormData();
-
-  //   // Conditionally append the logo if it exists
-  //   if (uploadedImage) {
-  //     mainFormData.append("logo", uploadedImage.raw);
-  //   }
-
-  //   // Conditionally append the signature if it exists
-  //   if (imageURL) {
-  //     const fetchRes = await fetch(imageURL);
-  //     const blob = await fetchRes.blob();
-  //     mainFormData.append("signature", blob, "signature.png");
-  //   }
-
-  //   // Conditionally append the stamp if it exists
-  //   if (uploadedStamp) {
-  //     mainFormData.append("stamp", uploadedStamp.raw);
-  //   }
-
-  //   // Append other fields
-  //   mainFormData.append("invoiceDate", invoiceDate);
-  //   mainFormData.append("dueDate", dueDate);
-  //   mainFormData.append("fromName", fromName);
-  //   mainFormData.append("fromEmail", fromEmail);
-  //   mainFormData.append("fromCompany", fromCompany);
-  //   mainFormData.append("fromPhone", fromPhone);
-  //   mainFormData.append("fromAddress", fromAddress);
-  //   mainFormData.append("fromCountry", fromCountry);
-  //   mainFormData.append("fromCity", fromCity);
-  //   mainFormData.append("fromPostalCode", fromPostalCode);
-  //   mainFormData.append("fromTaxReg", fromTaxReg);
-  //   mainFormData.append("fromWebsite", fromWebsite);
-  //   mainFormData.append("toName", toName);
-  //   mainFormData.append("toEmail", toEmail);
-  //   mainFormData.append("toCompany", toCompany);
-  //   mainFormData.append("toPhone", toPhone);
-  //   mainFormData.append("toAddress", toAddress);
-  //   mainFormData.append("toCountry", toCountry);
-  //   mainFormData.append("toCity", toCity);
-  //   mainFormData.append("toPostalCode", toPostalCode);
-  //   mainFormData.append("toWebsite", toWebsite);
-  //   // mainFormData.append("items", items); // Assuming this is serialized or a string representation
-  //   mainFormData.append("discount", discount);
-  //   mainFormData.append("tax", gst);
-  //   mainFormData.append("subTotal", subtotal);
-  //   mainFormData.append("total", total);
-  //   mainFormData.append("shipping", shipping);
-  //   mainFormData.append("note", notes);
-
-  //   const response = await axios.post(
-  //     `${baseUrl}/api/invoice/create`,
-  //     mainFormData,
-  //     {
-  //       headers: {
-  //         "Content-Type": "multipart/form-data",
-  //       },
-  //     }
-  //   );
-  //   if (response.data.code === 201) {
-  //     console.log("Success");
-  //     console.log(uploadedImage);
-  //     console.log(imageURL);
-  //   } else if (response.code === 500) {
-  //     console.log(response);
-  //     console.log(response.errors); // or whatever the error message field is named
-  //   } else if (response.status === 200) {
-  //     console.log(response.data.errors);
-  //   } else {
-  //     console.log(response.errors); // or whatever the error message field is named
-  //   }
-  //   // try {} catch (error) {
-  //   // console.log("Errrorrrrr");
-  //   // console.log(error.message); // Handle any errors that might come up during the request
-  //   // }
-  // };
 
   return (
     <div className="wholeFormBody">
@@ -631,61 +651,6 @@ function MainForm(props) {
               </div>
 
               <div className="mainBodyTo">
-                {/* <SenderReceiver
-                  label="Invoice To"
-                  initialFields={[
-                    {
-                      id: "receivername",
-                      type: "text",
-                      labelText: "Name",
-                      placeholder: "Business Name",
-                      defaultValue: "",
-                    },
-                    {
-                      id: "receiveremail",
-                      type: "email",
-                      labelText: "Email",
-                      placeholder: "name@business.com",
-                      defaultValue: "",
-                    },
-                    {
-                      id: "receivercompany",
-                      type: "text",
-                      labelText: "Company",
-                      placeholder: "Company Name",
-                      defaultValue: "",
-                    },
-                    {
-                      id: "receiverphone",
-                      type: "text",
-                      labelText: "Phone",
-                      placeholder: "(123) 456 789",
-                      defaultValue: "",
-                    },
-                    {
-                      id: "receiveraddress",
-                      type: "textarea",
-                      labelText: "Address",
-                      placeholder: "Street",
-                      defaultValue: "",
-                    },
-                    {
-                      id: "receivercity",
-                      type: "text",
-                      labelText: "City",
-                      placeholder: "Select City",
-                      defaultValue: "",
-                    },
-                    {
-                      id: "receivercountry",
-                      type: "text",
-                      labelText: "Country",
-                      placeholder: "Select Country",
-                      defaultValue: "",
-                    },
-                  ]}
-                  onFieldsChange={handleFieldsChange}
-                /> */}
                 <div className="fromBody">
                   <div className="From">To</div>
                   <div className="invoice-body">

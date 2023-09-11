@@ -41,23 +41,33 @@ const History = () => {
     (currentPage + 1) * rowsPerPage
   );
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setOpenDropdown(null);
-      }
-    };
+  // Event Based Handler
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+  //       setOpenDropdown(null);
+  //     }
+  //   };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, []);
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const toggleDropdownBtn = (invoiceId) => {
+    setOpenInvoiceId((prevInvoiceId) =>
+      prevInvoiceId !== invoiceId ? invoiceId : null
+    );
+  };
+  const [openInvoiceId, setOpenInvoiceId] = useState(null);
 
   const [notification, setNotification] = useState(null);
 
   const deleteInvoice = async (invoiceId) => {
     setLoading(true);
+    console.log("Delete action started");
     try {
       const response = await axios.delete(
         `${baseUrl}/api/invoice/delete/${invoiceId}`
@@ -83,9 +93,12 @@ const History = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [currentInvoice, setCurrentInvoice] = useState(null);
+  const imageFileURL = "http://localhost:5000/";
+
   const handleViewClick = (invoice) => {
     setCurrentInvoice(invoice);
     setIsOpen(true);
+    console.log(invoice.logo);
     // setTimeout(() => {
     //   setOpenDropdown(null);
     // }, 3000);
@@ -140,6 +153,9 @@ const History = () => {
               <th>Invoice Title</th>
               <th>Date & Time</th>
               <th>Actions</th>
+              {/* <th>Logo</th>
+              <th>Stamp</th>
+              <th>Signature</th> */}
             </tr>
           </thead>
           <tbody>
@@ -155,18 +171,25 @@ const History = () => {
                 <td>
                   <button
                     className="action-btn"
-                    onClick={() => setOpenDropdown(invoice.InvoiceId)}
+                    // onClick={() => setOpenDropdown(invoice.InvoiceId)}
+                    // onClick={toggleDropdownBtn}
+                    onClick={() => toggleDropdownBtn(invoice.InvoiceId)}
                   >
                     <img src={ActionDots} />
                   </button>
-                  {openDropdown === invoice.InvoiceId && (
+                  {/* openDropdown  */}
+                  {openInvoiceId === invoice.InvoiceId && (
                     <div className="dropdown-menu">
+                      {/* <span onClick={toggleDropdown}>x</span> */}
                       <button onClick={() => handleViewClick(invoice)}>
                         View
                       </button>
                       {isOpen && (
                         <InvoiceModel
                           invoice={currentInvoice}
+                          logo={currentInvoice.logo}
+                          stamp={currentInvoice.stamp}
+                          signature={currentInvoice.signature}
                           isOpen={isOpen}
                           setIsOpen={setIsOpen}
                           onClose={() => setIsOpen(false)}
@@ -180,6 +203,39 @@ const History = () => {
                     </div>
                   )}
                 </td>
+                {/* <td>
+                  {invoice.logo && (
+                    <img
+                      src={`${imageFileURL}${invoice.logo.replace(/\\/g, "/")}`}
+                      alt="Logo"
+                      width="50"
+                    />
+                  )}
+                </td>
+                <td>
+                  {invoice.stamp && (
+                    <img
+                      src={`${imageFileURL}${invoice.stamp.replace(
+                        /\\/g,
+                        "/"
+                      )}`}
+                      alt="Stamp"
+                      width="50"
+                    />
+                  )}
+                </td>
+                <td>
+                  {invoice.signature && (
+                    <img
+                      src={`${imageFileURL}${invoice.signature.replace(
+                        /\\/g,
+                        "/"
+                      )}`}
+                      alt="Signature"
+                      width="50"
+                    />
+                  )}
+                </td> */}
               </tr>
             ))}
           </tbody>
