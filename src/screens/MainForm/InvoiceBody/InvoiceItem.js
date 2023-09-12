@@ -4,7 +4,7 @@ import InvoiceField from "./InvoiceField";
 const InvoiceItem = ({
   id,
   name,
-  qty,
+  quantity,
   price,
   itax,
   amount,
@@ -15,18 +15,18 @@ const InvoiceItem = ({
     onDeleteItem(id);
   };
 
-  function calculateTotalPrice(price, tax, qty) {
+  function calculateTotalPrice(price, tax, quantity) {
     const taxcalculated = tax * price;
     console.log(taxcalculated);
 
-    // return ((price + { taxcalculated }) * qty).toFixed(2);
+    // return ((price + { taxcalculated }) * quantity).toFixed(2);
     return tax * price;
   }
 
   const calculateTotalAmount = () => {
     const totalPrice =
       parseFloat(price) + (parseFloat(itax) * parseFloat(price)) / 100;
-    return (totalPrice * parseInt(qty)).toFixed(2);
+    return (totalPrice * parseInt(quantity)).toFixed(2);
   };
 
   return (
@@ -95,9 +95,9 @@ const InvoiceItem = ({
           cellData={{
             type: "number",
             min: "1",
-            name: "qty",
+            name: "quantity",
             id: id,
-            value: qty,
+            value: quantity,
           }}
         />
       </td>
@@ -109,10 +109,10 @@ const InvoiceItem = ({
           ((parseFloat(price) +
             parseFloat(parseFloat(itax) * parseFloat(price))) /
             100) *
-          parseInt(qty)
+          parseInt(quantity)
         ).toFixed(2)} */}
 
-        {(parseFloat(price) * parseInt(qty)).toFixed(2)}
+        {(parseFloat(price) * parseInt(quantity)).toFixed(2)}
 
         {/* {calculateTotalAmount()} */}
       </td>

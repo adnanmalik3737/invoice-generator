@@ -13,12 +13,13 @@
 .mainFormBody {
   background-color: #ffffff;
   overflow-x: scroll;
-  height: 55vmax;
+  height: 100vmin;
   border-radius: 10px;
 }
 
 .wholeFormBody {
   display: flex;
+  margin: auto;
 }
 
 /* Scroller Style */

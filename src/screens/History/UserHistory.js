@@ -6,6 +6,7 @@ import historysvg from "../../img/historysvg.svg";
 import ActionDots from "../../img/ActionDots.svg";
 import NextIcon from "../../img/NextIcon.svg";
 import previousIcon from "../../img/previousIcon.svg";
+import crossIcon from "../../img/crossIcon.svg";
 import InvoiceModel from "../InvoiceModel/InvoiceModel.js";
 
 const History = () => {
@@ -98,10 +99,6 @@ const History = () => {
   const handleViewClick = (invoice) => {
     setCurrentInvoice(invoice);
     setIsOpen(true);
-    console.log(invoice.logo);
-    // setTimeout(() => {
-    //   setOpenDropdown(null);
-    // }, 3000);
   };
 
   // if (!isLoggedIn) {
@@ -171,16 +168,17 @@ const History = () => {
                 <td>
                   <button
                     className="action-btn"
-                    // onClick={() => setOpenDropdown(invoice.InvoiceId)}
-                    // onClick={toggleDropdownBtn}
                     onClick={() => toggleDropdownBtn(invoice.InvoiceId)}
                   >
-                    <img src={ActionDots} />
+                    {openInvoiceId === invoice.InvoiceId ? (
+                      <img src={crossIcon} />
+                    ) : (
+                      <img src={ActionDots} width={24} />
+                    )}
                   </button>
-                  {/* openDropdown  */}
+
                   {openInvoiceId === invoice.InvoiceId && (
                     <div className="dropdown-menu">
-                      {/* <span onClick={toggleDropdown}>x</span> */}
                       <button onClick={() => handleViewClick(invoice)}>
                         View
                       </button>

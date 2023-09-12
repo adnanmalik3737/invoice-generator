@@ -92,33 +92,10 @@ function MainForm(props) {
     {
       id: uid(6),
       name: "",
-      qty: 1,
+      quantity: 1,
       price: "0.00",
     },
   ]);
-
-  // const handleLogoChange = (e) => {
-  //   if (e.target.files.length) {
-  //     setImage({
-  //       preview: URL.createObjectURL(e.target.files[0]),
-  //       raw: e.target.files[0],
-  //     });
-  //   }
-  // };
-
-  // const handleUpload = async (e) => {
-  //   e.preventDefault();
-  //   const formData = new FormData();
-  //   formData.append("image", image.raw);
-
-  //   await fetch("logoFile", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "multipart/form-data",
-  //     },
-  //     body: formData,
-  //   });
-  // };
 
   const addNextInvoiceHandler = () => {
     setInvoiceNumber((prevNumber) => incrementString(prevNumber));
@@ -126,7 +103,7 @@ function MainForm(props) {
       {
         id: uid(6),
         name: "",
-        qty: 1,
+        quantity: 1,
         price: "0.00",
       },
     ]);
@@ -139,7 +116,7 @@ function MainForm(props) {
   const [gst, setGst] = useState(0);
   const [itax, setItax] = useState();
   const [shipping, setShipping] = useState(0);
-  const [notes, setNotes] = useState("");
+  const [note, setNotes] = useState("");
 
   const addItemHandler = () => {
     const id = uid(6);
@@ -148,7 +125,7 @@ function MainForm(props) {
       {
         id: id,
         name: "",
-        qty: 1,
+        quantity: 1,
         price: "0.00",
       },
     ]);
@@ -201,16 +178,16 @@ function MainForm(props) {
     setButtonText3(showFieldShipping ? "+ Shipping" : "- Shipping");
   };
 
-  const subtotal = items.reduce((prev, curr) => {
+  const subTotal = items.reduce((prev, curr) => {
     if (curr.name.trim().length > 0)
-      return prev + Number(curr.price * Math.floor(curr.qty));
+      return prev + Number(curr.price * Math.floor(curr.quantity));
     else return prev;
   }, 0);
-  const taxRate = (tax * subtotal) / 100;
-  const gstRate = (gst * subtotal) / 100;
-  const discountRate = (discount * subtotal) / 100;
+  const taxRate = (tax * subTotal) / 100;
+  const gstRate = (gst * subTotal) / 100;
+  const discountRate = (discount * subTotal) / 100;
   const shippingAmount = parseFloat(shipping);
-  const total = subtotal - discountRate + taxRate + gstRate + shippingAmount;
+  const total = subTotal - discountRate + taxRate + gstRate + shippingAmount;
 
   const [symbol, setSymbol] = useState("$"); // default to USD
 
@@ -281,7 +258,7 @@ function MainForm(props) {
   //     // items: items,
   //     discount: discount,
   //     tax: gstRate,
-  //     subTotal: subtotal,
+  //     subTotal: subTotal,
   //     total: total,
   //     shipping: shipping,
   //     note: notes,
@@ -319,7 +296,7 @@ function MainForm(props) {
   const handleSubmit = async () => {
     const mitems = items.map((item) => ({
       title: item.name,
-      quantity: parseFloat(item.qty),
+      quantity: parseFloat(item.quantity),
       rate: parseFloat(item.price),
     }));
     const mainFormData = new FormData();
@@ -367,11 +344,11 @@ function MainForm(props) {
     mainFormData.append("invoiceItems", JSON.stringify(mitems));
     console.log(mitems);
     mainFormData.append("discount", discount);
-    mainFormData.append("tax", gst);
-    mainFormData.append("subTotal", subtotal);
+    mainFormData.append("tax", gstRate);
+    mainFormData.append("subTotal", subTotal);
     mainFormData.append("total", total);
     mainFormData.append("shipping", shipping);
-    mainFormData.append("note", notes);
+    mainFormData.append("note", note);
 
     for (let pair of mainFormData.entries()) {
       console.log(pair[0] + ": " + pair[1]);
@@ -395,6 +372,9 @@ function MainForm(props) {
       } else if (response.data.code === 500) {
         console.log(response);
         console.log(response.errors); // or whatever the error message field is named
+        console.log(response.data.message);
+      } else if (response.data.code === 401) {
+        console.log(response.data.message);
       } else if (response.status === 200) {
         console.error(response.data.errors);
       } else {
@@ -441,13 +421,15 @@ function MainForm(props) {
                 toPostalCode,
                 toWebsite,
                 dueDate,
-                subtotal,
+                subTotal,
+                gst,
                 gstRate,
+                discount,
                 discountRate,
                 symbol,
                 shipping,
                 total,
-                notes,
+                note: note,
                 selectedColor,
               }}
               items={items}
@@ -777,7 +759,7 @@ function MainForm(props) {
                         key={item.id}
                         id={item.id}
                         name={item.name}
-                        qty={item.qty}
+                        quantity={item.quantity}
                         itax={item.itax}
                         price={item.price}
                         onDeleteItem={deleteItemHandler}
@@ -852,7 +834,7 @@ function MainForm(props) {
                   <span className="FinalSubTotal">
                     {symbol}
                     {"\u00A0"}
-                    {subtotal.toFixed(2)}
+                    {subTotal.toFixed(2)}
                   </span>
                 </div>
                 <div>
@@ -900,7 +882,7 @@ function MainForm(props) {
                 <div>
                   {showField && (
                     <div className="totalFieldContainer">
-                      <span className="totalField">GST:</span>
+                      <span className="totalField">TAX:</span>
                       <span className="totalSymbols">%</span>
                       <input
                         className=""
@@ -955,7 +937,7 @@ function MainForm(props) {
                   type="text"
                   className="lael-input"
                   name="note"
-                  value={notes}
+                  value={note}
                   onChange={(event) => setNotes(event.target.value)}
                 ></input>
               </div>

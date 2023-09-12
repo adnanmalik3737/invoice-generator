@@ -7,6 +7,7 @@ import { toPng } from "html-to-image";
 import { jsPDF } from "jspdf";
 import ImageUploader from "../MainForm/FileUpload";
 import "../MainForm/invoiceHeader/invoiceHeader.css";
+import crossIcon from "../../img/crossIcon.svg";
 
 const date = new Date();
 const today = date.toLocaleDateString("en-GB", {
@@ -161,50 +162,22 @@ const InvoiceModel = ({
                   }}
                 ></div>
                 <button className="modelClose" onClick={closeModal}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="10"
-                    height="10"
-                    viewBox="0 0 18 18"
-                    fill="none"
-                  >
-                    <path
-                      d="M1.51855 16.5522L16.5186 1.55225M1.51855 1.55225L16.5186 16.5522"
-                      stroke="#009BD6"
-                      strokeWidth="1.33333"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                  <img src={crossIcon} width={10} height={10} />
                 </button>
                 <div className="boxA" id="print">
                   <div className="previewHeader">
                     <div className="PreviewHeaderItem">
                       {uploadedImage && <img src={uploadedImage} alt="logo" />}
+                      {logo && (
+                        <img
+                          src={`${imageFileURL}${logo.replace(/\\/g, "/")}`}
+                          alt="Logo"
+                          // height={auto}
+                          width={100}
+                        />
+                      )}
                     </div>
                     <h1 className="h-1 PreviewHeaderItem">INVOICE</h1>
-                  </div>
-
-                  {/*  */}
-                  <div>
-                    {logo && (
-                      <img
-                        src={`${imageFileURL}${logo.replace(/\\/g, "/")}`}
-                        alt="Logo"
-                      />
-                    )}
-                    {stamp && (
-                      <img
-                        src={`${imageFileURL}${stamp.replace(/\\/g, "/")}`}
-                        alt="Stamp"
-                      />
-                    )}
-                    {signature && (
-                      <img
-                        src={`${imageFileURL}${signature.replace(/\\/g, "/")}`}
-                        alt="Signature"
-                      />
-                    )}
                   </div>
 
                   <div className="">
@@ -359,7 +332,7 @@ const InvoiceModel = ({
                             </td>
                             <td className="previewText">
                               {invoiceData?.symbol ?? "$"}
-                              {Number(item.price).toFixed(2)}
+                              {Number(item.rate).toFixed(2)}
                             </td>
                             <td className="previewText">
                               {invoiceData?.symbol ?? "$"}
@@ -375,14 +348,16 @@ const InvoiceModel = ({
                               <td className="previewText text-left">
                                 {item?.name}
                               </td>
-                              <td className="previewText">{item?.qty}</td>
+                              <td className="previewText">{item?.quantity}</td>
                               <td className="previewText">
                                 {invoiceData?.symbol}
                                 {Number(item?.price).toFixed(2)}
                               </td>
                               <td className="previewText">
                                 {invoiceData?.symbol}
-                                {Number(item?.price * item?.qty).toFixed(2)}
+                                {Number(item?.price * item?.quantity).toFixed(
+                                  2
+                                )}
                               </td>
                             </tr>
                           ))}
@@ -394,14 +369,15 @@ const InvoiceModel = ({
                         <span className="previewLabel">Subtotal:</span>
                         <span className="previewText">
                           {invoiceData?.symbol ?? "$"}
-                          {invoiceData.subtotal}
+                          {invoiceData.subTotal}
+                          {/* {invoiceData.subTotal} */}
                           {/* {invoiceData.subtotal.toFixed(2)} */}
                         </span>
                       </div>
                       <div className="extraOptions">
                         <span className="previewLabel">Discount:</span>
                         <span className="previewText">
-                          {invoiceData?.symbol ?? "$"}
+                          ({invoiceData.discount}%) {invoiceData?.symbol ?? "$"}
                           {invoiceData.discountRate}
                           {/* {invoiceData.discountRate.toFixed(2)} */}
                         </span>
@@ -409,8 +385,9 @@ const InvoiceModel = ({
                       <div className="extraOptions">
                         <span className="previewLabel">Tax:</span>
                         <span className="previewText">
-                          {invoiceData?.symbol ?? "$"}
+                          ({invoiceData.gst}%) {invoiceData?.symbol ?? "$"}
                           {invoiceData.gstRate}
+                          {invoiceData.tax}
                           {/* {invoiceData.taxRate.toFixed(2)} */}
                         </span>
                       </div>
@@ -425,20 +402,44 @@ const InvoiceModel = ({
                         <span className="previewLabel">Total:</span>
                         <span className="previewText">
                           {invoiceData?.symbol ?? "$"}
-                          {invoiceData.total % 1 === 0
-                            ? invoiceData.total
-                            : invoiceData.total}
-
                           {/* {invoiceData.total % 1 === 0
                             ? invoiceData.total
-                            : invoiceData.total.toFixed(2)} */}
+                            : invoiceData.total} */}
+
+                          {invoiceData.total % 1 === 0
+                            ? invoiceData.total
+                            : invoiceData.total.toFixed(2)}
                         </span>
                       </div>
                     </div>
-                    <div className="previewNotes">{invoiceData.notes}</div>
+                    <div className="previewNotes">{invoiceData.note}</div>
                   </div>
                 </div>
                 <div className="clearflex" />
+                <div className="stampSignField">
+                  <div className="stampField">
+                    {stamp && (
+                      <img
+                        src={`${imageFileURL}${stamp.replace(/\\/g, "/")}`}
+                        alt="Stamp"
+                        height={120}
+                        width={120}
+                      />
+                    )}
+                    <p>Stamp</p>
+                  </div>
+                  <div className="signField">
+                    {signature && (
+                      <img
+                        src={`${imageFileURL}${signature.replace(/\\/g, "/")}`}
+                        alt="Signature"
+                        height={120}
+                        width={120}
+                      />
+                    )}
+                    <p>Signature</p>
+                  </div>
+                </div>
                 <div className="">
                   <button className="" onClick={SaveAsPDFHandler}>
                     <span>Download</span>
