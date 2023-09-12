@@ -21,11 +21,13 @@ const InvoiceModel = ({
   setIsOpen,
   invoiceInfo: invoiceInfoProp,
   items,
+  Items,
   onAddNextInvoice,
   uploadedImage,
   selectedColor,
   // invoice = {},
   invoice: invoiceProp = {},
+  InvoiceId,
   logo,
   stamp,
   signature,
@@ -361,6 +363,23 @@ const InvoiceModel = ({
                               </td>
                             </tr>
                           ))}
+                        {Items &&
+                          Items.map((item) => (
+                            <tr key={item.itemId}>
+                              <td className="previewText text-left">
+                                {item?.title}
+                              </td>
+                              <td className="previewText">{item?.quantity}</td>
+                              <td className="previewText">
+                                {invoiceData?.symbol}
+                                {Number(item?.rate).toFixed(2)}
+                              </td>
+                              <td className="previewText">
+                                {invoiceData?.symbol}
+                                {Number(item?.rate * item?.quantity).toFixed(2)}
+                              </td>
+                            </tr>
+                          ))}
                       </tbody>
                     </table>
 
@@ -433,7 +452,6 @@ const InvoiceModel = ({
                       <img
                         src={`${imageFileURL}${signature.replace(/\\/g, "/")}`}
                         alt="Signature"
-                        height={120}
                         width={120}
                       />
                     )}

@@ -97,7 +97,10 @@ const History = () => {
   const imageFileURL = "http://localhost:5000/";
 
   const handleViewClick = (invoice) => {
+    // console.log(invoice.items);
     setCurrentInvoice(invoice);
+    console.log(currentInvoice.Items);
+
     setIsOpen(true);
   };
 
@@ -184,12 +187,14 @@ const History = () => {
                       </button>
                       {isOpen && (
                         <InvoiceModel
+                          InvoiceId={currentInvoice.InvoiceId}
                           invoice={currentInvoice}
                           logo={currentInvoice.logo}
                           stamp={currentInvoice.stamp}
                           signature={currentInvoice.signature}
                           isOpen={isOpen}
                           setIsOpen={setIsOpen}
+                          Items={currentInvoice.Items}
                           onClose={() => setIsOpen(false)}
                         />
                       )}
