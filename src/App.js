@@ -72,6 +72,10 @@ function App() {
                 <Route path="/create-invoice" element={<MainForm />}></Route>
                 <Route path="/history" element={<History />}></Route>
                 <Route
+                  path="/edit-invoice/:invoiceId"
+                  element={<MainForm />}
+                ></Route>
+                <Route
                   path="/pdf-templates"
                   element={<InvoiceHeader />}
                 ></Route>

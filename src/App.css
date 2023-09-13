@@ -237,7 +237,7 @@ button {
   display: flex;
   align-items: center;
   position: absolute;
-  padding: 25% 10px;
+  padding: 20% 10px;
   /* bottom: 40%; */
 }
 .logoutText {

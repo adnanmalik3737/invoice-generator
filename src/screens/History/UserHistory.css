@@ -52,16 +52,27 @@
 
 .invoice-table th,
 .invoice-table td {
-  border: 1px solid #e0e0e0;
+  /* border: 1px solid #e0e0e0; */
   padding: 10px 20px;
   text-align: center;
 }
 
 .invoice-table th {
-  height: 60px;
-  border-radius: 5px 5px 0px 0px;
+  height: 30px;
+  border: none;
   background: #008bc0;
   color: #fff;
+}
+
+.invoice-table tbody tr {
+  border-radius: 5px;
+  border: 0.5px solid rgba(145, 145, 145, 0.5);
+}
+.firstHead {
+  border-radius: 5px 0px 0px 0px;
+}
+.lastHead {
+  border-radius: 0px 5px 0px 0px;
 }
 
 .action-btn {

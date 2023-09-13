@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./UserHistory.css";
@@ -13,12 +14,12 @@ const History = () => {
   const [invoices, setInvoices] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [openDropdown, setOpenDropdown] = useState(null);
   const dropdownRef = useRef(null);
   const [loading, setLoading] = useState(true);
   const baseUrl = process.env.REACT_APP_BASE_URL;
   const startRange = currentPage * rowsPerPage + 1;
   const endRange = Math.min((currentPage + 1) * rowsPerPage, invoices.length);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchInvoices = async () => {
@@ -99,9 +100,14 @@ const History = () => {
   const handleViewClick = (invoice) => {
     // console.log(invoice.items);
     setCurrentInvoice(invoice);
-    console.log(currentInvoice.Items);
+    // console.log(currentInvoice.Items);
 
     setIsOpen(true);
+  };
+
+  const handleEdit = (invoiceFilledData) => {
+    // Navigate to MainForm.js with the entire invoice data
+    navigate("/edit-invoice", { state: { invoiceFilledData } });
   };
 
   // if (!isLoggedIn) {
@@ -148,14 +154,11 @@ const History = () => {
         <table className="invoice-table">
           <thead>
             <tr>
-              <th>Sr #</th>
+              <th className="firstHead">Sr #</th>
               <th>Invoice No</th>
               <th>Invoice Title</th>
               <th>Date & Time</th>
-              <th>Actions</th>
-              {/* <th>Logo</th>
-              <th>Stamp</th>
-              <th>Signature</th> */}
+              <th className="lastHead">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -199,46 +202,16 @@ const History = () => {
                         />
                       )}
 
-                      <button>Edit</button>
+                      {/* <button onClick={() => handleEdit(invoice)}>Edit</button> */}
+                      <Link to={`/edit-invoice/${invoice.InvoiceId}`}>
+                        <button>Edit</button>
+                      </Link>
                       <button onClick={() => deleteInvoice(invoice.InvoiceId)}>
                         Delete
                       </button>
                     </div>
                   )}
                 </td>
-                {/* <td>
-                  {invoice.logo && (
-                    <img
-                      src={`${imageFileURL}${invoice.logo.replace(/\\/g, "/")}`}
-                      alt="Logo"
-                      width="50"
-                    />
-                  )}
-                </td>
-                <td>
-                  {invoice.stamp && (
-                    <img
-                      src={`${imageFileURL}${invoice.stamp.replace(
-                        /\\/g,
-                        "/"
-                      )}`}
-                      alt="Stamp"
-                      width="50"
-                    />
-                  )}
-                </td>
-                <td>
-                  {invoice.signature && (
-                    <img
-                      src={`${imageFileURL}${invoice.signature.replace(
-                        /\\/g,
-                        "/"
-                      )}`}
-                      alt="Signature"
-                      width="50"
-                    />
-                  )}
-                </td> */}
               </tr>
             ))}
           </tbody>
@@ -254,6 +227,8 @@ const History = () => {
             <option value={10}>10</option>
             <option value={15}>15</option>
             <option value={20}>20</option>
+            <option value={30}>30</option>
+            <option value={50}>50</option>
           </select>
         </div>
         <div className="showPages">

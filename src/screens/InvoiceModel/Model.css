@@ -204,3 +204,20 @@
   line-height: 28px; /* 140% */
   padding: 10px 0;
 }
+
+.previewDivider {
+  width: 95%;
+  background-color: #eee;
+  margin: 20px 0;
+  height: 0.2px;
+  border-top: 0.1px dotted #8c8b8b;
+}
+
+.previewNotes {
+  color: #333;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 166.667% */
+  width: 50%;
+}

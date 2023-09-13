@@ -25,12 +25,12 @@ const InvoiceModel = ({
   onAddNextInvoice,
   uploadedImage,
   selectedColor,
-  // invoice = {},
   invoice: invoiceProp = {},
   InvoiceId,
   logo,
   stamp,
   signature,
+  imageData,
 }) => {
   const imageFileURL = "http://localhost:3001/";
 
@@ -169,7 +169,7 @@ const InvoiceModel = ({
                 <div className="boxA" id="print">
                   <div className="previewHeader">
                     <div className="PreviewHeaderItem">
-                      {uploadedImage && <img src={uploadedImage} alt="logo" />}
+                      {imageData && <img src={imageData} alt="logo" />}
                       {logo && (
                         <img
                           src={`${imageFileURL}${logo.replace(/\\/g, "/")}`}
@@ -382,6 +382,7 @@ const InvoiceModel = ({
                           ))}
                       </tbody>
                     </table>
+                    <hr className="previewDivider"></hr>
 
                     <div className="previewTotalFields">
                       <div className="extraOptions">
@@ -417,6 +418,7 @@ const InvoiceModel = ({
                           {invoiceData.shipping}
                         </span>
                       </div>
+                      <hr className="previewDivider"></hr>
                       <div className="extraOptions">
                         <span className="previewLabel">Total:</span>
                         <span className="previewText">
@@ -431,33 +433,42 @@ const InvoiceModel = ({
                         </span>
                       </div>
                     </div>
-                    <div className="previewNotes">{invoiceData.note}</div>
+
+                    <div className="previewNotes">
+                      <h3>Notes:</h3>
+                      <p>{invoiceData.note}</p>
+                    </div>
+                  </div>
+                  {/* Moved Here */}
+                  <div className="clearflex" />
+                  <div className="stampSignField">
+                    <div className="stampField">
+                      {stamp && (
+                        <img
+                          src={`${imageFileURL}${stamp.replace(/\\/g, "/")}`}
+                          alt="Stamp"
+                          height={120}
+                          width={120}
+                        />
+                      )}
+                      <p>Stamp</p>
+                    </div>
+                    <div className="signField">
+                      {signature && (
+                        <img
+                          src={`${imageFileURL}${signature.replace(
+                            /\\/g,
+                            "/"
+                          )}`}
+                          alt="Signature"
+                          width={120}
+                        />
+                      )}
+                      <p>Signature</p>
+                    </div>
                   </div>
                 </div>
-                <div className="clearflex" />
-                <div className="stampSignField">
-                  <div className="stampField">
-                    {stamp && (
-                      <img
-                        src={`${imageFileURL}${stamp.replace(/\\/g, "/")}`}
-                        alt="Stamp"
-                        height={120}
-                        width={120}
-                      />
-                    )}
-                    <p>Stamp</p>
-                  </div>
-                  <div className="signField">
-                    {signature && (
-                      <img
-                        src={`${imageFileURL}${signature.replace(/\\/g, "/")}`}
-                        alt="Signature"
-                        width={120}
-                      />
-                    )}
-                    <p>Signature</p>
-                  </div>
-                </div>
+                {/* Removed from here */}
                 <div className="">
                   <button className="" onClick={SaveAsPDFHandler}>
                     <span>Download</span>

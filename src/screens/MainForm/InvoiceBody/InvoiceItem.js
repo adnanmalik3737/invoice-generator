@@ -7,6 +7,7 @@ const InvoiceItem = ({
   quantity,
   price,
   itax,
+  itemId,
   amount,
   onDeleteItem,
   onEdtiItem,

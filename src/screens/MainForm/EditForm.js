@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./invoiceHeader/invoiceHeader.css";
 import ImageUploader from "./FileUpload.js";
 import incrementString from "../helpers/incrementString";
@@ -6,14 +6,10 @@ import { uid } from "uid";
 import axios from "axios";
 import SenderReceiver from "./InvoiceBody/SenderReceiver";
 import "../Sidebar/SidebarOptions.css";
-import { useLocation } from "react-router-dom";
+
 import InvoiceItem from "./InvoiceBody/InvoiceItem";
 import InvoiceModel from "../InvoiceModel/InvoiceModel.js";
 import SignaturePopup from "./SignaturePopup";
-import { useParams } from "react-router-dom";
-import mail from "../../img/mail.svg";
-import downloadIcon from "../../img/downloadIcon.svg";
-import printIcon from "../../img/printIcon.svg";
 
 const predefinedColors = [
   "#ffffff",
@@ -32,14 +28,13 @@ const predefinedColors = [
   "#558B2F",
 ];
 
-function MainForm(props) {
+function EditForm(props) {
   const [image, setImage] = useState({ preview: "", raw: "" });
   const [uploadedImage, setUploadedImage] = useState(null);
   const [uploadedStamp, setUploadedStamp] = useState(null);
   const [invoiceNumber, setInvoiceNumber] = useState(1);
   const [selectedColor, setSelectedColor] = useState();
   const baseUrl = process.env.REACT_APP_BASE_URL;
-  const { invoiceId } = useParams();
 
   // For Signature Popup
   const [imageURL, setImageURL] = useState(null);
@@ -54,10 +49,11 @@ function MainForm(props) {
   const [invoiceDate, setInvoiceDate] = useState("");
   const [dueDate, setDueDate] = useState("");
 
-  // const [invoiceFields, setInvoiceFields] = useState("");
-  // const handleFieldsChange = (updatedFields) => {
-  //   setInvoiceFields(updatedFields);
-  // };
+  const [invoiceFields, setInvoiceFields] = useState("");
+
+  const handleFieldsChange = (updatedFields) => {
+    setInvoiceFields(updatedFields);
+  };
 
   //For Editable content
   const [isEditable, setIsEditable] = useState(false);
@@ -68,66 +64,6 @@ function MainForm(props) {
     setIsEditable(false);
   };
   //End Editable content
-
-  // Editing Invoice
-  const [notification, setNotification] = useState("");
-
-  useEffect(() => {
-    // Make API call to get invoice details
-    if (invoiceId) {
-      axios
-        .get(`${baseUrl}/api/invoice/get/${invoiceId}`)
-        .then((response) => {
-          console.log(response.data.data);
-          setInvoiceDate(response.data.data.invoiceDate);
-          setDueDate(response.data.data.dueDateDate);
-          setFromName(response.data.data.fromName);
-          setFromEmail(response.data.data.fromEmail);
-          setFromCompany(response.data.data.fromCompany);
-          setFromAddress(response.data.data.fromAddress);
-          setFromCity(response.data.data.fromCity);
-          setFromCountry(response.data.data.fromCountry);
-          setFromPhone(response.data.data.fromPhone);
-          setFromPostalCode(response.data.data.fromPostalCode);
-          setFromTaxReg(response.data.data.fromTaxReg);
-          setFromWebsite(response.data.data.fromWebsite);
-          setToName(response.data.data.toName);
-          setToEmail(response.data.data.toEmail);
-          setToCompany(response.data.data.toCompany);
-          setToAddress(response.data.data.toAddress);
-          setToCity(response.data.data.toCity);
-          setToCountry(response.data.data.toCountry);
-          setToPhone(response.data.data.toPhone);
-          setToPostalCode(response.data.data.toPostalCode);
-          setToWebsite(response.data.data.toWebsite);
-          setDiscount(discount);
-          setShipping(shipping);
-          setNotes(note);
-          setUploadedStamp(uploadedImage);
-
-          const invoiceItem = response.data.data.Items.map((item) => ({
-            name: item.title,
-            quantity: item.quantity,
-            price: item.rate,
-          }));
-          console.log(invoiceItem);
-          setItems(invoiceItem);
-        })
-        .catch((error) => {
-          console.error("Error fetching Invoice details:", error);
-        });
-
-      // if (notification) {
-      //   const timeout = setTimeout(() => {
-      //     setNotification("");
-      //   }, 4000); // Set the timeout duration in milliseconds (10 seconds)
-
-      //   return () => {
-      //     clearTimeout(timeout); // Clear the timeout when the component unmounts
-      //   };
-      // }
-    }
-  }, [invoiceId]);
 
   // useState declarations for each From field
   const [fromName, setFromName] = useState("");
@@ -259,16 +195,105 @@ function MainForm(props) {
     setSymbol(event.target.value);
   };
 
-  const reviewInvoiceHandler = (e) => {
-    e.preventDefault();
+  const reviewInvoiceHandler = (event) => {
+    event.preventDefault();
     setIsOpen(true);
-    // handleSubmit();
+    handleSubmit();
   };
+
+  // const [uploadedLogo, setUploadedLogo] = useState(null);
+
+  // const handleSubmit = async () => {
+  //   // Gather all the form data
+  //   const mainFormData = {
+  //     // ... All your form fields. For example:
+  //     // uploadedImage: uploadedImage,
+  //     // invoiceNumber: invoiceNumber,
+  //     // if(uploadedImage) {
+  //     //   mainFormData.append("logo", uploadedImage.raw);
+  //     // },
+  //     //   if (imageURL) {
+  //     //     // Convert base64 to Blob
+  //     //     const fetchRes = await fetch(imageURL);
+  //     //     const blob = await fetchRes.blob();
+
+  //     //     // Append to FormData
+  //     //     mainFormData.append("signature", blob, "signature.png");
+  //     // },
+  //     // if(imageURL) {
+  //     //   // Convert base64 to Blob
+  //     //   const fetchRes = fetch(imageURL);
+  //     //   const blob = fetchRes.blob();
+  //     //   console.log("blob");
+
+  //     //   // Append to FormData
+  //     //   mainFormData.append("signature", blob, "signature.png");
+  //     // },
+  //     signature: imageURL,
+  //     logo: uploadedImage.raw,
+  //     stamp: uploadedStamp.raw,
+  //     invoiceDate: invoiceDate,
+  //     dueDate: dueDate,
+  //     fromName: fromName,
+  //     fromEmail: fromEmail,
+  //     fromCompany: fromCompany,
+  //     fromPhone: fromPhone,
+  //     fromAddress: fromAddress,
+  //     fromCountry: fromCountry,
+  //     fromCity: fromCity,
+  //     fromPostalCode: fromPostalCode,
+  //     fromTaxReg: fromTaxReg,
+  //     fromWebsite: fromWebsite,
+  //     toName: toName,
+  //     toEmail: toEmail,
+  //     toCompany: toCompany,
+  //     toPhone: toPhone,
+  //     toAddress: toAddress,
+  //     toCountry: toCountry,
+  //     toCity: toCity,
+  //     toPostalCode: toPostalCode,
+  //     toWebsite: toWebsite,
+  //     // Stringify the items array and append to FormData
+  //     // formData.append("items", JSON.stringify(items));
+  //     // items: items,
+  //     discount: discount,
+  //     tax: gstRate,
+  //     subTotal: subTotal,
+  //     total: total,
+  //     shipping: shipping,
+  //     note: notes,
+  //   };
+
+  //   try {
+  //     const response = await axios.post(
+  //       `${baseUrl}/api/invoice/create`,
+  //       mainFormData,
+  //       {
+  //         headers: {
+  //           "Content-Type": "multipart/form-data", // Important when sending FormData
+  //         },
+  //       }
+  //     );
+  //     if (response.data.code === 201) {
+  //       console.log("Success");
+  //       console.log(uploadedImage);
+  //       console.log(imageURL);
+  //     } else if (response.code === 500) {
+  //       console.log(response);
+  //       console.log(response.errors);
+  //     } else if (response.status === 200) {
+  //       console.log(response.data.errors);
+  //       console.log(response.errors);
+  //     }
+  //   } catch (error) {
+  //     console.log("Errrorrrrr");
+  //     console.log(error.message); // Handle any errors that might come up during the request
+  //   }
+  // };
 
   // Append Method Used Below
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     const mitems = items.map((item) => ({
       title: item.name,
       quantity: parseFloat(item.quantity),
@@ -361,26 +386,6 @@ function MainForm(props) {
     }
   };
 
-  const handleUpdateSubmit = async (e) => {
-    e.preventDefault();
-
-    const response = await axios.put(
-      `${baseUrl}/api/invoice/update/${invoiceId}`
-    );
-    if (response.status === 200) {
-      setNotification("Invoice Updated successfully ");
-
-      console.log("Invoice Updated successfully");
-      // Clear form and data
-    } else {
-      // setLoading(false);
-
-      // setNotification("Invoice Update failed");
-
-      console.error("Error updating Invoice");
-    }
-  };
-
   return (
     <div className="wholeFormBody">
       <div className="mainForm">
@@ -430,29 +435,12 @@ function MainForm(props) {
               items={items}
               onAddNextInvoice={addNextInvoiceHandler}
               uploadedImage={uploadedImage}
-              imageData={uploadedImage}
+              invoiceFields={invoiceFields}
             />
-            {notification && (
-              <div className="updateNotification" role="alert">
-                {notification}
-              </div>
-            )}
 
-            {invoiceId ? (
-              <button className="invoiceTopBtn" onClick={handleUpdateSubmit}>
-                <span>Update</span>
-              </button>
-            ) : (
-              <button className="invoiceTopBtn" onClick={handleSubmit}>
-                <span>Save</span>
-              </button>
-            )}
-
-            {/* <input className="invoiceTopBtn" type="reset" value="Reset" /> */}
-
-            {/* <button className="invoiceTopBtn">
+            <button className="invoiceTopBtn" type="reset">
               <span>Reset</span>
-            </button> */}
+            </button>
           </div>
           <div className="mainFormBody">
             <div
@@ -945,15 +933,13 @@ function MainForm(props) {
               {/* Notes */}
               <div className="Notes">
                 <p className="labelNotes">Add Note ( Optional )</p>
-                <textarea
+                <input
                   type="text"
-                  maxLength="100"
                   className="lael-input"
                   name="note"
-                  placeholder="Notes..."
                   value={note}
                   onChange={(event) => setNotes(event.target.value)}
-                ></textarea>
+                ></input>
               </div>
               <div className="formHeader">
                 <div className="itemHeader">
@@ -999,21 +985,15 @@ function MainForm(props) {
       <div className="sidebarOption">
         <button className="sidebar-btn">
           {/* onClick={handleDownloadClick} */}
-          <span>
-            <img src={downloadIcon} width={15}></img>
-          </span>
+          <span>0</span>
           <span>PDF Download</span>
         </button>
         <button className="sidebar-btn">
-          <span>
-            <img src={mail} width={15}></img>
-          </span>
+          <span>0</span>
           <span>E-mail Invoice</span>
         </button>
         <button className="sidebar-btn">
-          <span>
-            <img src={printIcon} width={15}></img>
-          </span>
+          <span>0</span>
           <span>Print Invoice</span>
         </button>
         {/* <button className="sidebar-btn">
@@ -1069,4 +1049,4 @@ function MainForm(props) {
   );
 }
 
-export default MainForm;
+export default EditForm;
