@@ -24,14 +24,24 @@
 }
 
 .loginBtn {
-  background-color: #fff;
-  color: #111;
-  padding: 0;
+  color: #ffffff;
+  padding: 0 10px;
   border: none;
   cursor: pointer;
+  border-radius: 3px;
+  background: #009bd6;
 }
 .loginBtn:hover {
-  color: #007bff;
+  color: #009bd6;
+  background: #ffffff;
+  border: 1px solid #009bd6;
+}
+
+.loginBtn:active {
+  background-color: #009bd6;
+  color: #ffffff;
+  box-shadow: 3px 3px 6px 6px #75d8ff;
+  transform: translateY(3px);
 }
 
 .title-divider {
@@ -45,13 +55,20 @@
 
 .profileBtn {
   /* padding: 5px; */
-  background-color: #007bff;
-  border: 1px solid #fff;
+  background-color: #009bd6;
+  /* border: 1px solid #fff; */
   color: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   text-decoration: none;
+}
+
+.profileBtn:active {
+  background-color: #009bd6;
+  color: #ffffff;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  transform: translateY(3px);
 }
 
 .headerBar .div-title {

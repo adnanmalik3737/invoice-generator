@@ -69,6 +69,7 @@ function App() {
               {showUserProfile && <UserProfile />}
               <Routes>
                 <Route path="/home"></Route>
+                <Route path="/" element={<MainForm />} />
                 <Route path="/create-invoice" element={<MainForm />}></Route>
                 <Route path="/history" element={<History />}></Route>
                 <Route

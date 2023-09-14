@@ -193,6 +193,7 @@ const History = () => {
                           InvoiceId={currentInvoice.InvoiceId}
                           invoice={currentInvoice}
                           logo={currentInvoice.logo}
+                          symbol={currentInvoice.symbol}
                           stamp={currentInvoice.stamp}
                           signature={currentInvoice.signature}
                           isOpen={isOpen}

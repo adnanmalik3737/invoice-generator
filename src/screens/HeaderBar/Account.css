@@ -37,13 +37,14 @@
   background-color: #fff;
   color: #111;
   padding: 0;
+  border-radius: 50%;
   border: none;
   cursor: pointer;
   float: right;
 }
 
 .accountPopup .LogSignBtn {
-  background-color: #007bff;
+  background-color: #009bd6;
   color: #fff;
   padding: 10px 15px;
   border: none;
@@ -51,6 +52,14 @@
   border-radius: 5px;
   cursor: pointer;
   margin-top: 20px;
+}
+
+.accountPopup .LogSignBtn:active,
+.close:active {
+  background-color: #009bd6;
+  color: #ffffff;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  transform: translateY(3px);
 }
 
 .accountPopup form {

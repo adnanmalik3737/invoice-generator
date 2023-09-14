@@ -175,6 +175,9 @@
 .stampField,
 .signField {
   text-align: center;
+  height: 150px;
+  align-items: center;
+  display: flex;
 }
 
 .previewcontainer {

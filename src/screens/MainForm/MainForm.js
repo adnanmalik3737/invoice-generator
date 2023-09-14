@@ -40,9 +40,13 @@ function MainForm(props) {
   const [selectedColor, setSelectedColor] = useState();
   const baseUrl = process.env.REACT_APP_BASE_URL;
   const { invoiceId } = useParams();
+  const imageFileURL = "http://localhost:3001/";
 
   // For Signature Popup
   const [imageURL, setImageURL] = useState(null);
+  const [fetchedStamp, setFetchedStamp] = useState(null);
+  const [fetchedLogo, setFetchedLogo] = useState(null);
+  const [fetchedSignature, setFetchedSignature] = useState(null);
 
   // const date = new Date();
   // const today = date.toLocaleDateString("en-GB", {
@@ -79,8 +83,8 @@ function MainForm(props) {
         .get(`${baseUrl}/api/invoice/get/${invoiceId}`)
         .then((response) => {
           console.log(response.data.data);
-          setInvoiceDate(response.data.data.invoiceDate);
-          setDueDate(response.data.data.dueDateDate);
+          // setInvoiceDate(response.data.data.invoiceDate);
+          // setDueDate(response.data.data.dueDateDate);
           setFromName(response.data.data.fromName);
           setFromEmail(response.data.data.fromEmail);
           setFromCompany(response.data.data.fromCompany);
@@ -100,12 +104,17 @@ function MainForm(props) {
           setToPhone(response.data.data.toPhone);
           setToPostalCode(response.data.data.toPostalCode);
           setToWebsite(response.data.data.toWebsite);
-          setDiscount(discount);
-          setShipping(shipping);
-          setNotes(note);
-          setUploadedStamp(uploadedImage);
+          setDiscount(response.data.data.discount);
+          setShipping(response.data.data.shipping);
+          setNote(response.data.data.note);
+          setFetchedStamp(response.data.data.stamp);
+          setSymbol(response.data.data.symbol);
+          setFetchedSignature(response.data.data.signature);
+          setFetchedLogo(response.data.data.logo);
 
           const invoiceItem = response.data.data.Items.map((item) => ({
+            id: item.itemId,
+            itemId: item.itemId,
             name: item.title,
             quantity: item.quantity,
             price: item.rate,
@@ -180,7 +189,7 @@ function MainForm(props) {
   const [gst, setGst] = useState(0);
   const [itax, setItax] = useState();
   const [shipping, setShipping] = useState(0);
-  const [note, setNotes] = useState("");
+  const [note, setNote] = useState("");
 
   const addItemHandler = () => {
     const id = uid(6);
@@ -269,7 +278,9 @@ function MainForm(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const mitems = items.map((item) => ({
+      itemId: item.itemId,
       title: item.name,
       quantity: parseFloat(item.quantity),
       rate: parseFloat(item.price),
@@ -324,6 +335,7 @@ function MainForm(props) {
     mainFormData.append("total", total);
     mainFormData.append("shipping", shipping);
     mainFormData.append("note", note);
+    mainFormData.append("symbol", symbol);
 
     for (let pair of mainFormData.entries()) {
       console.log(pair[0] + ": " + pair[1]);
@@ -364,14 +376,80 @@ function MainForm(props) {
   const handleUpdateSubmit = async (e) => {
     e.preventDefault();
 
+    const mitems = items.map((item) => ({
+      title: item.name,
+      quantity: parseFloat(item.quantity),
+      rate: parseFloat(item.price),
+    }));
+    const mainFormData = new FormData();
+
+    // Conditionally append the logo if it exists
+    if (uploadedImage) {
+      mainFormData.append("logo", uploadedImage.raw);
+    }
+
+    // Conditionally append the signature if it exists
+    if (imageURL) {
+      const fetchRes = await fetch(imageURL);
+      const blob = await fetchRes.blob();
+      mainFormData.append("signature", blob, "signature.png");
+    }
+
+    // Conditionally append the stamp if it exists
+    if (uploadedStamp) {
+      mainFormData.append("stamp", uploadedStamp.raw);
+    }
+
+    // Append other fields
+    mainFormData.append("invoiceDate", invoiceDate);
+    mainFormData.append("dueDate", dueDate);
+    mainFormData.append("fromName", fromName);
+    mainFormData.append("fromEmail", fromEmail);
+    mainFormData.append("fromCompany", fromCompany);
+    mainFormData.append("fromPhone", fromPhone);
+    mainFormData.append("fromAddress", fromAddress);
+    mainFormData.append("fromCountry", fromCountry);
+    mainFormData.append("fromCity", fromCity);
+    mainFormData.append("fromPostalCode", fromPostalCode);
+    mainFormData.append("fromTaxReg", fromTaxReg);
+    mainFormData.append("fromWebsite", fromWebsite);
+    mainFormData.append("toName", toName);
+    mainFormData.append("toEmail", toEmail);
+    mainFormData.append("toCompany", toCompany);
+    mainFormData.append("toPhone", toPhone);
+    mainFormData.append("toAddress", toAddress);
+    mainFormData.append("toCountry", toCountry);
+    mainFormData.append("toCity", toCity);
+    mainFormData.append("toPostalCode", toPostalCode);
+    mainFormData.append("toWebsite", toWebsite);
+    // mainFormData.append("items", mitems);
+    mainFormData.append("invoiceItems", JSON.stringify(mitems));
+    console.log(mitems);
+    mainFormData.append("discount", discount);
+    mainFormData.append("tax", gstRate);
+    mainFormData.append("subTotal", subTotal);
+    mainFormData.append("total", total);
+    mainFormData.append("shipping", shipping);
+    mainFormData.append("note", note);
+    mainFormData.append("symbol", symbol);
+
     const response = await axios.put(
-      `${baseUrl}/api/invoice/update/${invoiceId}`
+      `${baseUrl}/api/invoice/update/${invoiceId}`,
+      mainFormData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
     );
     if (response.status === 200) {
-      setNotification("Invoice Updated successfully ");
+      // setNotification("Invoice Updated successfully ");
 
       console.log("Invoice Updated successfully");
       // Clear form and data
+    } else if (response.status === 400) {
+      console.error("Error updating Invoice");
+      console.log(response.errors);
     } else {
       // setLoading(false);
 
@@ -472,20 +550,31 @@ function MainForm(props) {
                     setUploadedImage(imageData);
                   }}
                 />
+                {invoiceId && fetchedLogo ? (
+                  <div className="itemHeader">
+                    <img
+                      src={`${imageFileURL}${fetchedLogo}`}
+                      alt="Stamp"
+                      height={100}
+                      width={100}
+                    />
+                  </div>
+                ) : (
+                  <div className="itemHeader">
+                    <div className="upload">
+                      <div className="uploadLogo">Upload Logo</div>
+                      <div className="textWrapper">
+                        <p className="text">
+                          240 x 240 pixels @ 72 DPI,
+                          <br />
+                          Maximum size of 1MB.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
-              <div className="itemHeader">
-                <div className="upload">
-                  <div className="uploadLogo">Upload Logo</div>
-                  <div className="textWrapper">
-                    <p className="text">
-                      240 x 240 pixels @ 72 DPI,
-                      <br />
-                      Maximum size of 1MB.
-                    </p>
-                  </div>
-                </div>
-              </div>
               <div className="itemHeader h-1">
                 <div
                   className={`editable-text ${isEditable ? "editing" : ""}`}
@@ -952,10 +1041,11 @@ function MainForm(props) {
                   name="note"
                   placeholder="Notes..."
                   value={note}
-                  onChange={(event) => setNotes(event.target.value)}
+                  onChange={(event) => setNote(event.target.value)}
                 ></textarea>
               </div>
               <div className="formHeader">
+                {/* <div className={` ${invoiceId ? "smallUploader" : "itemHeader"}`}> */}
                 <div className="itemHeader">
                   <ImageUploader
                     inputId="stampFile"
@@ -964,20 +1054,32 @@ function MainForm(props) {
                       setUploadedStamp(imageData);
                     }}
                   />
+
+                  {invoiceId && fetchedStamp ? (
+                    <div className="itemHeader">
+                      <img
+                        src={`${imageFileURL}${fetchedStamp}`}
+                        alt="Stamp"
+                        height={100}
+                        width={100}
+                      />
+                    </div>
+                  ) : (
+                    <div className="itemHeader">
+                      <div className="upload">
+                        <div className="uploadLogo">Upload Stamp</div>
+                        <div className="textWrapper">
+                          <p className="text">
+                            240 x 240 pixels @ 72 DPI,
+                            <br />
+                            Maximum size of 1MB.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
-                <div className="formFooter">
-                  <div className="upload">
-                    <div className="uploadLogo">Upload Stamp</div>
-                    <div className="textWrapper">
-                      <p className="text">
-                        120 x 120 pixels @ 72 DPI,
-                        <br />
-                        Maximum size of 1MB.
-                      </p>
-                    </div>
-                  </div>
-                </div>
                 <div className="itemHeader">
                   <div className="signature">
                     <p className="signText">Signature</p>
@@ -987,6 +1089,17 @@ function MainForm(props) {
                     />
                   </div>
                 </div>
+
+                {invoiceId && fetchedSignature && (
+                  <div className="itemHeader">
+                    <img
+                      src={`${imageFileURL}${fetchedSignature}`}
+                      alt="Stamp"
+                      // height={120}
+                      width={100}
+                    />
+                  </div>
+                )}
               </div>
 
               {/* InvoiceForm Ends */}

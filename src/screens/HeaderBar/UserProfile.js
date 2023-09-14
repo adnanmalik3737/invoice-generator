@@ -140,7 +140,9 @@ function UserProfile() {
               )}
             </div>
             <div className="editButtons">
-              <button onClick={handleEditToggle}>Edit</button>
+              <button className="primryBtn" onClick={handleEditToggle}>
+                Edit
+              </button>
             </div>
           </div>
         )}
@@ -202,7 +204,7 @@ function UserProfile() {
               <div className="infoP">{"Change your Password"}</div>
             </div>
             <div className="editButtons">
-              <button onClick={handleSecurityEditToggle}>
+              <button className="primryBtn" onClick={handleSecurityEditToggle}>
                 Update Password
               </button>
             </div>

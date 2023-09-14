@@ -208,6 +208,9 @@ button {
 .navlist svg {
   padding: 10px;
 }
+.navlist img {
+  padding: 10px;
+}
 
 .major-items a:hover,
 .sub-items a:hover {
@@ -261,5 +264,13 @@ button {
     display: flex;
     /* flex-direction: column; */
     width: 100%;
+  }
+  .sidebar {
+    display: none;
+  }
+  .headBody {
+    display: flex;
+    flex-direction: column;
+    width: auto;
   }
 }

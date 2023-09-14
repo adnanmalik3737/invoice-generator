@@ -387,7 +387,7 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
         </div>
       </form>
 
-      {isLogin &&
+      {/* {isLogin &&
       loginResponse &&
       loginResponse.message === "Authentication successful" ? (
         <>
@@ -400,12 +400,8 @@ const Accounts = ({ isOpen, onClose, setIsUserLoggedIn }) => {
               Logout
             </button>
           </div>
-          {/* <UserProfile
-            user={loginResponse.user}
-            fetchUserData={fetchUserData}
-          /> */}
         </>
-      ) : null}
+      ) : null} */}
 
       {/* Reset Form Starts */}
       <form onSubmit={handleResetRequest}>

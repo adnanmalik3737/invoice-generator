@@ -51,7 +51,7 @@ const HeaderBar = ({ toggleSidebar, sidebarVisible, user }) => {
         </div>
       </div>
       <div className="accountsIconText">
-        <div className="title-divider" />
+        {/* <div className="title-divider" /> */}
         {isUserLoggedIn ? (
           // If user is logged in, display user profile button {handleLogout} // onClick={openUserProfile}
           // <Link to={"/user-profile"} className="profileBtn">
@@ -70,7 +70,7 @@ const HeaderBar = ({ toggleSidebar, sidebarVisible, user }) => {
         ) : (
           // If user is not logged in, display login/register button
           <button className="loginBtn" onClick={handleLogin}>
-            Register or Sign in
+            Register / Login
           </button>
         )}
         {isPopupOpen && (

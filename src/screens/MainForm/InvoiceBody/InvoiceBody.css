@@ -8,6 +8,7 @@
   border: 1px none;
   position: relative;
   width: 750px;
+  width: 100%;
   margin-left: 40px;
 }
 .mainFormBody {
@@ -436,6 +437,11 @@
   width: 100px;
 }
 
+.smallUploader {
+  height: 50px !important;
+  width: 50px !important;
+}
+
 @media (max-width: 767px) {
   .wholeFormBody {
     display: flex;
@@ -449,5 +455,13 @@
     flex-direction: column;
     min-height: 600px;
     position: relative;
+  }
+  .mainFormBody {
+    height: auto;
+  }
+  .mainForm {
+    border: 1px none;
+    position: relative;
+    margin-left: 0;
   }
 }
