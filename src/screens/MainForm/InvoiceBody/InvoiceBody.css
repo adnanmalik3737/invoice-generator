@@ -64,7 +64,7 @@
   flex-direction: column;
   justify-content: center;
   margin-left: 30px;
-  position: absolute;
+  /* position: absolute; */
 }
 
 .invoice-body {
@@ -274,11 +274,11 @@
 
 .textAction,
 .inputAction {
-  width: 80px;
+  padding: 0 10px;
 }
 
 .hrLine {
-  width: 659px;
+  width: 90%;
   height: 0.1px;
   background-color: #ababab;
 }
@@ -364,7 +364,6 @@
 }
 
 .Notes {
-  width: 660px;
   padding: 0 40px;
 }
 
@@ -386,9 +385,8 @@
   background: #fff;
 }
 .Notes textarea {
-  width: 620px;
+  width: 90%;
   height: 80px;
-  flex-shrink: 0;
   border-radius: 4px;
   padding: 20px;
   border: 1px solid #9ca3af;
@@ -436,6 +434,9 @@
   white-space: nowrap;
   width: 100px;
 }
+.colorField {
+  display: block;
+}
 
 .smallUploader {
   height: 50px !important;
@@ -453,8 +454,8 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    min-height: 600px;
-    position: relative;
+    /* min-height: 1100px;
+    position: relative; */
   }
   .mainFormBody {
     height: auto;
@@ -463,5 +464,79 @@
     border: 1px none;
     position: relative;
     margin-left: 0;
+  }
+  /* .mainForm form {
+    width: 80%;
+  } */
+
+  .totalFields {
+    width: 80%;
+    margin: 5% 10%;
+  }
+  .textAction,
+  .inputAction {
+    padding: 0 5px;
+  }
+  .colorField {
+    display: none;
+  }
+
+  .itemsTable {
+    padding: 0 3px;
+  }
+  .Notes {
+    padding: 0 10px;
+  }
+  .Notes textarea {
+    width: 75%;
+    margin: 0 5%;
+  }
+
+  .textDesc,
+  .inputDesc {
+    width: auto;
+  }
+  .inputDesc input {
+    width: 100px;
+    padding: 10px;
+  }
+
+  .textRate,
+  .inputRate {
+    width: auto;
+  }
+  .inputRate input {
+    width: 40px;
+    padding: 10px;
+  }
+  .inputQty input {
+    width: 20px;
+    padding: 10px;
+  }
+  .textQty,
+  .inputQty {
+    width: auto;
+  }
+  .textAmount,
+  .inputAmount {
+    width: auto;
+  }
+  .inputAmount {
+    width: 30px;
+    padding: 10px;
+  }
+
+  .invoiceTop {
+    padding: 10px 15px;
+  }
+  .tableArea {
+    width: auto;
+    text-align: left;
+  }
+  .hrLine {
+    width: 70%;
+  }
+  .fromBody {
+    margin-left: 10px;
   }
 }

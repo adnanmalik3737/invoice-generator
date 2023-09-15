@@ -34,7 +34,6 @@
 .loginBtn:hover {
   color: #009bd6;
   background: #ffffff;
-  border: 1px solid #009bd6;
 }
 
 .loginBtn:active {
@@ -102,6 +101,13 @@
   width: fit-content;
 }
 
+.humberger {
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
 .headerLogo {
   padding: 10px;
   text-align: center;
@@ -132,7 +138,7 @@
 }
 
 .headerBar .accountsIconText {
-  width: 15%;
+  width: 12%;
   padding: 0 10px;
   display: flex;
 }
@@ -215,4 +221,51 @@
   padding: 7px 13px;
   border-radius: 4px;
   background: #009bd6;
+}
+
+.desktopDevice {
+  display: block;
+}
+.mobileDevice {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .headerLogo {
+    padding: 5px 1px;
+  }
+
+  .title-divider {
+    margin: 5px 5px;
+  }
+
+  .headerBar .div-title {
+    padding: 5px;
+  }
+
+  .headerBar .heading-free {
+    font-size: 12px;
+  }
+  .logo_icon_bar {
+    height: 40px;
+    display: flex;
+    width: auto;
+  }
+  .desktopDevice {
+    display: none;
+  }
+  .mobileDevice {
+    display: block;
+  }
+
+  .loginBtn {
+    color: #ffffff;
+    padding: 10px 0 5px 0;
+    cursor: pointer;
+    background: none;
+  }
+  .headerBar .accountsIconText {
+    width: auto;
+    padding: 0 10px;
+  }
 }

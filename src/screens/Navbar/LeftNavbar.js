@@ -5,7 +5,9 @@ import logout from "../../img/logout.svg";
 import billingIcon from "../../img/billingIcon.svg";
 import proIcon from "../../img/proIcon.svg";
 import companyLogo from "../../img/companyLogo.svg";
+import whiteLogo from "../../img/whiteLogo.svg";
 import axios from "axios";
+import closePopup from "../../img/closePopup.svg";
 
 function Sidebar({ isVisible }) {
   const baseUrl = process.env.REACT_APP_BASE_URL;
@@ -28,12 +30,33 @@ function Sidebar({ isVisible }) {
       console.error("Logout error:", error);
     }
   };
+
+  const toggleSidebar = () => {
+    const sidebar = document.querySelector(".sidebar");
+    if (sidebar) {
+      // sidebar.classList.toggle("hidesidebar");
+      sidebar.classList.remove("show");
+    }
+  };
   return (
     <div className="sidebar" style={{ display: isVisible ? "none" : "block" }}>
+      <button className="close" onClick={toggleSidebar}>
+        <img src={closePopup} width="63" height="64" />
+      </button>
+      <div className="clearflex"></div>
       <div className="navBarItems">
         <div className="appLogo">
           <img src={companyLogo}></img>
           <p>Company Logo Here </p>
+        </div>
+        <div className="navlist">
+          <span>
+            <img src={whiteLogo} width={19}></img>
+          </span>
+          {/* <NavItem title="Home" subItems={["Home"]} /> */}
+          <Link to={"/"} className="major-items" onClick={toggleSidebar}>
+            Dashboard
+          </Link>
         </div>
         <div className="navlist">
           <span>
@@ -44,12 +67,7 @@ function Sidebar({ isVisible }) {
             subItems={["Create Invoice", "History", "User Profile"]}
           />
         </div>
-        <div className="navlist">
-          <span>
-            <img src={companyLogo} width={24}></img>
-          </span>
-          <NavItem title="Home" subItems={["Home"]} />
-        </div>
+
         <div className="navlist">
           <span>
             <img src={proIcon}></img>
@@ -80,6 +98,13 @@ function NavItem({ title, subItems }) {
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+  const toggleSidebar = () => {
+    const sidebar = document.querySelector(".sidebar");
+    if (sidebar) {
+      // sidebar.classList.toggle("hidesidebar");
+      sidebar.classList.remove("show");
+    }
+  };
 
   return (
     <div className="nav-item">
@@ -93,6 +118,7 @@ function NavItem({ title, subItems }) {
               key={index}
               to={`/${item.toLowerCase().replace(" ", "-")}`}
               className="sub-items"
+              onClick={toggleSidebar}
             >
               {item}
             </Link>

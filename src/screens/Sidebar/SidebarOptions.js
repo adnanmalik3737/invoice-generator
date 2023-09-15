@@ -47,15 +47,15 @@ function SidebarOptions(props) {
       <button className="sidebar-btn">
         {/* onClick={handleDownloadClick} */}
         <span>0</span>
-        <span>PDF Download</span>
+        <span className="text">PDF Download</span>
       </button>
       <button className="sidebar-btn">
         <span>0</span>
-        <span>E-mail Invoice</span>
+        <span className="text">E-mail Invoice</span>
       </button>
       <button className="sidebar-btn">
         <span>0</span>
-        <span>Print Invoice</span>
+        <span className="text">Print Invoice</span>
       </button>
       {/* <button className="sidebar-btn">
         <span>

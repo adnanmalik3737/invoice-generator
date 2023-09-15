@@ -889,7 +889,7 @@ function MainForm(props) {
               </div>
               <div className="totalFields">
                 <div className="extraOptions">
-                  <label>Invoice summary</label>
+                  <label>Invoice Currency</label>
                   <select
                     id="dropdown"
                     aria-label="Change Currency"
@@ -897,14 +897,14 @@ function MainForm(props) {
                     onChange={handleCurrencyChange}
                     value={symbol}
                   >
-                    <option value="$">USD</option>
-                    <option value="£">GBP</option>
-                    <option value="¥">JPY</option>
-                    <option value="$">CAD</option>
+                    <option value="$">$</option>
+                    <option value="£">£</option>
+                    <option value="¥">¥</option>
+                    {/* <option value="$">CAD</option>
                     <option value="$">AUD</option>
                     <option value="$">SGD</option>
-                    <option value="¥">CNY</option>
-                    <option value="₿">BTC</option>
+                    <option value="¥">CNY</option> */}
+                    <option value="₿">₿</option>
                   </select>
                 </div>
 
@@ -1115,19 +1115,19 @@ function MainForm(props) {
           <span>
             <img src={downloadIcon} width={15}></img>
           </span>
-          <span>PDF Download</span>
+          <span className="text">PDF Download</span>
         </button>
         <button className="sidebar-btn">
           <span>
             <img src={mail} width={15}></img>
           </span>
-          <span>E-mail Invoice</span>
+          <span className="text">E-mail Invoice</span>
         </button>
         <button className="sidebar-btn">
           <span>
             <img src={printIcon} width={15}></img>
           </span>
-          <span>Print Invoice</span>
+          <span className="text">Print Invoice</span>
         </button>
         {/* <button className="sidebar-btn">
         <span>

@@ -103,4 +103,23 @@ span svg path:hover {
   .color-picker-container {
     display: none;
   }
+  .sidebarOption {
+    width: auto;
+    flex-direction: initial;
+    padding-top: 0;
+    margin: 0;
+  }
+  .sidebar-btn .text {
+    display: none;
+  }
+
+  .sidebar-btn span {
+    padding: 10px;
+    margin-left: 0;
+  }
+  .sidebar-btn {
+    width: auto;
+    height: 50px;
+    margin: auto;
+  }
 }

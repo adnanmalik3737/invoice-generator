@@ -2,13 +2,11 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Sidebar from "./screens/Navbar/LeftNavbar";
-import SignaturePopup from "./screens/MainForm/SignaturePopup";
 import MainForm from "./screens/MainForm/MainForm.js";
 import InvoiceHeader from "./screens/MainForm/invoiceHeader/invoiceHeader";
 import ImageUploader from "./screens/MainForm/FileUpload";
 import HeaderBar from "./screens/HeaderBar/Header.js";
 import ResetPassword from "./screens/HeaderBar/ResetPassword.js";
-import SidebarOptions from "./screens/Sidebar/SidebarOptions";
 import UserProfile from "./screens/HeaderBar/UserProfile";
 import History from "./screens/History/UserHistory";
 
@@ -38,9 +36,21 @@ function App() {
     setIsPopupOpen(false);
   };
 
-  const [sidebarVisible, setSidebarVisible] = useState(false);
+  // const [sidebarVisible, setSidebarVisible] = useState(false);
+  // const [sidebarVisible, setSidebarVisible] = useState(!isMobile);
+  // const isMobile = window.innerWidth <= 768;
+  const isMobile = window.innerWidth <= 768;
+  const [sidebarVisible, setSidebarVisible] = useState(!isMobile);
+
+  // const toggleSidebar = () => {
+  //   setSidebarVisible((prevVisibility) => !prevVisibility);
+  // };
 
   const toggleSidebar = () => {
+    const sidebar = document.querySelector(".sidebar");
+    if (sidebar) {
+      sidebar.classList.toggle("show");
+    }
     setSidebarVisible((prevVisibility) => !prevVisibility);
   };
 

@@ -4,6 +4,7 @@ import Accounts from "./Accounts";
 import { Link, useNavigate } from "react-router-dom";
 import UserProfile from "./UserProfile";
 import logoIcon from "..//../img/logoIcon.svg";
+import userA from "..//../img/userA.svg";
 
 const HeaderBar = ({ toggleSidebar, sidebarVisible, user }) => {
   const [isPopupOpen, setPopupOpen] = useState(false);
@@ -24,7 +25,7 @@ const HeaderBar = ({ toggleSidebar, sidebarVisible, user }) => {
   return (
     <div className="headerBar">
       <div className="logo_icon_bar">
-        <div className="headerLogo">
+        <div className="humberger">
           <svg
             onClick={toggleSidebar}
             xmlns="http://www.w3.org/2000/svg"
@@ -39,11 +40,11 @@ const HeaderBar = ({ toggleSidebar, sidebarVisible, user }) => {
           </svg>
         </div>
         {/* // Logo copied from Sidebar component */}
-        {sidebarVisible && (
-          <div className="headerLogo">
-            <img src={logoIcon} width="52" height="31" />
-          </div>
-        )}
+        {/* {!sidebarVisible && ()} */}
+        <div className="headerLogo">
+          <img src={logoIcon} width="52" height="31" />
+        </div>
+
         <div className="title-divider" />
         <div className="div-title">
           <div className="heading-free">Free Invoice Generator</div>
@@ -70,7 +71,10 @@ const HeaderBar = ({ toggleSidebar, sidebarVisible, user }) => {
         ) : (
           // If user is not logged in, display login/register button
           <button className="loginBtn" onClick={handleLogin}>
-            Register / Login
+            <span className="desktopDevice">Register / Login</span>
+            <span className="mobileDevice">
+              <img src={userA} width={30}></img>
+            </span>
           </button>
         )}
         {isPopupOpen && (

@@ -118,9 +118,9 @@
 
 .editable-text {
   border: 1px solid transparent;
-  padding: 5px;
+  padding: 20px;
   cursor: grab;
-  width: 185px;
+  width: auto;
 }
 
 .editable-text.editing {
@@ -203,5 +203,6 @@
 @media (max-width: 767px) {
   .formHeader {
     padding: 0;
+    flex-direction: column-reverse;
   }
 }
