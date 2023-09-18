@@ -1137,14 +1137,12 @@ function MainForm(props) {
       </div>
 
       <div className="sidebarOption">
-        <button className="sidebar-btn">
+        <button className="sidebar-btn" onClick={openModalAndSave}>
           {/* onClick={handleDownloadClick} */}
           <span>
             <img src={downloadIcon} width={15}></img>
           </span>
-          <span className="text" onClick={openModalAndSave}>
-            PDF Download
-          </span>
+          <span className="text">PDF Download</span>
         </button>
         <button className="sidebar-btn">
           <span>
@@ -1152,13 +1150,11 @@ function MainForm(props) {
           </span>
           <span className="text">E-mail Invoice</span>
         </button>
-        <button className="sidebar-btn">
+        <button className="sidebar-btn" onClick={openModalAndPrint}>
           <span>
             <img src={printIcon} width={15}></img>
           </span>
-          <span className="text" onClick={openModalAndPrint}>
-            Print Invoice
-          </span>
+          <span className="text">Print Invoice</span>
         </button>
         {/* <InvoiceModel /> */}
 
