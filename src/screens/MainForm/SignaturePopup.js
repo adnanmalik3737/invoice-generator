@@ -41,6 +41,7 @@ function SignaturePopup({ imageURL, setImageURL }) {
 
       <Popup
         modal
+        className="signPopup"
         trigger={
           <button
             type="button"
@@ -96,7 +97,7 @@ function SignaturePopup({ imageURL, setImageURL }) {
             />
 
             <div className="signatureBtns">
-              <button className="signatureBtn uploadsignBtn">
+              {/* <button className="signatureBtn uploadsignBtn">
                 <span className="uploadSignImg">
                   <span className="uploadIcon">
                     <svg
@@ -122,7 +123,7 @@ function SignaturePopup({ imageURL, setImageURL }) {
                   </span>
                   <span className="uploadText">Upload</span>
                 </span>
-              </button>
+              </button> */}
 
               {/* <div className="itemHeader">
                 <ImageUploader
@@ -133,7 +134,7 @@ function SignaturePopup({ imageURL, setImageURL }) {
               </div> */}
 
               <button className="signatureBtn clearBtn" onClick={clear}>
-                <span className="uploadSignImg">
+                {/* <span className="uploadSignImg">
                   <span className="uploadIcon">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -157,14 +158,15 @@ function SignaturePopup({ imageURL, setImageURL }) {
                     </svg>
                   </span>
                   <span className="uploadText">Clear</span>
-                </span>
+                </span> */}
+                Clear
               </button>
               <button
                 className="signatureBtn saveBtn"
                 onClick={() => save(close)}
               >
-                <span className="uploadSignImg">
-                  <span className="uploadIcon">
+                {/* <span className="uploadSignImg">
+                   <span className="uploadIcon">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="25"
@@ -187,7 +189,8 @@ function SignaturePopup({ imageURL, setImageURL }) {
                     </svg>
                   </span>
                   <span className="uploadText">Save</span>
-                </span>
+                </span> */}
+                Save
               </button>
             </div>
           </div>

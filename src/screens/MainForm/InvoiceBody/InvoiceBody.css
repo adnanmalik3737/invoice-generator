@@ -190,7 +190,7 @@
 
 .totalField {
   width: 110px;
-  padding: 10px 20px;
+  padding: 10px 20px 10px 0;
   display: inline-block;
 }
 
@@ -228,7 +228,8 @@
 .totalFieldContainer {
   display: flex;
   /* margin-right: 40px; */
-  width: 300px;
+  /* width: 300px; */
+  justify-content: space-between;
 }
 .totalSymbols {
   width: 10px;
@@ -485,11 +486,11 @@
     padding: 0 3px;
   }
   .Notes {
-    padding: 0 10px;
+    padding: 0 20px;
   }
   .Notes textarea {
-    width: 75%;
-    margin: 0 5%;
+    width: 80%;
+    /* margin: 0 5%; */
   }
 
   .textDesc,
@@ -534,7 +535,7 @@
     text-align: left;
   }
   .hrLine {
-    width: 70%;
+    width: 90%;
   }
   .fromBody {
     margin-left: 10px;

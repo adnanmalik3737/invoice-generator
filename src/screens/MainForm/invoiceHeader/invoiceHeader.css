@@ -105,6 +105,10 @@
   position: relative;
   width: fit-content;
   text-align: left;
+  align-items: center;
+}
+.itemHeader .itemHeader {
+  padding: 10px;
 }
 
 .h-1 {
@@ -204,5 +208,15 @@
   .formHeader {
     padding: 0;
     flex-direction: column-reverse;
+  }
+  .itemHeader .logo {
+    max-width: 120px;
+    padding: 10px 5px 5px 5px;
+    width: 100px;
+    height: 70px;
+    text-align: center;
+  }
+  .formHeaderB {
+    padding: 0 5px;
   }
 }

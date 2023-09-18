@@ -268,10 +268,24 @@ function MainForm(props) {
     setSymbol(event.target.value);
   };
 
+  const [shouldPrintPDF, setShouldPrintPDF] = useState(false); // Flag to determine if PDF should be printed
+  const [shouldSavePDF, setShouldSavePDF] = useState(false);
   const reviewInvoiceHandler = (e) => {
     e.preventDefault();
     setIsOpen(true);
+    setShouldPrintPDF(false); // Reset the flag when opening the modal via reviewInvoiceHandler
+    setShouldSavePDF(false);
     // handleSubmit();
+  };
+
+  const openModalAndPrint = () => {
+    setIsOpen(true);
+    setShouldPrintPDF(true);
+  };
+
+  const openModalAndSave = () => {
+    setIsOpen(true); // Open the InvoiceModel modal
+    setShouldSavePDF(true); // Set the flag to true when opening via Print button
   };
 
   // Append Method Used Below
@@ -354,8 +368,8 @@ function MainForm(props) {
       if (response.data.code === 201) {
         console.log("Success");
         console.log(mitems);
-        console.log(uploadedImage);
-        console.log(imageURL);
+        // console.log(uploadedImage);
+        // console.log(imageURL);
       } else if (response.data.code === 500) {
         console.log(response);
         console.log(response.errors); // or whatever the error message field is named
@@ -508,7 +522,8 @@ function MainForm(props) {
               items={items}
               onAddNextInvoice={addNextInvoiceHandler}
               uploadedImage={uploadedImage}
-              imageData={uploadedImage}
+              uploadedStamp={uploadedStamp}
+              imageURL={imageURL}
             />
             {notification && (
               <div className="updateNotification" role="alert">
@@ -639,6 +654,7 @@ function MainForm(props) {
                       className=""
                       placeholder="Business Name"
                       value={fromName}
+                      required
                       onChange={(e) => setFromName(e.target.value)}
                     />
                   </div>
@@ -650,6 +666,7 @@ function MainForm(props) {
                       className=""
                       placeholder="name@business.com"
                       value={fromEmail}
+                      required
                       onChange={(e) => setFromEmail(e.target.value)}
                     />
                   </div>
@@ -670,6 +687,7 @@ function MainForm(props) {
                       className=""
                       placeholder="(123) 456 789"
                       value={fromPhone}
+                      required
                       onChange={(e) => setFromPhone(e.target.value)}
                     />
                   </div>
@@ -742,6 +760,7 @@ function MainForm(props) {
                       className=""
                       placeholder="Business Name"
                       value={toName}
+                      required
                       onChange={(e) => setToName(e.target.value)}
                     />
                   </div>
@@ -753,6 +772,7 @@ function MainForm(props) {
                       className=""
                       placeholder="name@business.com"
                       value={toEmail}
+                      required
                       onChange={(e) => setToEmail(e.target.value)}
                     />
                   </div>
@@ -869,23 +889,30 @@ function MainForm(props) {
                     ))}
                   </tbody>
                 </table>
-                <button className="" type="button" onClick={addItemHandler}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="15"
-                    viewBox="0 0 16 15"
-                    fill="none"
+                <div className="tableArea" style={{ margin: 10 }}>
+                  <button
+                    className="invoiceDeleteIcon"
+                    type="button"
+                    onClick={addItemHandler}
+                    style={{ background: "#009bd6" }}
                   >
-                    <path
-                      d="M7.82422 1.31738V7.31738M7.82422 7.31738V13.3174M7.82422 7.31738H13.8242M7.82422 7.31738H1.82422"
-                      stroke="white"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="15"
+                      viewBox="0 0 16 15"
+                      fill="none"
+                    >
+                      <path
+                        d="M7.82422 1.31738V7.31738M7.82422 7.31738V13.3174M7.82422 7.31738H13.8242M7.82422 7.31738H1.82422"
+                        stroke="white"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
               </div>
               <div className="totalFields">
                 <div className="extraOptions">
@@ -1115,7 +1142,9 @@ function MainForm(props) {
           <span>
             <img src={downloadIcon} width={15}></img>
           </span>
-          <span className="text">PDF Download</span>
+          <span className="text" onClick={openModalAndSave}>
+            PDF Download
+          </span>
         </button>
         <button className="sidebar-btn">
           <span>
@@ -1127,8 +1156,57 @@ function MainForm(props) {
           <span>
             <img src={printIcon} width={15}></img>
           </span>
-          <span className="text">Print Invoice</span>
+          <span className="text" onClick={openModalAndPrint}>
+            Print Invoice
+          </span>
         </button>
+        {/* <InvoiceModel /> */}
+
+        <InvoiceModel
+          isOpen={isOpen}
+          shouldPrintPDF={shouldPrintPDF}
+          shouldSavePDF={shouldSavePDF}
+          setIsOpen={setIsOpen}
+          invoiceInfo={{
+            invoiceNumber,
+            invoiceDate,
+            fromName,
+            fromEmail,
+            fromCompany,
+            fromPhone,
+            fromAddress,
+            fromCountry,
+            fromCity,
+            fromPostalCode,
+            fromTaxReg,
+            fromWebsite,
+            toName,
+            toEmail,
+            toCompany,
+            toPhone,
+            toAddress,
+            toCountry,
+            toCity,
+            toPostalCode,
+            toWebsite,
+            dueDate,
+            subTotal,
+            gst,
+            gstRate,
+            discount,
+            discountRate,
+            symbol,
+            shipping,
+            total,
+            note: note,
+            selectedColor,
+          }}
+          items={items}
+          onAddNextInvoice={addNextInvoiceHandler}
+          uploadedImage={uploadedImage}
+          uploadedStamp={uploadedStamp}
+          imageURL={imageURL}
+        />
         {/* <button className="sidebar-btn">
         <span>
           0

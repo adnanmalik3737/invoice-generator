@@ -1,6 +1,6 @@
 // import React, { Fragment } from "react";
 // import React, { useState } from "react";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import "./Model.css";
 import { Dialog, Transition } from "@headlessui/react";
 import { toPng } from "html-to-image";
@@ -19,11 +19,15 @@ const today = date.toLocaleDateString("en-GB", {
 const InvoiceModel = ({
   isOpen,
   setIsOpen,
+  shouldPrintPDF,
+  shouldSavePDF,
   invoiceInfo: invoiceInfoProp,
   items,
   Items,
   onAddNextInvoice,
   uploadedImage,
+  uploadedStamp,
+  imageURL,
   selectedColor,
   invoice: invoiceProp = {},
   InvoiceId,
@@ -40,6 +44,42 @@ const InvoiceModel = ({
   function closeModal() {
     setIsOpen(false);
   }
+
+  useEffect(() => {
+    if (isOpen && shouldPrintPDF) {
+      console.log("Open Popup function called");
+      const delay = 1;
+      const timerId = setTimeout(() => {
+        console.log("Print function called");
+        // SaveAsPDFHandler();
+        PrintPDFHandler();
+        setIsOpen(false); // Close the modal
+      }, delay);
+
+      return () => {
+        // Clear the timeout if the component unmounts before the delay
+        clearTimeout(timerId);
+      };
+    }
+  }, [isOpen, setIsOpen, shouldPrintPDF]);
+
+  useEffect(() => {
+    if (isOpen && shouldSavePDF) {
+      console.log("Open Popup function called");
+      const delay = 500;
+      const timerId = setTimeout(() => {
+        console.log("Print function called");
+        SaveAsPDFHandler();
+        // PrintPDFHandler();
+        setIsOpen(false); // Close the modal
+      }, delay);
+
+      return () => {
+        // Clear the timeout if the component unmounts before the delay
+        clearTimeout(timerId);
+      };
+    }
+  }, [isOpen, setIsOpen, shouldSavePDF]);
 
   // const fieldItems = [];
 
@@ -128,14 +168,14 @@ const InvoiceModel = ({
     toPng(dom)
       .then((dataUrl) => {
         const img = new Image();
-        img.crossOrigin = "annoymous";
+        img.crossOrigin = "anonymous";
         img.src = dataUrl;
         img.onload = () => {
           // Initialize the PDF.
           const pdf = new jsPDF({
             orientation: "portrait",
             unit: "in",
-            format: [8.3, 11.7],
+            format: [5.5, 8.5],
           });
 
           // Define reused data
@@ -177,40 +217,115 @@ const InvoiceModel = ({
             pdf.addImage(imgData, imageType, 0, 0, pdfWidth, pageHeight);
           }
 
-          // Convert the PDF to a blob.
-          const blob = pdf.output("blob");
+          // Create a Blob from the PDF data
+          const pdfBlob = pdf.output("blob");
 
-          // Create an object URL for the blob.
-          const url = URL.createObjectURL(blob);
+          // Create a URL for the Blob
+          const pdfUrl = URL.createObjectURL(pdfBlob);
 
-          // Open the PDF in a new window for printing.
-          const printWindow = window.open(url, "_blank");
-          if (printWindow) {
-            printWindow.onload = () => {
-              // Trigger the print dialog.
-              printWindow.print();
+          // Open the PDF in a new window/tab for printing
+          const newWindow = window.open(pdfUrl, "_blank");
 
-              // Listen for the afterprint event to close the window after printing.
-              window.addEventListener("afterprint", () => {
-                printWindow.close();
-                // Release the object URL.
-                URL.revokeObjectURL(url);
-              });
-
-              // Delay before closing the window (e.g., 5 seconds).
-              // setTimeout(() => {
-              //   printWindow.close();
-              // }, 5000); // Adjust the delay time as needed.
-            };
-          } else {
-            console.error("Could not open print window.");
-          }
+          // Print the PDF in the new window/tab
+          newWindow.onload = () => {
+            newWindow.print();
+          };
         };
       })
       .catch((error) => {
         console.error("Oops, something went wrong!", error);
       });
   };
+
+  // const PrintPDFHandler = () => {
+  //   const dom = document.getElementById("print");
+  //   toPng(dom)
+  //     .then((dataUrl) => {
+  //       const img = new Image();
+  //       img.crossOrigin = "annoymous";
+  //       img.src = dataUrl;
+  //       img.onload = () => {
+  //         // Initialize the PDF.
+  //         const pdf = new jsPDF({
+  //           orientation: "portrait",
+  //           unit: "in",
+  //           format: [8.3, 11.7],
+  //         });
+
+  //         // Define reused data
+  //         const imgProps = pdf.getImageProperties(img);
+  //         const imageType = imgProps.fileType;
+  //         const pdfWidth = pdf.internal.pageSize.getWidth();
+
+  //         // Calculate the number of pages.
+  //         const pxFullHeight = imgProps.height;
+  //         const pxPageHeight = Math.floor((imgProps.width * 8.5) / 5.5);
+  //         const nPages = Math.ceil(pxFullHeight / pxPageHeight);
+
+  //         // Define pageHeight separately so it can be trimmed on the final page.
+  //         let pageHeight = pdf.internal.pageSize.getHeight();
+
+  //         // Create a one-page canvas to split up the full image.
+  //         const pageCanvas = document.createElement("canvas");
+  //         const pageCtx = pageCanvas.getContext("2d");
+  //         pageCanvas.width = imgProps.width;
+  //         pageCanvas.height = pxPageHeight;
+
+  //         for (let page = 0; page < nPages; page++) {
+  //           // Trim the final page to reduce file size.
+  //           if (page === nPages - 1 && pxFullHeight % pxPageHeight !== 0) {
+  //             pageCanvas.height = pxFullHeight % pxPageHeight;
+  //             pageHeight = (pageCanvas.height * pdfWidth) / pageCanvas.width;
+  //           }
+  //           // Display the page.
+  //           const w = pageCanvas.width;
+  //           const h = pageCanvas.height;
+  //           pageCtx.fillStyle = "white";
+  //           pageCtx.fillRect(0, 0, w, h);
+  //           pageCtx.drawImage(img, 0, page * pxPageHeight, w, h, 0, 0, w, h);
+
+  //           // Add the page to the PDF.
+  //           if (page) pdf.addPage();
+
+  //           const imgData = pageCanvas.toDataURL(`image/${imageType}`, 1);
+  //           pdf.addImage(imgData, imageType, 0, 0, pdfWidth, pageHeight);
+  //         }
+
+  //         // Convert the PDF to a blob.
+  //         const blob = pdf.output("blob");
+
+  //         // Create an object URL for the blob.
+  //         const url = URL.createObjectURL(blob);
+
+  //         // Open the PDF in a new window for printing.
+  //         const printWindow = window.open(url, "_blank");
+  //         if (printWindow) {
+  //           console.log("helloo");
+
+  //           printWindow.onload = () => {
+  //             // Trigger the print dialog.
+  //             printWindow.print();
+
+  //             // Listen for the afterprint event to close the window after printing.
+  //             window.addEventListener("afterprint", () => {
+  //               printWindow.close();
+  //               // Release the object URL.
+  //               URL.revokeObjectURL(url);
+  //             });
+
+  //             // setTimeout(() => {
+  //             //   printWindow.close();
+  //             // }, 5000); // Adjust the delay time as needed.
+  //           };
+  //         } else {
+  //           console.error("Could not open print window.");
+  //         }
+  //       };
+  //     })
+  //     .catch((error) => {
+  //       console.error("Oops, something went wrong!", error);
+  //     });
+  // };
 
   return (
     SaveAsPDFHandler,
@@ -262,9 +377,14 @@ const InvoiceModel = ({
                   <div className="previewHeader">
                     <div className="PreviewHeaderItem">
                       {uploadedImage && (
+                        // <img
+                        //   src={`${imageFileURL}${uploadedImage}`}
+                        //   alt="logo"
+                        // />
                         <img
-                          src={`${imageFileURL}${uploadedImage}`}
-                          alt="logo"
+                          src={uploadedImage.preview}
+                          alt="Uploaded Image Preview"
+                          width={120}
                         />
                       )}
                       {logo && (
@@ -540,17 +660,28 @@ const InvoiceModel = ({
                   <div className="clearflex" />
                   <div className="stampSignField">
                     <div className="stampField">
+                      {uploadedStamp && (
+                        <img
+                          src={uploadedStamp.preview}
+                          alt="Stamp"
+                          height={100}
+                          width={100}
+                        />
+                      )}
                       {stamp && (
                         <img
                           src={`${imageFileURL}${stamp.replace(/\\/g, "/")}`}
                           alt="Stamp"
-                          height={120}
-                          width={120}
+                          height={100}
+                          width={100}
                         />
                       )}
                       <p>Stamp</p>
                     </div>
                     <div className="signField">
+                      {imageURL && (
+                        <img src={imageURL} alt="Signature" width={100} />
+                      )}
                       {signature && (
                         <img
                           src={`${imageFileURL}${signature.replace(

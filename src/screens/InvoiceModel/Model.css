@@ -6,6 +6,7 @@
   bottom: 0px;
   left: 0px;
   position: fixed;
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .innerModel {
@@ -165,6 +166,7 @@
   display: flex;
   padding: 5px 20px 0 5px;
   justify-content: space-between;
+  align-items: center;
 }
 .stampSignField {
   display: flex;
@@ -178,6 +180,8 @@
   height: 150px;
   align-items: center;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .previewcontainer {
