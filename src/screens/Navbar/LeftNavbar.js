@@ -8,9 +8,11 @@ import companyLogo from "../../img/companyLogo.svg";
 import whiteLogo from "../../img/whiteLogo.svg";
 import axios from "axios";
 import closePopup from "../../img/closePopup.svg";
-
+import { useEffect, useState } from "react";
 function Sidebar({ isVisible }) {
   const baseUrl = process.env.REACT_APP_BASE_URL;
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+
   // Logout Function
   const handleLogout = async () => {
     try {
@@ -38,6 +40,12 @@ function Sidebar({ isVisible }) {
       sidebar.classList.remove("show");
     }
   };
+
+  useEffect(() => {
+    const isUserLoggedIn = localStorage.getItem("isUserLoggedIn");
+    setIsUserLoggedIn(isUserLoggedIn);
+  }, []);
+
   return (
     <div className="sidebar" style={{ display: isVisible ? "none" : "block" }}>
       <button className="close" onClick={toggleSidebar}>
@@ -62,10 +70,14 @@ function Sidebar({ isVisible }) {
           <span>
             <img src={billingIcon}></img>
           </span>
-          <NavItem
-            title="Billing"
-            subItems={["Create Invoice", "History", "User Profile"]}
-          />
+          {isUserLoggedIn ? (
+            <NavItem
+              title="Billing"
+              subItems={["Create Invoice", "History", "User Profile"]}
+            />
+          ) : (
+            <NavItem title="Billing" subItems={["Create Invoice"]} />
+          )}
         </div>
 
         <div className="navlist">

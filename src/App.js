@@ -19,11 +19,8 @@ function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem("isUserLoggedIn");
-    // console.log(isLoggedIn);
-    if (isLoggedIn === "true") {
-      setIsUserLoggedIn(true);
-    }
+    const isUserLoggedIn = localStorage.getItem("isUserLoggedIn");
+    setIsUserLoggedIn(isUserLoggedIn);
   }, []);
 
   const [showUserProfile, setShowUserProfile] = useState(false);
@@ -76,12 +73,16 @@ function App() {
             >
             </div> */}
             <div className="navComponents">
-              {showUserProfile && <UserProfile />}
               <Routes>
                 <Route path="/home"></Route>
                 <Route path="/" element={<MainForm />} />
                 <Route path="/create-invoice" element={<MainForm />}></Route>
-                <Route path="/history" element={<History />}></Route>
+                {isUserLoggedIn && (
+                  <Route path="/history" element={<History />}></Route>
+                )}
+                {isUserLoggedIn && (
+                  <Route path="/user-profile" element={<UserProfile />}></Route>
+                )}
                 <Route
                   path="/edit-invoice/:invoiceId"
                   element={<MainForm />}
@@ -107,9 +108,6 @@ function App() {
                   path="/resetpassword"
                   element={<ResetPassword />}
                 ></Route>
-
-                {showUserProfile && <></>}
-                <Route path="/user-profile" element={<UserProfile />}></Route>
               </Routes>
               {/* <div className="sidebarOptions">
                 <SidebarOptions

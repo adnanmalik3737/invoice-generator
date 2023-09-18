@@ -93,124 +93,135 @@ function UserProfile() {
 
   return (
     <div className="profilePage">
-      <h2>Profile</h2>
-      <div className="userProfile">
-        {isEditMode ? (
-          <form onSubmit={handleUpdateSubmit}>
-            <div className="formFields">
-              <label>Full Name</label>
-              <input
-                type="text"
-                value={editedName}
-                onChange={(e) => setEditedName(e.target.value)}
-                placeholder="Name"
-              />
-              <label>Email Address</label>
-              <input
-                type="email"
-                value={editedEmail}
-                onChange={(e) => setEditedEmail(e.target.value)}
-                placeholder="Email"
-              />
-            </div>
-            <div className="formBtns">
-              <button
-                className="secondaryBtn"
-                type="button"
-                onClick={handleEditToggle}
-              >
-                Cancel
-              </button>
-              <button className="primryBtn" type="submit">
-                Save
-              </button>
-            </div>
-          </form>
-        ) : (
-          <div className="profileHeader">
-            <div className="profile-picture">
-              <div>{"AF"}</div>
-            </div>
-            <div className="profileInfo">
-              {fetechedData && fetechedData.data && (
-                <>
-                  <div className="infoH">{fetechedData.data.name}</div>
-                  <div className="infoP">{fetechedData.data.email}</div>
-                </>
-              )}
-            </div>
-            <div className="editButtons">
-              <button className="primryBtn" onClick={handleEditToggle}>
-                Edit
-              </button>
-            </div>
+      {fetechedData ? (
+        <>
+          <h2>Profile</h2>
+          <div className="userProfile">
+            {isEditMode ? (
+              <form onSubmit={handleUpdateSubmit}>
+                <div className="formFields">
+                  <label>Full Name</label>
+                  <input
+                    type="text"
+                    value={editedName}
+                    onChange={(e) => setEditedName(e.target.value)}
+                    placeholder="Name"
+                  />
+                  <label>Email Address</label>
+                  <input
+                    type="email"
+                    value={editedEmail}
+                    onChange={(e) => setEditedEmail(e.target.value)}
+                    placeholder="Email"
+                  />
+                </div>
+                <div className="formBtns">
+                  <button
+                    className="secondaryBtn"
+                    type="button"
+                    onClick={handleEditToggle}
+                  >
+                    Cancel
+                  </button>
+                  <button className="primryBtn" type="submit">
+                    Save
+                  </button>
+                </div>
+              </form>
+            ) : (
+              <div className="profileHeader">
+                <div className="profile-picture">
+                  <div>{"AF"}</div>
+                </div>
+                <div className="profileInfo">
+                  {fetechedData && fetechedData.data && (
+                    <>
+                      <div className="infoH">{fetechedData.data.name}</div>
+                      <div className="infoP">{fetechedData.data.email}</div>
+                    </>
+                  )}
+                </div>
+                <div className="editButtons">
+                  <button className="primryBtn" onClick={handleEditToggle}>
+                    Edit
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
-        )}
-      </div>
-      <h2>Security</h2>
-      <div className="userSecurity">
-        {isSecurityEditMode ? (
-          <>
-            <form onSubmit={handlePasswordChangeSubmit}>
-              <div className="formFields">
+          <h2>Security</h2>
+          <div className="userSecurity">
+            {isSecurityEditMode ? (
+              <>
+                <form onSubmit={handlePasswordChangeSubmit}>
+                  <div className="formFields">
+                    <div className="profileInfo">
+                      <div className="infoH">{"Password"}</div>
+                      <div className="infoP">{"Change your Password"}</div>
+                    </div>
+                    <label>Current Password</label>
+                    <input
+                      type="password"
+                      required
+                      value={currentPassword}
+                      onChange={(e) => setCurrentPassword(e.target.value)}
+                      placeholder="Current Password"
+                    />
+                    <label>New Password</label>
+                    <input
+                      type="password"
+                      required
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                      placeholder="New Password"
+                    />
+                    <label>Confirm New Password</label>
+                    <input
+                      type="password"
+                      required
+                      value={confirmNewPassword}
+                      onChange={(e) => setConfirmNewPassword(e.target.value)}
+                      placeholder="Confirm New Password"
+                    />
+                  </div>
+                  <div className="formBtns">
+                    <button
+                      className="secondaryBtn"
+                      type="button"
+                      onClick={handleSecurityEditToggle}
+                    >
+                      Cancel
+                    </button>
+                    <button className="primryBtn" type="submit">
+                      Save
+                    </button>
+                  </div>
+                </form>
+                {passwordChangeSuccess && (
+                  <div>Password changed successfully!</div>
+                )}
+              </>
+            ) : (
+              <>
                 <div className="profileInfo">
                   <div className="infoH">{"Password"}</div>
                   <div className="infoP">{"Change your Password"}</div>
                 </div>
-                <label>Current Password</label>
-                <input
-                  type="password"
-                  required
-                  value={currentPassword}
-                  onChange={(e) => setCurrentPassword(e.target.value)}
-                  placeholder="Current Password"
-                />
-                <label>New Password</label>
-                <input
-                  type="password"
-                  required
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                  placeholder="New Password"
-                />
-                <label>Confirm New Password</label>
-                <input
-                  type="password"
-                  required
-                  value={confirmNewPassword}
-                  onChange={(e) => setConfirmNewPassword(e.target.value)}
-                  placeholder="Confirm New Password"
-                />
-              </div>
-              <div className="formBtns">
-                <button
-                  className="secondaryBtn"
-                  type="button"
-                  onClick={handleSecurityEditToggle}
-                >
-                  Cancel
-                </button>
-                <button className="primryBtn" type="submit">
-                  Save
-                </button>
-              </div>
-            </form>
-            {passwordChangeSuccess && <div>Password changed successfully!</div>}
-          </>
-        ) : (
-          <>
-            <div className="profileInfo">
-              <div className="infoH">{"Password"}</div>
-              <div className="infoP">{"Change your Password"}</div>
-            </div>
-            <div className="editButtons">
-              <button className="primryBtn" onClick={handleSecurityEditToggle}>
-                Update Password
-              </button>
-            </div>
-          </>
-        )}
-      </div>
+                <div className="editButtons">
+                  <button
+                    className="primryBtn"
+                    onClick={handleSecurityEditToggle}
+                  >
+                    Update Password
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </>
+      ) : (
+        "Login Please"
+      )}
     </div>
   );
 }

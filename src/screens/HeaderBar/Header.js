@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./HeaderStyle.css";
 import Accounts from "./Accounts";
 import { Link, useNavigate } from "react-router-dom";
@@ -15,6 +15,11 @@ const HeaderBar = ({ toggleSidebar, sidebarVisible, user }) => {
   const handleLogin = () => {
     setPopupOpen(true);
   };
+
+  useEffect(() => {
+    const isUserLoggedIn = localStorage.getItem("isUserLoggedIn");
+    setIsUserLoggedIn(isUserLoggedIn);
+  }, []);
 
   // Function to handle user logout
   const handleLogout = () => {
