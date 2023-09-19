@@ -1,12 +1,61 @@
 .mainBody {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  min-height: 600px;
+  position: relative;
 }
+.mainForm {
+  border: 1px none;
+  position: relative;
+  width: 750px;
+  width: 100%;
+  margin-left: 40px;
+}
+.mainFormBody {
+  background-color: #ffffff;
+  overflow-x: scroll;
+  height: 80vmin;
+  border-radius: 10px;
+}
+
+.wholeFormBody {
+  display: flex;
+  margin: auto;
+}
+
+/* Scroller Style */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 5px;
+} */
+
+::-webkit-scrollbar-thumb {
+  background-color: #009bd6;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #3067ae;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 5px;
+  background-color: rgb(255, 255, 255);
+}
+::-webkit-scrollbar-thumb:horizontal {
+  background: #009bd6;
+  border-radius: 5px;
+}
+
+/* Scroller Style Ends */
 
 .mainBodyTo {
   flex: 1;
-  min-width: 100px;
+  min-width: 50%;
 }
 
 .fromBody {
@@ -14,9 +63,8 @@
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 35px;
-  position: absolute;
-  margin-top: -80px;
+  margin-left: 30px;
+  /* position: absolute; */
 }
 
 .invoice-body {
@@ -35,6 +83,34 @@
   line-height: 28px;
   margin: 30px 10px;
 }
+
+.fromButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.arrow {
+  margin-left: 5px;
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  z-index: 1;
+  width: 300px; /* or whatever width you want */
+}
+
+.fromButton:hover + .dropdownContent,
+.fromButton:focus + .dropdownContent {
+  display: block;
+}
+
+/* Add more styles as needed */
 
 .invoice-body label {
   color: #333333;
@@ -68,4 +144,400 @@
   height: 30px;
   padding: 3px 10px;
   width: 200px;
+}
+
+.invoiceForm {
+  width: 100%;
+  min-height: 300px;
+  height: auto;
+}
+
+.itemsTable {
+  padding: 0 40px;
+}
+
+.tableArea {
+  width: 100%;
+  text-align: left;
+}
+
+.invoiceItemIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+}
+
+.invoiceDeleteIcon {
+  border-radius: 5px;
+  background: #e4e4e4;
+  padding: 8px;
+  width: 2rem;
+  height: 2rem;
+}
+
+.TableHead {
+  width: 100%;
+  border-bottom-width: 1px;
+  border-color: rgba(14, 46, 114, 0.5);
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.totalFields {
+  width: 35%;
+  margin: 0 58%;
+}
+
+.totalField {
+  width: 110px;
+  padding: 10px 20px 10px 0;
+  display: inline-block;
+}
+
+.totalFieldContainer input {
+  width: 50px;
+  padding: 2px 5px;
+  margin: 5px;
+}
+
+.FinalSubTotal {
+  width: 50px;
+  padding: 2px 5px;
+  margin: 5px;
+  color: #333;
+  text-align: right;
+  font-family: "Ubuntu-Bold", Helvetica;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 24px; /* 119.403% */
+}
+
+.FinalTotal {
+  width: 50px;
+  padding: 2px 5px;
+  margin: 5px;
+  color: #333;
+  text-align: right;
+  font-family: "Ubuntu-Bold", Helvetica;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 119.403% */
+}
+
+.totalFieldContainer {
+  display: flex;
+  /* margin-right: 40px; */
+  /* width: 300px; */
+  justify-content: space-between;
+}
+.totalSymbols {
+  width: 10px;
+  padding: 10px 0;
+}
+
+.addRemove {
+  border-bottom: 1px solid #2e77bb;
+  padding: 10px 0 2px 0;
+  cursor: pointer;
+  margin-right: 20px;
+  color: #2e77bb;
+  text-align: right;
+  font-family: Segoe UI;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 133.333% */
+}
+.text-center {
+  width: 20%;
+}
+.addRemoveButton,
+.addRemoveField {
+  padding: 10px 0;
+}
+
+.extraOptions {
+  display: flex;
+  padding: 0 20px;
+  justify-content: space-between;
+}
+
+.currencyDrop {
+  display: flex;
+  width: 105px;
+  padding: 10px;
+  align-items: flex-start;
+  border-radius: 4px;
+  border: 1px solid #009bd6;
+  background: #fff;
+}
+
+.textAction,
+.inputAction {
+  padding: 0 10px;
+}
+
+.hrLine {
+  width: 90%;
+  height: 0.1px;
+  background-color: #ababab;
+}
+
+.tableHeading {
+  color: #333;
+  font-family: "Ubuntu-Bold", Helvetica;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 133.333% */
+}
+
+.textDesc,
+.inputDesc {
+  width: 250px;
+}
+.inputDesc input {
+  display: flex;
+  width: 200px;
+  padding: 10px 20px 10px 10px;
+  align-items: flex-start;
+  border-radius: 4px;
+  border: 1px solid #9ca3af;
+  background: #fff;
+}
+
+.textRate,
+.inputRate {
+  width: 120px;
+}
+
+.inputRate input {
+  display: flex;
+  width: 80px;
+  padding: 10px 20px 10px 10px;
+  align-items: flex-start;
+  border-radius: 4px;
+  border: 1px solid #9ca3af;
+  background: #fff;
+}
+
+.textTax,
+.inputTax {
+  width: 80px;
+}
+
+.inputTax input {
+  display: flex;
+  width: 40px;
+  padding: 10px 20px 10px 10px;
+  align-items: flex-start;
+  border-radius: 4px;
+  border: 1px solid #9ca3af;
+  background: #fff;
+}
+.textQty,
+.inputQty {
+  width: 80px;
+}
+
+.inputQty input {
+  display: flex;
+  width: 40px;
+  padding: 10px 20px 10px 10px;
+  align-items: flex-start;
+  border-radius: 4px;
+  border: 1px solid #9ca3af;
+  background: #fff;
+}
+
+.textAmount,
+.inputAmount {
+  width: 150px;
+}
+
+.inputAmount {
+  display: flex;
+  width: 30px;
+  padding: 10px 20px 10px 10px;
+  align-items: flex-start;
+  background: #fff;
+}
+
+.Notes {
+  padding: 0 40px;
+}
+
+.Notes .labelNotes {
+  color: #333;
+  font-family: "Ubuntu-Bold", Helvetica;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+}
+
+.Notes input {
+  width: 660px;
+  height: 121px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  border: 1px solid #9ca3af;
+  background: #fff;
+}
+.Notes textarea {
+  width: 90%;
+  height: 80px;
+  border-radius: 4px;
+  padding: 20px;
+  border: 1px solid #9ca3af;
+  background: #fff;
+}
+
+.invoiceTopBtn {
+  margin: 10px 0;
+  display: inline-flex;
+  width: 86.52px;
+  height: 38.28px;
+  padding: 7px 14.52px 6.28px 13px;
+  align-items: flex-start;
+  border-radius: 4px;
+  background: #fff;
+  color: #333;
+}
+.invoiceTopBtn span {
+  color: #333;
+  text-align: center;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24.286px; /* 142.857% */
+  letter-spacing: -0.51px;
+  margin: auto;
+  text-align: center;
+}
+
+.invoiceTop {
+  display: flex;
+  /* padding: 20px 0; */
+  justify-content: space-between;
+}
+
+.inputItem {
+  color: #9ca3af;
+  font-family: "Ubuntu-Light", Helvetica;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: 100px;
+}
+.colorField {
+  display: block;
+}
+
+.smallUploader {
+  height: 50px !important;
+  width: 50px !important;
+}
+
+@media (max-width: 767px) {
+  .wholeFormBody {
+    display: flex;
+    flex-direction: column-reverse;
+    margin: auto;
+  }
+
+  .mainBody {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    /* min-height: 1100px;
+    position: relative; */
+  }
+  .mainFormBody {
+    height: auto;
+  }
+  .mainForm {
+    border: 1px none;
+    position: relative;
+    margin-left: 0;
+  }
+  /* .mainForm form {
+    width: 80%;
+  } */
+
+  .totalFields {
+    width: 80%;
+    margin: 5% 10%;
+  }
+  .textAction,
+  .inputAction {
+    padding: 0 5px;
+  }
+  .colorField {
+    display: none;
+  }
+
+  .itemsTable {
+    padding: 0 3px;
+  }
+  .Notes {
+    padding: 0 20px;
+  }
+  .Notes textarea {
+    width: 80%;
+    /* margin: 0 5%; */
+  }
+
+  .textDesc,
+  .inputDesc {
+    width: auto;
+  }
+  .inputDesc input {
+    width: 100px;
+    padding: 10px;
+  }
+
+  .textRate,
+  .inputRate {
+    width: auto;
+  }
+  .inputRate input {
+    width: 40px;
+    padding: 10px;
+  }
+  .inputQty input {
+    width: 20px;
+    padding: 10px;
+  }
+  .textQty,
+  .inputQty {
+    width: auto;
+  }
+  .textAmount,
+  .inputAmount {
+    width: auto;
+  }
+  .inputAmount {
+    width: 30px;
+    padding: 10px;
+  }
+
+  .invoiceTop {
+    padding: 10px 15px;
+  }
+  .tableArea {
+    width: auto;
+    text-align: left;
+  }
+  .hrLine {
+    width: 90%;
+  }
+  .fromBody {
+    margin-left: 10px;
+  }
 }

@@ -1,19 +1,38 @@
 .formHeader {
-  height: 10%;
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 30px 30px 0 30px;
   align-items: center;
+  position: sticky;
+}
+.formFooter {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  align-items: center;
+  position: sticky;
 }
 
-.formHeader .item {
-  flex: 1;
+.formHeaderB {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  align-items: center;
+  position: sticky;
+}
+
+.invoiceInfo {
+  padding: 10px;
+}
+
+.itemHeader {
+  display: flex;
   min-width: 100px;
   padding: 20px;
   text-align: center;
 }
 
-.formHeader .item .logo {
+.itemHeader .logo {
   align-items: center;
   background-color: #fbfcff;
   border: 2px dotted;
@@ -22,36 +41,60 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  max-width: 150px;
-  padding: 10px 10px 0px;
+  max-width: 130px;
+  padding: 20px 10px 10px 10px;
+  width: 120px;
+  height: 80px;
+  text-align: center;
+}
+
+.itemHeader .logo .Logoupload {
+  cursor: pointer;
+}
+
+.itemHeader .uploadText {
+  color: #009bd6;
+  text-align: center;
+  font-family: "Ubuntu-Medium", Helvetica;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 153.846% */
+}
+
+.itemHeader .logo img {
+  flex: 0 0 auto;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: -15px -15px -15px -15px;
+}
+.itemHeader .upload {
+  height: 54px;
+  /* margin-left: -30px; */
+  /* left: 32%;
+  top: 5%;
+  position: absolute;
+  width: 161px; */
+}
+
+.upload .textWrapper {
+  padding: 10px;
   width: 150px;
 }
 
-.formHeader .item .logo img {
-  flex: 0 0 auto;
-  position: relative;
-  width: 24px;
+.uploadLogo {
+  text-align: left;
+  padding: 0 10px;
+  color: #333;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
 }
 
-.formHeader .item .upload {
-  height: 54px;
-  left: 32%;
-  top: 5%;
-  position: absolute;
-  width: 161px;
-}
-
-.formHeader .upload .textWrapper {
-  align-items: flex-start;
-  display: flex;
-  left: 0;
-  padding: 5px 49.8px 0px 0px;
-  position: absolute;
-  top: 20px;
-  width: 159px;
-}
-
-.formHeader .item .upload .text {
+.itemHeader,
+.formFooter .upload .text {
   color: #676767;
   font-family: "Ubuntu-Medium", Helvetica;
   font-size: 9px;
@@ -62,9 +105,13 @@
   position: relative;
   width: fit-content;
   text-align: left;
+  align-items: center;
+}
+.itemHeader .itemHeader {
+  padding: 10px;
 }
 
-.formHeader .item .h-1 {
+.h-1 {
   color: #333333;
   font-family: "Ubuntu-Light", Helvetica;
   font-size: 45px;
@@ -73,7 +120,27 @@
   white-space: nowrap;
 }
 
-.formHeader .invoiceInfo {
+.editable-text {
+  border: 1px solid transparent;
+  padding: 20px;
+  cursor: grab;
+  width: auto;
+  direction: ltr;
+}
+
+.textLeft {
+  direction: ltr;
+}
+
+.editable-text.editing {
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  outline: none;
+  cursor: text;
+  direction: ltr;
+}
+
+/* .formHeader .invoiceInfo {
   align-items: flex-start;
   display: inline-flex;
   flex-direction: column;
@@ -81,16 +148,15 @@
   left: 35px;
   position: absolute;
   top: 170px;
-}
+} */
 
-.formHeader .invoiceInfo .infoItem {
+.invoiceInfo .infoItem {
   height: 33px;
   position: relative;
-  width: 300px;
   margin: auto;
 }
 
-.formHeader .invoiceInfo .infoItem label {
+.invoiceInfo .infoItem label {
   color: #333;
   font-family: "Ubuntu-Light", Helvetica;
   font-size: 13px;
@@ -107,7 +173,19 @@
   width: 107px;
 }
 
-.formHeader .invoiceInfo .infoItem input {
+.invoiceInfo .infoItem .inputLabel {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border-radius: 4px;
+  display: flex;
+  left: 2px;
+  padding: 4.5px 13px 5.5px 4px;
+  position: absolute;
+  top: 4px;
+  width: 107px;
+}
+
+.invoiceInfo .infoItem input {
   align-items: flex-start;
   background-color: #ffffff;
   border: 1px solid;
@@ -115,7 +193,36 @@
   border-radius: 4px;
   display: inline-block;
   height: 20px;
-  left: 100px;
   padding: 3px 10px;
+  max-width: 100px;
+}
+
+.invoiceInfo .infoItem .inputItem {
+  color: #9ca3af;
+  font-family: "Ubuntu-Light", Helvetica;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
   width: 100px;
+}
+
+@media (max-width: 767px) {
+  .formHeader {
+    padding: 0;
+    flex-direction: column-reverse;
+  }
+  .itemHeader .logo {
+    max-width: 120px;
+    padding: 10px 5px 5px 5px;
+    width: 100px;
+    height: 70px;
+    text-align: center;
+  }
+  .formHeaderB {
+    padding: 0 5px;
+  }
 }

@@ -1,21 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import "./invoiceHeader.css";
 import ImageUploader from "../FileUpload.js";
 
-function Header() {
+function InvoiceHeader(props) {
+  const [image, setImage] = useState({ preview: "", raw: "" });
+
+  const handleLogoChange = (e) => {
+    if (e.target.files.length) {
+      setImage({
+        preview: URL.createObjectURL(e.target.files[0]),
+        raw: e.target.files[0],
+      });
+    }
+  };
+
+  const handleUpload = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", image.raw);
+
+    await fetch("YOUR_URL", {
+      method: "POST",
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      body: formData,
+    });
+  };
+
   return (
     <>
       <div className="formHeader">
-        <div className="item">
-          <div className="logo">
-            <img className="imgSVG" alt="logo" src="SVG.svg" />
-            <ImageUploader />
-            <p className="text-wrapper">Upload</p>
-          </div>
+        <div className="itemHeader">
+          <ImageUploader
+            inputId="upload-logo-1"
+            uploadUrl="YOUR_URL"
+            onImageChange={(imageData) => {
+              // Handle image data update for this specific usage
+            }}
+          />
         </div>
-        <div className="item">
+
+        <div className="itemHeader">
           <div className="upload">
-            <div className="div">Upload Logo</div>
+            <div className="uploadLogo">Upload Logo</div>
             <div className="textWrapper">
               <p className="text">
                 240 x 240 pixels @ 72 DPI,
@@ -25,7 +53,7 @@ function Header() {
             </div>
           </div>
         </div>
-        <div className="item">
+        <div className="itemHeader">
           <h1 className="h-1">INVOICE</h1>
         </div>
       </div>
@@ -34,28 +62,20 @@ function Header() {
       <div className="formHeader">
         <div className="invoiceInfo">
           <div className="infoItem">
-            <label className="data-input">Invoice#</label>
+            <label className="inputItem">Invoice#</label>
             <input
               type="number"
-              className="text-wrapper-3"
+              className="inputItem"
               placeholder="INV-"
             ></input>
           </div>
           <div className="infoItem">
-            <label className="data-input">Invoice Date</label>
-            <input
-              type="date"
-              className="text-wrapper-3"
-              placeholder="INV-"
-            ></input>
+            <label className="inputItem">Invoice Date</label>
+            <input type="date" className="inputItem" placeholder="INV-"></input>
           </div>
           <div className="infoItem">
-            <label className="data-input">Due Date</label>
-            <input
-              type="date"
-              className="text-wrapper-3"
-              placeholder="INV-"
-            ></input>
+            <label className="inputItem">Due Date</label>
+            <input type="date" className="inputItem" placeholder="INV-"></input>
           </div>
         </div>
       </div>
@@ -63,4 +83,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default InvoiceHeader;
