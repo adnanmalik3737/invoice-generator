@@ -89,14 +89,13 @@
 }
 
 .profile-picture {
-  width: 80px;
-  height: 80px;
-  overflow: hidden;
+  width: 60px;
+  height: 60px;
+  /* overflow: hidden; */
   border: 2px solid #009bd6;
   background-color: #009bd6;
   border-radius: 50%;
-  margin-left: 1%;
-  /* margin-right: 10%; */
+  display: flex;
 }
 
 .profile-picture div {
@@ -105,8 +104,7 @@
   margin: auto;
   font-style: normal;
   font-weight: 400;
-  padding: 16px;
-  /* line-height: 61.484px; 165% */
+  padding: 5px 17px;
 }
 
 .profileInfo {
@@ -122,6 +120,7 @@
   font-weight: 600;
   line-height: normal;
   padding: 5px 0;
+  margin: 0;
 }
 .profileInfo .infoP {
   color: #333;
@@ -196,12 +195,19 @@
     margin: auto;
     font-style: normal;
     font-weight: 400;
-    padding: 7px;
+    padding: 0 12px;
   }
   .profileInfo .infoH,
   .infoP {
     font-size: 14px;
+    padding: 0px 0;
   }
+  .profileInfo .infoP {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 900px) {
   .profileInfo .infoP {
     font-size: 14px;
   }

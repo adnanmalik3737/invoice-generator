@@ -14,6 +14,9 @@ function UserProfile() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [passwordChangeSuccess, setPasswordChangeSuccess] = useState(false);
+  const [passwordMismatch, setPasswordMismatch] = useState(false);
+
+  const [updateResponse, setUpdateResponse] = useState(false);
 
   const baseUrl = process.env.REACT_APP_BASE_URL;
 
@@ -54,6 +57,8 @@ function UserProfile() {
 
       if (response.data.code === 200) {
         setfetechedData(response.data); // Update the user data with the updated values
+        setUpdateResponse(true);
+        console.log(updateResponse);
         setIsEditMode(false); // Toggle back to display mode
       } else {
         console.error("Update failed:", response.data.error);
@@ -72,16 +77,24 @@ function UserProfile() {
     e.preventDefault();
     if (newPassword !== confirmNewPassword) {
       console.error("New Password and Confirm New Password do not match");
+      setPasswordMismatch("New Password and Confirm New Password do not match");
+      setTimeout(() => {
+        setPasswordMismatch(false);
+      }, 4000);
       return;
     }
     try {
-      const response = await axios.put(`${baseUrl}/api/user/password`, {
+      const response = await axios.put(`${baseUrl}/api/user/changepassword`, {
         currentPassword,
         newPassword,
       });
 
       if (response.data.code === 200) {
         setPasswordChangeSuccess(true);
+        setTimeout(() => {
+          setPasswordChangeSuccess(false);
+        }, 3000);
+        console.log("Password changed!!");
         setIsSecurityEditMode(false); // Toggle back to display mode
       } else {
         console.error("Password change failed:", response.data.error);
@@ -130,26 +143,39 @@ function UserProfile() {
               </form>
             ) : (
               <div className="profileHeader">
-                <div className="profile-picture">
-                  <div>{"AF"}</div>
-                </div>
-                <div className="profileInfo">
-                  {fetechedData && fetechedData.data && (
-                    <>
-                      <div className="infoH">{fetechedData.data.name}</div>
-                      <div className="infoP">{fetechedData.data.email}</div>
-                    </>
-                  )}
-                </div>
-                <div className="editButtons">
-                  <button className="primryBtn" onClick={handleEditToggle}>
-                    Edit
-                  </button>
-                </div>
+                {fetechedData && fetechedData.data ? (
+                  <>
+                    <div className="profile-picture">
+                      <div>{fetechedData.data.name.charAt(0)}</div>
+                      <div className="profileInfo">
+                        <div className="infoH">{fetechedData.data.name}</div>
+                        <div className="infoP">{fetechedData.data.email}</div>
+                      </div>
+                    </div>
+
+                    <div className="editButtons">
+                      <button className="primryBtn" onClick={handleEditToggle}>
+                        Edit
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <>Loading...</>
+                )}
               </div>
             )}
           </div>
           <h2>Security</h2>
+          {passwordChangeSuccess && (
+            <div className="infoP" style={{ color: "#1e720a" }}>
+              Password changed successfully!
+            </div>
+          )}
+          {passwordMismatch && (
+            <div className="infoP" style={{ color: "red" }}>
+              {passwordMismatch}
+            </div>
+          )}
           <div className="userSecurity">
             {isSecurityEditMode ? (
               <>
@@ -197,9 +223,6 @@ function UserProfile() {
                     </button>
                   </div>
                 </form>
-                {passwordChangeSuccess && (
-                  <div>Password changed successfully!</div>
-                )}
               </>
             ) : (
               <>

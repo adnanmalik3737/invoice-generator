@@ -54,7 +54,7 @@ function Sidebar({ isVisible }) {
       <div className="clearflex"></div>
       <div className="navBarItems">
         <div className="appLogo">
-          <img src={companyLogo}></img>
+          <img src={whiteLogo}></img>
           <p>Company Logo Here </p>
         </div>
         <div className="navlist">

@@ -58,18 +58,18 @@ function MainForm(props) {
   const [invoiceDate, setInvoiceDate] = useState("");
   const [dueDate, setDueDate] = useState("");
 
-  // const [invoiceFields, setInvoiceFields] = useState("");
-  // const handleFieldsChange = (updatedFields) => {
-  //   setInvoiceFields(updatedFields);
-  // };
-
   //For Editable content
+  const [invoiceTitle, setInvoiceTitle] = useState("INVOICE"); // Initial content
   const [isEditable, setIsEditable] = useState(false);
   const handleTextClick = () => {
     setIsEditable(true);
   };
   const handleBlur = () => {
     setIsEditable(false);
+  };
+
+  const handleTitleChange = (e) => {
+    setInvoiceTitle(e.target.textContent);
   };
   //End Editable content
 
@@ -86,6 +86,7 @@ function MainForm(props) {
           // setInvoiceDate(response.data.data.invoiceDate);
           // setDueDate(response.data.data.dueDateDate);
           setFromName(response.data.data.fromName);
+          setInvoiceTitle(response.data.data.invoiceTitle);
           setFromEmail(response.data.data.fromEmail);
           setFromCompany(response.data.data.fromCompany);
           setFromAddress(response.data.data.fromAddress);
@@ -268,7 +269,7 @@ function MainForm(props) {
     setSymbol(event.target.value);
   };
 
-  const [shouldPrintPDF, setShouldPrintPDF] = useState(false); // Flag to determine if PDF should be printed
+  const [shouldPrintPDF, setShouldPrintPDF] = useState(false);
   const [shouldSavePDF, setShouldSavePDF] = useState(false);
   const reviewInvoiceHandler = (e) => {
     e.preventDefault();
@@ -292,6 +293,35 @@ function MainForm(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (invoiceDate.trim() === "") {
+      alert("Invoice date is required.");
+      return;
+    }
+    if (dueDate.trim() === "") {
+      alert("Due date is required.");
+      return;
+    }
+    if (fromName.trim() === "") {
+      alert("Sender name is required.");
+      return;
+    }
+    if (fromEmail.trim() === "") {
+      alert("Sender email is required.");
+      return;
+    }
+    if (fromPhone.trim() === "") {
+      alert("Sender phone is required.");
+      return;
+    }
+    if (toName.trim() === "") {
+      alert("Sending to name is required.");
+      return;
+    }
+    if (toEmail.trim() === "") {
+      alert("Sending to email is required.");
+      return;
+    }
 
     const mitems = items.map((item) => ({
       itemId: item.itemId,
@@ -319,6 +349,7 @@ function MainForm(props) {
     }
 
     // Append other fields
+    mainFormData.append("invoiceTitle", invoiceTitle);
     mainFormData.append("invoiceDate", invoiceDate);
     mainFormData.append("dueDate", dueDate);
     mainFormData.append("fromName", fromName);
@@ -367,6 +398,7 @@ function MainForm(props) {
       );
       if (response.data.code === 201) {
         console.log("Success");
+        alert("Success! Invoice Saved");
         console.log(mitems);
         // console.log(uploadedImage);
         // console.log(imageURL);
@@ -376,6 +408,7 @@ function MainForm(props) {
         console.log(response.data.message);
       } else if (response.data.code === 401) {
         console.log(response.data.message);
+        alert("User not logged in");
       } else if (response.status === 200) {
         console.error(response.data.errors);
       } else {
@@ -516,8 +549,9 @@ function MainForm(props) {
                 symbol,
                 shipping,
                 total,
-                note: note,
+                note,
                 selectedColor,
+                invoiceTitle,
               }}
               items={items}
               onAddNextInvoice={addNextInvoiceHandler}
@@ -592,13 +626,16 @@ function MainForm(props) {
 
               <div className="itemHeader h-1">
                 <div
-                  className={`editable-text ${isEditable ? "editing" : ""}`}
+                  className={`editable-text ${isEditable ? "editing" : ""} ${
+                    isEditable ? "text-left" : ""
+                  }`}
                   onClick={handleTextClick}
                   onBlur={handleBlur}
                   contentEditable={isEditable}
                   suppressContentEditableWarning={true}
+                  onInput={handleTitleChange}
                 >
-                  INVOICE
+                  {invoiceTitle}
                 </div>
               </div>
             </div>
@@ -1196,6 +1233,7 @@ function MainForm(props) {
             total,
             note: note,
             selectedColor,
+            invoiceTitle,
           }}
           items={items}
           onAddNextInvoice={addNextInvoiceHandler}

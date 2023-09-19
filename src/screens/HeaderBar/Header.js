@@ -47,7 +47,9 @@ const HeaderBar = ({ toggleSidebar, sidebarVisible, user }) => {
         {/* // Logo copied from Sidebar component */}
         {/* {!sidebarVisible && ()} */}
         <div className="headerLogo">
-          <img src={logoIcon} width="52" height="31" />
+          <Link to={"/"}>
+            <img src={logoIcon} width="52" height="31" />
+          </Link>
         </div>
 
         <div className="title-divider" />
@@ -70,7 +72,7 @@ const HeaderBar = ({ toggleSidebar, sidebarVisible, user }) => {
                 navigate("/user-profile", { state: { user: user } });
               }}
             >
-              {"AR"}
+              <img src={userA} width={30}></img>
             </button>
           </>
         ) : (

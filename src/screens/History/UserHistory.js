@@ -95,7 +95,6 @@ const History = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [currentInvoice, setCurrentInvoice] = useState(null);
-  const imageFileURL = "http://localhost:5000/";
 
   const handleViewClick = (invoice) => {
     // console.log(invoice.items);
@@ -103,6 +102,21 @@ const History = () => {
     // console.log(currentInvoice.Items);
 
     setIsOpen(true);
+  };
+
+  const [shouldPrintPDF, setShouldPrintPDF] = useState(false);
+  const [shouldSavePDF, setShouldSavePDF] = useState(false);
+
+  const openModalAndPrint = (invoice) => {
+    setCurrentInvoice(invoice);
+    setIsOpen(true);
+    setShouldPrintPDF(true);
+  };
+
+  const openModalAndSave = (invoice) => {
+    setCurrentInvoice(invoice);
+    setIsOpen(true); // Open the InvoiceModel modal
+    setShouldSavePDF(true); // Set the flag to true when opening via Print button
   };
 
   const handleEdit = (invoiceFilledData) => {
@@ -185,8 +199,14 @@ const History = () => {
 
                   {openInvoiceId === invoice.InvoiceId && (
                     <div className="dropdown-menu">
+                      <button onClick={() => openModalAndPrint(invoice)}>
+                        Print Invoice
+                      </button>
+                      <button onClick={() => openModalAndSave(invoice)}>
+                        Download Invoice
+                      </button>
                       <button onClick={() => handleViewClick(invoice)}>
-                        View
+                        View Invoice
                       </button>
                       {isOpen && (
                         <InvoiceModel
@@ -200,15 +220,17 @@ const History = () => {
                           setIsOpen={setIsOpen}
                           Items={currentInvoice.Items}
                           onClose={() => setIsOpen(false)}
+                          shouldPrintPDF={shouldPrintPDF}
+                          shouldSavePDF={shouldSavePDF}
                         />
                       )}
 
                       {/* <button onClick={() => handleEdit(invoice)}>Edit</button> */}
                       <Link to={`/edit-invoice/${invoice.InvoiceId}`}>
-                        <button>Edit</button>
+                        <button>Edit Invoice</button>
                       </Link>
                       <button onClick={() => deleteInvoice(invoice.InvoiceId)}>
-                        Delete
+                        Delete Invoice
                       </button>
                     </div>
                   )}
