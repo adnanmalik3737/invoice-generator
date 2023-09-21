@@ -164,7 +164,7 @@
 
 .extraOptions {
   display: flex;
-  padding: 5px 20px 0 5px;
+  /* padding: 5px 20px 0 5px; */
   justify-content: space-between;
   align-items: center;
 }

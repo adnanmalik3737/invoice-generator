@@ -96,7 +96,8 @@ const History = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentInvoice, setCurrentInvoice] = useState(null);
 
-  const handleViewClick = (invoice) => {
+  const handleViewClick = (invoice, e) => {
+    e.preventDefault();
     // console.log(invoice.items);
     setCurrentInvoice(invoice);
     // console.log(currentInvoice.Items);
@@ -107,13 +108,15 @@ const History = () => {
   const [shouldPrintPDF, setShouldPrintPDF] = useState(false);
   const [shouldSavePDF, setShouldSavePDF] = useState(false);
 
-  const openModalAndPrint = (invoice) => {
+  const openModalAndPrint = (invoice, e) => {
+    e.preventDefault();
     setCurrentInvoice(invoice);
     setIsOpen(true);
     setShouldPrintPDF(true);
   };
 
-  const openModalAndSave = (invoice) => {
+  const openModalAndSave = (invoice, e) => {
+    e.preventDefault();
     setCurrentInvoice(invoice);
     setIsOpen(true); // Open the InvoiceModel modal
     setShouldSavePDF(true); // Set the flag to true when opening via Print button
@@ -180,7 +183,7 @@ const History = () => {
               <tr key={invoice.InvoiceId}>
                 <td>{currentPage * rowsPerPage + index + 1}</td>
                 <td>#{invoice.InvoiceId}</td>
-                <td>{"Invoice Title"}</td>
+                <td>{invoice.invoiceTitle}</td>
                 <td>
                   {new Date(invoice.invoiceDate).toLocaleDateString()} ,{" "}
                   {new Date(invoice.createdAt).toLocaleTimeString()}
@@ -199,13 +202,13 @@ const History = () => {
 
                   {openInvoiceId === invoice.InvoiceId && (
                     <div className="dropdown-menu">
-                      <button onClick={() => openModalAndPrint(invoice)}>
+                      <button onClick={(e) => openModalAndPrint(invoice, e)}>
                         Print Invoice
                       </button>
-                      <button onClick={() => openModalAndSave(invoice)}>
+                      <button onClick={(e) => openModalAndSave(invoice, e)}>
                         Download Invoice
                       </button>
-                      <button onClick={() => handleViewClick(invoice)}>
+                      <button onClick={(e) => handleViewClick(invoice, e)}>
                         View Invoice
                       </button>
                       {isOpen && (

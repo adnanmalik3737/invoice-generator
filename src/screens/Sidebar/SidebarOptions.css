@@ -99,7 +99,7 @@ span svg path:hover {
   border: 2px solid #000;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 900px) {
   .color-picker-container {
     display: none;
   }
