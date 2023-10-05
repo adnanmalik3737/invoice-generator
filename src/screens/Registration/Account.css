@@ -1,0 +1,232 @@
+/* LoginSignupPopup.css */
+.accountPopup {
+  position: fixed;
+  top: 0;
+  right: -500px;
+  /* width: 375px; */
+  width: 21%;
+  height: 100%;
+  padding: 20px;
+  transition: right 0.5s ease;
+  background: #fff;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+
+.accountTitle {
+  color: #009bd6;
+  text-align: center;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px; /* 100% */
+}
+
+.accountsubtitle {
+  color: #333;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  line-height: 30px; /* 166.667% */
+}
+.accountPopup.open {
+  right: 0;
+}
+
+.accountPopup .close {
+  background-color: #fff;
+  color: #111;
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  float: right;
+}
+
+.accountPopup .LogSignBtn {
+  background-color: #009bd6;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  width: 96%;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.accountPopup .LogSignBtn:active,
+.close:active {
+  background-color: #009bd6;
+  color: #ffffff;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  transform: translateY(3px);
+}
+
+.accountPopup form {
+  margin-top: 20px;
+  margin-left: 10px;
+  width: 100%;
+}
+
+.accountPopup input {
+  display: block;
+  width: 90%;
+  padding: 10px 10px 10px 50px;
+  margin-bottom: 10px;
+  border: 1px solid #f2f3f5;
+  border-radius: 5px;
+  background: #f2f3f5;
+  height: 20px;
+}
+
+.accountPopup input:active {
+  border: 1px solid #f2f3f5;
+}
+
+.accountPopup p {
+  text-align: center;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+}
+
+.accountPopup .forgot {
+  text-align: right;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-right: 15px;
+  color: #009bd6;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px; /* 214.286% */
+  text-decoration-line: underline;
+}
+.accountPopup .remember {
+  text-align: right;
+  margin-right: 15px;
+  margin-top: 10px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px; /* 214.286% */
+}
+
+.accountPopup p span {
+  color: #009bd6;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px;
+  text-decoration-line: underline;
+  cursor: pointer;
+}
+
+.accountPopup .input-icons svg {
+  position: absolute;
+}
+
+.accountPopup .input-icons img {
+  position: absolute;
+  padding: 8px 12px;
+}
+
+.showHidePassword {
+  position: absolute;
+  right: 40px;
+  margin-top: -48px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.accountPopup .input-icons {
+  width: 90%;
+  margin-bottom: 10px;
+  justify-content: center;
+}
+
+.accountPopup .icons {
+  padding: 8px 0;
+  color: green;
+  min-width: 50px;
+  text-align: center;
+}
+
+.accountPopup .divider {
+  border-color: #009bd6;
+  border-left-style: solid;
+  border-left-width: 2px;
+  height: 40px;
+  width: 2px;
+  margin: auto 50%;
+}
+
+.accountPopup .dividerText {
+  margin: 20px;
+}
+
+.clearflex {
+  clear: both;
+}
+
+.getLogout {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.socialLogins {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  justify-content: space-evenly;
+  margin-top: 30px;
+}
+.socials {
+  display: inline-block;
+  background-color: rgba(235, 67, 53, 0.1);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.google,
+.facebook,
+.instagram {
+  margin: auto;
+  padding: 12px;
+  width: 20px;
+  cursor: pointer;
+}
+
+.response-details {
+  color: #007bff;
+  padding: 10px;
+  text-align: center;
+  text-transform: capitalize;
+  font-size: small;
+}
+
+@media (max-width: 1024px) {
+  .accountPopup {
+    width: 35%;
+    height: 100%;
+    padding: 10px;
+  }
+  .accountPopup input {
+    width: 87%;
+  }
+}
+
+@media (max-width: 767px) {
+  .accountPopup {
+    width: 95%;
+    height: 100%;
+    padding: 10px;
+  }
+  .accountPopup input {
+    width: 87%;
+  }
+}

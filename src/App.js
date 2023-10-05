@@ -1,13 +1,11 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Sidebar from "./screens/Navbar/LeftNavbar";
-import MainForm from "./screens/MainForm/MainForm.js";
-import InvoiceHeader from "./screens/MainForm/invoiceHeader/invoiceHeader";
-import ImageUploader from "./screens/MainForm/FileUpload";
-import HeaderBar from "./screens/HeaderBar/Header.js";
-import ResetPassword from "./screens/HeaderBar/ResetPassword.js";
-import UserProfile from "./screens/HeaderBar/UserProfile";
+import Sidebar from "./screens/LeftNavbar/LeftNavbar";
+import MainForm from "./screens/InvoiceFrom/InvoiceFrom.js";
+import HeaderBar from "./screens/TopBar/TopHeader.js";
+import ResetPassword from "./screens/TopBar/ResetPassword.js";
+import UserProfile from "./screens/UserProfile/UserProfile";
 import History from "./screens/History/UserHistory";
 
 function App() {
@@ -55,45 +53,34 @@ function App() {
     <div>
       <Router>
         <div className="wholeBody">
-          <Sidebar isVisible={sidebarVisible} />
+          <Sidebar
+            isVisible={sidebarVisible}
+            isUserLoggedIn={isUserLoggedIn}
+            setIsUserLoggedIn={setIsUserLoggedIn}
+          />
           <div className="headBody">
             <HeaderBar
               toggleSidebar={toggleSidebar}
               sidebarVisible={sidebarVisible}
               openUserProfile={openUserProfile}
+              setIsUserLoggedIn={setIsUserLoggedIn}
+              isUserLoggedIn={isUserLoggedIn}
             />
-            {/* <div
-              className="colorField"
-              style={{
-                backgroundColor: selectedColor,
-                width: 730,
-                height: 5,
-                marginLeft: 60,
-              }}
-            >
-            </div> */}
             <div className="navComponents">
               <Routes>
                 <Route path="/home"></Route>
                 <Route path="/" element={<MainForm />} />
                 <Route path="/create-invoice" element={<MainForm />}></Route>
-                {isUserLoggedIn && (
-                  <Route path="/history" element={<History />}></Route>
-                )}
-                {isUserLoggedIn && (
-                  <Route path="/user-profile" element={<UserProfile />}></Route>
-                )}
+                <Route path="/history" element={<History />}></Route>
+                <Route path="/user-profile" element={<UserProfile />}></Route>
                 <Route
                   path="/edit-invoice/:invoiceId"
                   element={<MainForm />}
                 ></Route>
-                <Route
-                  path="/pdf-templates"
-                  element={<InvoiceHeader />}
-                ></Route>
+                <Route path="/pdf-templates" element={<MainForm />}></Route>
                 <Route
                   path="/attach-with-websites"
-                  component={<ImageUploader />}
+                  component={<MainForm />}
                 ></Route>
                 <Route
                   path="/professional-business-use"
@@ -109,12 +96,6 @@ function App() {
                   element={<ResetPassword />}
                 ></Route>
               </Routes>
-              {/* <div className="sidebarOptions">
-                <SidebarOptions
-                  selectedColor={selectedColor}
-                  setSelectedColor={setSelectedColor}
-                ></SidebarOptions>
-              </div> */}
             </div>
           </div>
         </div>

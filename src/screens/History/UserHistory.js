@@ -8,7 +8,7 @@ import ActionDots from "../../img/ActionDots.svg";
 import NextIcon from "../../img/NextIcon.svg";
 import previousIcon from "../../img/previousIcon.svg";
 import crossIcon from "../../img/crossIcon.svg";
-import InvoiceModel from "../InvoiceModel/InvoiceModel.js";
+import InvoiceModel from "../InvoicePreview/InvoicePreview.js";
 
 const History = () => {
   const [invoices, setInvoices] = useState([]);
@@ -133,7 +133,7 @@ const History = () => {
 
   if (loading) {
     return (
-      <div className="historyPage">
+      <div className="blackpageLoad">
         {/* <div className="loader">Loading...</div> */}
         <div className="loading">
           <div className="loading__dot"></div>
@@ -171,8 +171,8 @@ const History = () => {
         <table className="invoice-table">
           <thead>
             <tr>
-              <th className="firstHead">Sr #</th>
-              <th>Invoice No</th>
+              {/* <th className="firstHead">Sr #</th> */}
+              <th className="firstHead">Invoice No</th>
               <th>Invoice Title</th>
               <th>Date & Time</th>
               <th className="lastHead">Actions</th>
@@ -181,11 +181,11 @@ const History = () => {
           <tbody>
             {currentInvoices.map((invoice, index) => (
               <tr key={invoice.InvoiceId}>
-                <td>{currentPage * rowsPerPage + index + 1}</td>
-                <td>#{invoice.InvoiceId}</td>
+                {/* <td>{currentPage * rowsPerPage + index + 1}</td> */}
+                <td>#{invoice.invoiceNumber}</td>
                 <td>{invoice.invoiceTitle}</td>
                 <td>
-                  {new Date(invoice.invoiceDate).toLocaleDateString()} ,{" "}
+                  {new Date(invoice.invoiceDate).toLocaleDateString()},{" "}
                   {new Date(invoice.createdAt).toLocaleTimeString()}
                 </td>
                 <td>
@@ -202,9 +202,9 @@ const History = () => {
 
                   {openInvoiceId === invoice.InvoiceId && (
                     <div className="dropdown-menu">
-                      <button onClick={(e) => openModalAndPrint(invoice, e)}>
+                      {/* <button onClick={(e) => openModalAndPrint(invoice, e)}>
                         Print Invoice
-                      </button>
+                      </button> */}
                       <button onClick={(e) => openModalAndSave(invoice, e)}>
                         Download Invoice
                       </button>
@@ -224,7 +224,9 @@ const History = () => {
                           Items={currentInvoice.Items}
                           onClose={() => setIsOpen(false)}
                           shouldPrintPDF={shouldPrintPDF}
+                          setShouldPrintPDF={setShouldPrintPDF}
                           shouldSavePDF={shouldSavePDF}
+                          setShouldSavePDF={setShouldSavePDF}
                         />
                       )}
 

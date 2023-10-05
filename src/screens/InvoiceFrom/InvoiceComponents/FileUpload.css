@@ -1,0 +1,25 @@
+.image-uploader {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+input[type="file"] {
+  opacity: 0.3;
+}
+
+.preview {
+  margin-top: -50px;
+
+  z-index: 9;
+}
+
+.image {
+  max-width: 100%;
+  width: 100px;
+  max-height: 200px;
+}
+.Logoupload img{
+  width: 24px;
+  height: 24px;
+}

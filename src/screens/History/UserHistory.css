@@ -3,6 +3,9 @@
 .historyPage {
   margin: 0 auto 10% auto;
 }
+.blackpageLoad {
+  margin: 0 50%;
+}
 
 .loader {
   display: flex;
@@ -151,6 +154,16 @@
 
 /* Loading Spiner  */
 
+.blankPage {
+  overflow-y: auto;
+  z-index: 999999;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  position: fixed;
+  background: #fff;
+}
 .loading {
   --uib-size: 2.8rem;
   --uib-speed: 0.9s;
@@ -263,5 +276,8 @@
   .invoice-table td {
     padding: 5px 5px;
     font-size: 14px;
+  }
+  .dropdown-menu {
+    right: 0;
   }
 }

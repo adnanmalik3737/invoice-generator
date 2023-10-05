@@ -1,0 +1,368 @@
+.formHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 30px 0 30px;
+  align-items: center;
+  position: sticky;
+}
+.formFooter {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  align-items: center;
+  position: sticky;
+}
+
+.formHeaderB {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  align-items: center;
+  position: sticky;
+}
+
+.invoiceInfo {
+  padding: 10px;
+}
+
+.itemHeader {
+  display: flex;
+  min-width: 100px;
+  padding: 20px;
+  text-align: center;
+}
+.verticalItemHead {
+  flex-direction: column !important;
+  justify-content: space-between;
+}
+
+.itemHeader .logo {
+  align-items: center;
+  background-color: #fbfcff;
+  border: 2px dotted;
+  border-color: #009bd6;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 130px;
+  padding: 20px 10px 10px 10px;
+  width: 120px;
+  height: 80px;
+  text-align: center;
+}
+
+.itemHeader .logo .Logoupload {
+  cursor: pointer;
+}
+
+.itemHeader .uploadText {
+  color: #009bd6;
+  text-align: center;
+  font-family: "Ubuntu-Medium", Helvetica;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 153.846% */
+}
+
+.itemHeader .logo img {
+  flex: 0 0 auto;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: -15px -15px -15px -15px;
+}
+.itemHeader .upload {
+  height: 54px;
+  /* margin-left: -30px; */
+  /* left: 32%;
+  top: 5%;
+  position: absolute;
+  width: 161px; */
+}
+
+.upload .textWrapper {
+  padding: 10px;
+  width: 150px;
+}
+
+.uploadLogo {
+  text-align: left;
+  padding: 0 10px;
+  color: #333;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
+}
+
+.itemHeader,
+.formFooter .upload .text {
+  color: #676767;
+  font-family: "Ubuntu-Medium", Helvetica;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 14.3px;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+  text-align: left;
+  align-items: center;
+}
+.itemHeader .itemHeader {
+  padding: 10px;
+}
+.itemHeader input {
+  width: 200px;
+  text-align: center;
+}
+.itemHeader input[type="radio"] {
+  width: auto;
+}
+
+.h-1 {
+  color: #333333;
+  font-family: "Ubuntu-Light", Helvetica;
+  font-size: 45px;
+  font-weight: 300;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.editable-text {
+  border: 1px solid transparent;
+  padding: 20px;
+  cursor: grab;
+  width: auto;
+  direction: ltr;
+}
+
+.textLeft {
+  direction: ltr;
+}
+
+.editable-text.editing {
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  outline: none;
+  cursor: text;
+  direction: ltr;
+}
+
+/* .formHeader .invoiceInfo {
+  align-items: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  left: 35px;
+  position: absolute;
+  top: 170px;
+} */
+
+.invoiceInfo .infoItem {
+  height: 33px;
+  position: relative;
+  margin: auto;
+}
+
+.invoiceInfo .infoItem label {
+  color: #333;
+  font-family: "Ubuntu-Light", Helvetica;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  align-items: flex-start;
+  background-color: #ffffff;
+  border-radius: 4px;
+  display: inline-block;
+  flex-wrap: wrap;
+  padding: 4.5px 13px 5.5px 4px;
+  position: absolute;
+  width: 107px;
+}
+
+.invoiceInfo .infoItem .inputLabel {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border-radius: 4px;
+  display: flex;
+  left: 2px;
+  padding: 4.5px 13px 5.5px 4px;
+  position: absolute;
+  top: 4px;
+  width: 107px;
+}
+
+.invoiceInfo .infoItem input {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #d7d7d7;
+  border-radius: 4px;
+  display: inline-block;
+  height: 20px;
+  padding: 3px 10px;
+  max-width: 100px;
+}
+
+.invoiceInfo .infoItem .inputItem {
+  color: #9ca3af;
+  font-family: "Ubuntu-Light", Helvetica;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: 100px;
+}
+
+@media (max-width: 767px) {
+  .formHeader {
+    padding: 0;
+    flex-direction: column-reverse;
+  }
+  .itemHeader .logo {
+    max-width: 120px;
+    padding: 10px 5px 5px 5px;
+    width: 100px;
+    height: 70px;
+    text-align: center;
+  }
+  .formHeaderB {
+    padding: 0 5px;
+  }
+  .itemHeader {
+    padding: 20px 5px;
+  }
+}
+/* Side Options css */
+.sidebarOption {
+  width: 250px;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 25px;
+  margin: 0 30px;
+}
+
+.sidebarOptions {
+  display: flex;
+}
+
+.sidebar-btn {
+  width: 250px;
+  height: 50px;
+  margin-bottom: 10px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 3px;
+  background: white;
+  color: black;
+  text-align: justify;
+}
+
+.sidebar-btn:hover {
+  background-color: #009bd6;
+  color: white;
+  fill: white;
+  stroke: white;
+}
+
+.sidebar-btn span {
+  padding: 0 10px;
+  margin-left: 20px;
+}
+
+span svg path:hover {
+  fill: white;
+  stroke: white;
+}
+.sidebar-btn p {
+  display: flex;
+  padding: 0 10px;
+}
+
+.color-picker-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 5px;
+  margin-bottom: 20px;
+}
+
+.color-box:nth-child(1) {
+  border: 1px solid #009bd6;
+}
+
+.color-picker-container label {
+  margin-bottom: 10px;
+}
+
+.color-box {
+  width: 30px;
+  display: flex;
+  align-items: flex-start;
+  border-radius: 4px;
+  border: 2px;
+  background: #fff;
+  height: 30px;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.color-box svg {
+  margin: auto;
+}
+
+.color-box:hover {
+  border-color: #fff;
+}
+
+.dotted {
+  border: 1.5px dashed #009bd6 !important;
+  text-align: center;
+}
+
+.selected-color {
+  width: 100%;
+  height: 40px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border: 2px solid #000;
+}
+
+@media (max-width: 900px) {
+  .color-picker-container {
+    display: none;
+  }
+  .sidebarOption {
+    width: auto;
+    flex-direction: initial;
+    padding-top: 0;
+    margin: 0;
+  }
+  .sidebar-btn .text {
+    display: none;
+  }
+
+  .sidebar-btn span {
+    padding: 10px;
+    margin-left: 0;
+  }
+  .sidebar-btn {
+    width: auto;
+    height: 50px;
+    margin: auto;
+  }
+}

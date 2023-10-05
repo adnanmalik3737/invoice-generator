@@ -1,0 +1,274 @@
+.headerBar {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  padding: 3px 0;
+  border-bottom: 1px solid #333333;
+  background-color: #ffffff;
+  width: 100%;
+}
+
+.logo_icon_bar {
+  height: 45px;
+  display: flex;
+  width: 300px;
+  justify-content: space-between;
+}
+
+.headerBar .link {
+  height: 25px;
+  left: 0;
+  position: absolute;
+  top: 12px;
+  width: 20px;
+}
+
+.loginBtn {
+  color: #ffffff;
+  padding: 0 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+  background: #009bd6;
+}
+.loginBtn:hover {
+  color: #009bd6;
+  background: #ffffff;
+}
+
+.loginBtn:active {
+  background-color: #009bd6;
+  color: #ffffff;
+  box-shadow: 3px 3px 6px 6px #75d8ff;
+  transform: translateY(3px);
+}
+
+.title-divider {
+  border-color: #e2e2e2;
+  border-left-style: solid;
+  border-left-width: 1px;
+  height: 30px;
+  width: 1px;
+  margin: 10px 10px;
+}
+
+.profileBtn {
+  padding: 5px;
+  background-color: #fff;
+  color: #fff;
+  border-radius: 50%;
+  border: 3px solid #009bd6;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.profileBtn:active {
+  background-color: #009bd6;
+  color: #ffffff;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  transform: translateY(3px);
+}
+
+.headerBar .div-title {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.headerBar .heading-free {
+  color: #333333;
+  font-family: "Ubuntu-Medium", Helvetica;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 19.8px;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.headerBar .leedInvoice {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 13px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.humberger {
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.headerLogo {
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.headerBar .SIGN-UP-IT-s-FREE-wrapper {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  padding: 0px 9.94px 0px 0px;
+  position: relative;
+}
+
+.headerBar .SIGN-UP-IT-s-FREE {
+  color: #ffffff;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.42px;
+  line-height: 16px;
+  margin-top: -1px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.headerBar .accountsIconText {
+  width: 12%;
+  padding: 0 10px;
+  display: flex;
+}
+
+.headerBar .heading-free-wrapper {
+  border-radius: 4px;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.headerBar .text-wrapper {
+  color: #333333;
+  font-family: "Ubuntu-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 19.8px;
+  display: flex;
+  align-items: center;
+}
+
+.resetPassword {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background-color: #f2f3f5;
+}
+
+.resetPass {
+  display: flex;
+  flex-direction: column;
+  margin: 10% auto;
+  background: #fff;
+  box-shadow: 0px 0px 17px 0px rgba(16, 40, 73, 0.09);
+  padding: 3%;
+  width: 25%;
+}
+.resetPass img {
+  text-align: center;
+  margin: auto;
+}
+.resetPass h2 {
+  text-align: center;
+  color: #009bd6;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.resetPass p {
+  text-align: center;
+  color: #333333;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 25px; /* 156.25% */
+}
+.resetPassForm {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 100%;
+}
+.resetPassForm input {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border: 1px solid #9ca3af;
+  background: #ffffff;
+  height: 20px;
+}
+.resetPassForm button {
+  width: 40%;
+  margin: 10% auto 0 auto;
+  height: 38px;
+  padding: 7px 13px;
+  border-radius: 4px;
+  background: #009bd6;
+}
+
+.desktopDevice {
+  display: block;
+}
+.mobileDevice {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .headerLogo {
+    padding: 5px 1px;
+  }
+
+  .title-divider {
+    margin: 5px 5px;
+  }
+
+  .headerBar .div-title {
+    padding: 5px;
+  }
+
+  .headerBar .heading-free {
+    font-size: 12px;
+  }
+  .logo_icon_bar {
+    height: 40px;
+    display: flex;
+    width: auto;
+  }
+  .desktopDevice {
+    display: none;
+  }
+  .mobileDevice {
+    display: block;
+  }
+
+  .loginBtn {
+    color: #ffffff;
+    padding: 10px 0 5px 0;
+    cursor: pointer;
+    background: none;
+  }
+  .headerBar .accountsIconText {
+    width: auto;
+    padding: 0 10px;
+  }
+  .profileBtn {
+    padding: 2px;
+  }
+}
